@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">Cinepople</string>
+    <string name="app_name">CINE POPLE</string>
+    <string name="login_tag">LOGIN TO YOUR ACCOUNT</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="forgot_password">Forgot your password?</string>
+    <string name="login_with">Or login with</string>
+    <string name="signup">Sign up</string>
+    <string name="next">Next</string>
+    <string name="confirm_password">Confirm your password</string>
+    <string name="signup_tag">Create your account</string>
 </resources>

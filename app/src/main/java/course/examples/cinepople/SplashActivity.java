@@ -7,7 +7,6 @@ import android.os.Looper;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import course.examples.cinepople.databinding.ActivitySplashBinding;
@@ -22,24 +21,26 @@ public class SplashActivity extends AppCompatActivity {
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Animation fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        // Tải hoạt ảnh
+        final Animation fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 
+        // Chạy hoạt ảnh cho TextView
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
                 binding.nameAppSplash.setVisibility(View.VISIBLE);
                 binding.nameAppSplash.startAnimation(fadeInAnimation);
             }
-        }, 500);
+        }, 500); // 0.5 giây
 
+        // Chuyển màn hình
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                // Chuyển sang LoginActivity
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
-                finish(); // Đóng màn hình Splash
+                finish();
             }
-        }, 2000); // 2000ms = 2 giây
+        }, 2000); // 2 giây
     }
 }

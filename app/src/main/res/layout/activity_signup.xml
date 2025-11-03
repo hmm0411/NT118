@@ -9,6 +9,7 @@
     android:padding="20dp"
     tools:context=".SignUpActivity">
 
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_return_signup"
         android:layout_width="34dp"
@@ -227,7 +228,7 @@
 
     <!-- 9. Nút NEXT -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_next_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"

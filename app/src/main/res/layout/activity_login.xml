@@ -145,8 +145,6 @@
             android:layout_marginBottom="5dp"
             android:orientation="vertical">
 
-            <!-- ĐÃ XÓA: TextView "Password" cũ -->
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -198,7 +196,7 @@
 
             <CheckBox
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="@string/remember_me"
                 android:textColor="#AAAAAA"
@@ -210,6 +208,8 @@
                 android:layout_weight="1" />
 
             <TextView
+                android:paddingVertical="6dp"
+                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
@@ -229,7 +229,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_semibold"
-            android:padding="16dp"
+            android:paddingVertical="16dp"
             android:text="@string/login"
             android:textAllCaps="true"
             android:textSize="20sp"
@@ -305,21 +305,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:fontFamily="@font/montserrat"
+            android:layout_marginEnd="4dp"
+            android:fontFamily="@font/montserrat_semibold"
             android:text="Don't have an account?"
             android:textColor="#AAAAAA"
-            android:textSize="14sp" />
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/tv_signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_bold"
+            android:fontFamily="@font/montserrat_semibold"
             android:text="@string/signup"
             android:textColor="@color/red_main"
-            android:textSize="14sp" />
+            android:gravity="center_vertical"
+            android:textSize="13sp" />
     </LinearLayout>
 </LinearLayout>
-
-

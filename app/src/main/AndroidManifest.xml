@@ -11,15 +11,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cinepople">
+
         <activity
-            android:name=".LoginActivity"
-            android:exported="true">
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false">
+            <!-- Đã xóa intent-filter khỏi đây -->
+        </activity>
+
+<!--        &lt;!&ndash; FIX 3: Khai báo SignUpActivity &ndash;&gt;-->
+<!--        <activity-->
+<!--            android:name=".SignUpActivity"-->
+<!--            android:exported="false" />-->
+
+<!--        &lt;!&ndash; (Bạn cũng nên khai báo HomeActivity ở đây khi tạo nó) &ndash;&gt;-->
+<!--        &lt;!&ndash;-->
+<!--        <activity-->
+<!--            android:name=".HomeActivity"-->
+<!--            android:exported="false" />-->
+<!--        &ndash;&gt;-->
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts"

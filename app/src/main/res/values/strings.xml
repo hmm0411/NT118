@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CINE POPLE</string>
+    <string name="app_name">CINEPOPLE</string>
     <string name="login_tag">LOGIN TO YOUR ACCOUNT</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
@@ -14,5 +14,8 @@
     <string name="confirm_password">Confirm your password</string>
     <string name="terms_and_conditions">Term &amp; Condition</string>
     <string name="already_have_account">Already have an account?</string>
-    <string name="sign_in">Sign In</string>
+    <string name="sign_in">Sign in</string>
+    <string name="license">Term &amp; Condition</string>
+    <string name="agree_license">I agree to Cine                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Pople</string>
+    <string name="signup_other_tag">Already have an account?</string>
 </resources>

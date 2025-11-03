@@ -9,23 +9,25 @@
     android:padding="20dp"
     tools:context=".SignUpActivity">
 
-    <ImageView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_return_signup"
         android:layout_width="34dp"
         android:layout_height="34dp"
-        android:src="@drawable/ic_return"
+        android:background="@drawable/ic_return"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="30dp"/>
 
-    <!-- 2. Tiêu đề "CREATE YOUR ACCOUNT" -->
     <TextView
         android:id="@+id/tv_create_account_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CREATE YOUR ACCOUNT"
+        android:text="@string/signup_tag"
+        android:textAllCaps="true"
         android:fontFamily="@font/montserrat_extrabold"
+        android:layout_marginHorizontal="10dp"
         android:textColor="@color/black_text"
-        android:textSize="24sp"
+        android:textSize="26sp"
         android:layout_marginBottom="10dp"/>
 
     <!-- 3. Mô tả ngắn -->
@@ -35,35 +37,68 @@
         android:layout_height="wrap_content"
         android:text="@string/signup_info"
         android:fontFamily="@font/montserrat_medium"
-        android:textColor="#AAAAAA"
+        android:textColor="@color/black_text"
         android:textSize="14sp"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginBottom="30dp"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_email_signup"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:hint="@string/email"
-        app:boxBackgroundColor="#EAEAEA"
-        app:boxCornerRadiusTopStart="12dp"
-        app:boxCornerRadiusTopEnd="12dp"
-        app:boxCornerRadiusBottomStart="12dp"
-        app:boxCornerRadiusBottomEnd="12dp"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp">
+        android:orientation="vertical"
+        android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="10dp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_email_signup"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:text="@string/email"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textSize="16sp"/>
 
-    <com.google.android.material.textfield.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_email_signup"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="20dp"
+            android:hint="@string/email"
+            app:boxBackgroundColor="#EAEAEA"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_email_signup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/password"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textSize="16sp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_password_signup"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         android:layout_width="match_parent"
@@ -88,81 +123,106 @@
             android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
 
-    <!-- 6. Ô nhập Confirm Password -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_confirm_password_signup"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:hint="@string/confirm_password"
-        app:boxBackgroundColor="#EAEAEA"
-        app:boxCornerRadiusTopStart="12dp"
-        app:boxCornerRadiusTopEnd="12dp"
-        app:boxCornerRadiusBottomStart="12dp"
-        app:boxCornerRadiusBottomEnd="12dp"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
-
-        app:endIconMode="password_toggle">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_confirm_password_signup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- 7. Checkbox "I agree to Terms & Conditions" -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="30dp">
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm_password"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textSize="16sp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_confirm_password_signup"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:hint="@string/confirm_password"
+            android:fontFamily="@font/montserrat"
+            app:boxBackgroundColor="#EAEAEA"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_confirm_password_signup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal">
+
         <CheckBox
             android:id="@+id/cb_agree_terms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
             android:buttonTint="#990011"
-            android:text="@string/confirm_password"/>
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/agree_license"
+            android:textSize="13sp" />
+
         <TextView
             android:id="@+id/tv_terms_link"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Term & Condition"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center_vertical"
+            android:text="@string/license"
             android:textColor="@color/red_main"
-            android:textSize="13sp"
-            android:fontFamily="@font/montserrat_bold"/>
+            android:textSize="13sp" />
     </LinearLayout>
 
     <!-- 8. "Already have an account? Sign In" -->
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center"
-    android:layout_marginBottom="40dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="40dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Already have an account? "
-        android:textColor="#AAAAAA"
-        android:textSize="14sp"/>
+        android:text="@string/signup_other_tag"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/black_text"
+        android:layout_marginEnd="5dp"
+        android:textSize="13sp"/>
 
     <TextView
         android:id="@+id/tv_sign_in_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign In"
-        android:textColor="#990011"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/sign_in"
+        android:textColor="@color/red_main"
         android:textStyle="bold"
-        android:textSize="14sp"/>
+        android:textSize="13sp"/>
 </LinearLayout>
 
     <!-- 9. Nút NEXT -->
@@ -170,7 +230,8 @@
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login"
+        android:layout_marginHorizontal="10dp"
+        android:text="@string/next"
         android:textAllCaps="true"
         android:fontFamily="@font/montserrat_semibold"
         android:textSize="20sp"

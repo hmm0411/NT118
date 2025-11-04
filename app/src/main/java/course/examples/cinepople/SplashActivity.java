@@ -12,28 +12,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import course.examples.cinepople.databinding.ActivitySplashBinding;
 
 public class SplashActivity extends AppCompatActivity {
+    // Khai báo biến binding
     private ActivitySplashBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        // Gán layout cho Activity
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Animation logoMoveUp = AnimationUtils.loadAnimation(this, R.anim.logo_move_up);
 
-        // Tải hoạt ảnh
-        final Animation fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        Animation textSlideInUp = AnimationUtils.loadAnimation(this, R.anim.text_slide_in_up);
 
-        // Chạy hoạt ảnh cho TextView
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                binding.nameAppSplash.setVisibility(View.VISIBLE);
-                binding.nameAppSplash.startAnimation(fadeInAnimation);
-            }
-        }, 500); // 0.5 giây
+        binding.logoSplash.startAnimation(logoMoveUp);
 
-        // Chuyển màn hình
+        binding.nameAppSplash.startAnimation(textSlideInUp);
+
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -41,6 +36,7 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 2000); // 2 giây
+        }, 2500);
     }
+
 }

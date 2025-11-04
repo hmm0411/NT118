@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Hoạt ảnh này di chuyển View TỪ vị trí 0 (chỗ của nó)
+  LÊN TRÊN (toYDelta) 80dp.
+-->
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fromYDelta="0%"
+    android:toYDelta="-15%p"
+    android:duration="1000"
+    android:fillAfter="true" />

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Đây là một bộ hoạt ảnh (set):
+  1. Translate (Di chuyển): Từ 100% (bên dưới màn hình) lên 0 (vị trí của nó).
+  2. Alpha (Mờ dần): Từ 0 (trong suốt) thành 1 (rõ nét).
+-->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillAfter="true">
+
+    <translate
+        android:fromYDelta="100%p"
+        android:toYDelta="0%"
+        android:duration="1000" />
+
+    <alpha
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0"
+        android:duration="1000" />
+</set>

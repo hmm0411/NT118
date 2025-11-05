@@ -14,7 +14,7 @@
     app:layout_scrollFlags="noScroll"
     tools:context=".LoginActivity">
 
-        <!-- 1. NÚT RETURN -->
+        <!-- RETURN BUTTON -->
         <LinearLayout
             android:id="@+id/login_return"
             android:layout_width="match_parent"
@@ -123,7 +123,7 @@
                     android:textColorHint="#AAAAAA"
                     android:drawableLeft="@drawable/ic_email"
                     android:drawablePadding="5dp"
-                    android:drawableTint="#80000000"
+                    android:drawableTint="@color/black"
                     android:inputType="textEmailAddress"
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="16dp"
@@ -157,7 +157,7 @@
                     android:textColorHint="#AAAAAA"
                     android:drawableLeft="@drawable/ic_password"
                     android:drawablePadding="5dp"
-                    android:drawableTint="#80000000"
+                    android:drawableTint="@color/black"
                     android:inputType="textPassword"
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="16dp"

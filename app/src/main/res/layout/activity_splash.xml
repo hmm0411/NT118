@@ -8,13 +8,13 @@
     android:gravity="center"
     android:background="#F8F0EC"
     android:fitsSystemWindows="true"
-    tools:context=".SplashActivity">
+    tools:context=".splash.SplashActivity">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/logo_splash"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@mipmap/ic_launcher_round"
+        android:src="@mipmap/ic_logo"
         android:contentDescription="App Logo"
         android:layout_marginBottom="16dp"
 

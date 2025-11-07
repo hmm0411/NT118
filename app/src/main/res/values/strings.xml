@@ -5,6 +5,7 @@
 
     <!-- Accessibility (Content Descriptions for images) -->
     <string name="description_btn_return">Button Return</string>
+    <string name="description_btn_next">Button Next</string>
     <string name="description_logo_app">Cine Pople</string>
     <string name="description_logo_facebook">Facebook</string>
     <string name="description_logo_google">Google</string>
@@ -40,13 +41,22 @@
 
     <!-- Profile -->
     <string name="profile_tag">Account</string>
+    <string name="profile_general">General</string>
     <string name="profile_watchlist">Watchlist</string>
     <string name="profile_payment">Payment Methods</string>
-    <string name="profile_info">Personal Info</string>
+    <string name="profile_personal">Personal Info</string>
     <string name="profile_security">Security</string>
     <string name="profile_language">Language</string>
     <string name="profile_mode">Dark Mode</string>
     <string name="profile_help">Help Center</string>
-    <string name="profile_about">About Cine Pople</string>
+    <string name="profile_about">About</string>
+    <string name="profile_info">About Cine Pople</string>
     <string name="profile_logout">Logout</string>
+
+    <!-- Personal infi -->
+    <string name="user_name">Full Name</string>
+    <string name="user_phone">Phone Number</string>
+    <string name="user_email">Email</string>
+    <string name="user_gender">Gender</string>
+    <string name="user_birthday">Birthday</string>
 </resources>

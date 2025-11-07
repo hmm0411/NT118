@@ -23,7 +23,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 
-import course.examples.cinepople.home.HomeActivity;
+import course.examples.cinepople.home.HomeFragment;
 import course.examples.cinepople.R;
 
 public class LoginFragment extends Fragment {
@@ -103,7 +103,7 @@ public class LoginFragment extends Fragment {
 
                                 // Chuyển hướng sang màn hình chính (HomeActivity)
                                 // <-- SỬA LỖI 4
-                                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                                Intent intent = new Intent(getActivity(), HomeFragment.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
 

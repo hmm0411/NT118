@@ -18,7 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import course.examples.cinepople.home.HomeActivity;
+import course.examples.cinepople.home.HomeFragment;
 import course.examples.cinepople.databinding.FragmentSignupBinding;
 
 public class SignUpFragment extends Fragment {
@@ -129,7 +129,7 @@ public class SignUpFragment extends Fragment {
                             Toast.makeText(getContext(), "Tạo tài khoản thành công.", Toast.LENGTH_SHORT).show();
 
                             // Tự động đăng nhập và chuyển sang HomeActivity
-                            Intent intent = new Intent(getActivity(), HomeActivity.class);
+                            Intent intent = new Intent(getActivity(), HomeFragment.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
 

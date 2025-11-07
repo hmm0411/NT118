@@ -5,8 +5,7 @@ public class Movie {
     private String posterUrl;
     private String duration;
 
-    public Movie() {
-    }
+    public Movie() {}
 
     public Movie(String title, String posterUrl, String duration) {
         this.title = title;

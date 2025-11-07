@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 // (Import cho Firestore sẽ được thêm sau)
 
 import course.examples.cinepople.databinding.ActivityCreateProfileBinding;
-import course.examples.cinepople.home.HomeActivity;
+import course.examples.cinepople.home.HomeFragment;
 
 public class CreateProfileActivity extends AppCompatActivity {
 
@@ -77,7 +77,7 @@ public class CreateProfileActivity extends AppCompatActivity {
         Toast.makeText(this, "Hồ sơ đã được lưu!", Toast.LENGTH_SHORT).show();
 
         // 5. Chuyển sang HomeActivity
-        Intent intent = new Intent(CreateProfileActivity.this, HomeActivity.class);
+        Intent intent = new Intent(CreateProfileActivity.this, HomeFragment.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish(); // Đóng ProfileActivity

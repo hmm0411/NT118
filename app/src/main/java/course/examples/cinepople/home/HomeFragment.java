@@ -1,12 +1,18 @@
 package course.examples.cinepople.home;
 
-import androidx.appcompat.app.AppCompatActivity;
+// <<< SỬA 1: Import Fragment và các thư viện liên quan
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment; // <<< Import class Fragment
 import androidx.viewpager2.widget.ViewPager2;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import android.os.Bundle;
-import android.widget.TextView;
-import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
@@ -17,8 +23,10 @@ import course.examples.cinepople.adapter.MoviePosterAdapter;
 import course.examples.cinepople.data.Movie;
 import course.examples.cinepople.R;
 
-public class HomeActivity extends AppCompatActivity {
+// <<< SỬA 2: Kế thừa từ Fragment, KHÔNG phải AppCompatActivity
+public class HomeFragment extends Fragment {
 
+    // --- Các biến của bạn (Giữ nguyên) ---
     private ViewPager2 viewPagerTopMovies;
     private TopMoviesSliderAdapter sliderAdapter;
     private List<Movie> topMoviesList;
@@ -33,43 +41,54 @@ public class HomeActivity extends AppCompatActivity {
     private TextView tvMovieDuration;
     private MaterialButton btnBookMovie;
 
+    // <<< SỬA 3: Dùng onCreateView để "gắn" layout
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate (nạp) layout XML cho Fragment này
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        return view; // Trả về view đã được nạp
+    }
 
-        setContentView(R.layout.activity_home);
+    // <<< SỬA 4: Dùng onViewCreated để chạy logic
+    // (Toàn bộ code trong "onCreate" cũ của bạn sẽ được chuyển vào đây)
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        viewPagerTopMovies = findViewById(R.id.viewpager_top_movies);
-        recyclerNowPlaying = findViewById(R.id.recycler_now_playing);
-        recyclerComingSoon = findViewById(R.id.recycler_coming_soon);
+        // <<< SỬA 5: Dùng "view.findViewById" để tìm các thành phần
+        viewPagerTopMovies = view.findViewById(R.id.viewpager_top_movies);
+        recyclerNowPlaying = view.findViewById(R.id.recycler_now_playing);
+        recyclerComingSoon = view.findViewById(R.id.recycler_coming_soon);
 
-        tvMovieTitle = findViewById(R.id.tv_movie_title);
-        tvMovieDuration = findViewById(R.id.tv_movie_duration);
-        btnBookMovie = findViewById(R.id.btn_book_movie);
+        tvMovieTitle = view.findViewById(R.id.tv_movie_title);
+        tvMovieDuration = view.findViewById(R.id.tv_movie_duration);
+        btnBookMovie = view.findViewById(R.id.btn_book_movie);
 
         // Tải dữ liệu
         loadDummyData();
 
         // --- Setup ViewPager "Top Movies" ---
-        sliderAdapter = new TopMoviesSliderAdapter(this, topMoviesList);
+        // <<< SỬA 6: Dùng "getContext()" thay cho "this"
+        sliderAdapter = new TopMoviesSliderAdapter(getContext(), topMoviesList);
         viewPagerTopMovies.setAdapter(sliderAdapter);
         setupSliderTransformer();
-        // <<< THÊM VÀO: Lắng nghe sự kiện lướt (swipe)
         setupPageChangeListener();
 
         // --- Setup RecyclerView "Now Playing" ---
-        nowPlayingAdapter = new MoviePosterAdapter(this, nowPlayingList);
+        // <<< SỬA 6: Dùng "getContext()" thay cho "this"
+        nowPlayingAdapter = new MoviePosterAdapter(getContext(), nowPlayingList);
         recyclerNowPlaying.setAdapter(nowPlayingAdapter);
         recyclerNowPlaying.setLayoutManager(
-                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+                new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)
         );
 
         // --- Setup RecyclerView "Coming Soon" ---
-        comingSoonAdapter = new MoviePosterAdapter(this, comingSoonList);
+        // <<< SỬA 6: Dùng "getContext()" thay cho "this"
+        comingSoonAdapter = new MoviePosterAdapter(getContext(), comingSoonList);
         recyclerComingSoon.setAdapter(comingSoonAdapter);
-        // <<< SỬA LẠI: Dùng biến mới cho LayoutManager
         LinearLayoutManager horizontalLayoutManager2 =
-                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+                new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerComingSoon.setLayoutManager(horizontalLayoutManager2);
 
         if (topMoviesList != null && !topMoviesList.isEmpty()) {
@@ -77,49 +96,52 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    // --- Các hàm logic (Không thay đổi nhiều) ---
+
     private void setupPageChangeListener() {
         viewPagerTopMovies.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                // Cập nhật thông tin khi lướt đến trang (phim) mới
                 updateTopMovieInfo(position);
             }
         });
     }
 
-    // <<< THÊM VÀO: Hàm cập nhật Tên, Thời lượng, Nút Book
     private void updateTopMovieInfo(int position) {
         if (topMoviesList == null || topMoviesList.isEmpty() || position >= topMoviesList.size()) {
-            return; // Đảm bảo an toàn, tránh crash nếu list rỗng
+            return;
         }
 
         Movie selectedMovie = topMoviesList.get(position);
 
-        // Cập nhật văn bản
         tvMovieTitle.setText(selectedMovie.getTitle());
         tvMovieDuration.setText(selectedMovie.getDuration());
 
-        // Cập nhật sự kiện click cho nút Book
         btnBookMovie.setOnClickListener(v -> {
-            // Xử lý khi nhấn nút "Book"
-            Toast.makeText(HomeActivity.this, "Đặt vé: " + selectedMovie.getTitle(), Toast.LENGTH_SHORT).show();
+            // <<< SỬA 7: Dùng "getContext()" thay cho "HomeFragment.this"
+            Toast.makeText(getContext(), "Đặt vé: " + selectedMovie.getTitle(), Toast.LENGTH_SHORT).show();
+
+            // TODO: Bạn có thể bắt đầu một Activity mới (ví dụ: BookingActivity) từ đây
+            // Intent intent = new Intent(getContext(), BookingActivity.class);
+            // intent.putExtra("MOVIE_TITLE", selectedMovie.getTitle());
+            // startActivity(intent);
         });
     }
 
     private void setupSliderTransformer() {
+        // (Không cần thay đổi gì)
         viewPagerTopMovies.setOffscreenPageLimit(3);
-        // Padding và ClipChildren đã được set trong XML
-
         viewPagerTopMovies.setPageTransformer((page, position) -> {
             float r = 1 - Math.abs(position);
             float scale = 0.85f + r * 0.15f;
             page.setScaleY(scale);
-            page.setScaleX(scale); // Thêm scaleX cho đẹp
+            page.setScaleX(scale);
         });
     }
 
     private void loadDummyData() {
+        // (Không cần thay đổi gì)
         topMoviesList = new ArrayList<>();
         topMoviesList.add(new Movie("Avatar 2", "https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg", "3h 12m"));
         topMoviesList.add(new Movie("Oppenheimer", "https://image.tmdb.org/t/p/w500/8GQu4CjGagE6PfoS4i6Yf2eiZoU.jpg", "3h 0m"));

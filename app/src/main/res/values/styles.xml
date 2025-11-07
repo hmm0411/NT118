@@ -4,6 +4,15 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="Label" parent="">
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="OtpEditTextStyle" parent="Widget.AppCompat.EditText">
         <item name="android:layout_width">50dp</item>
         <item name="android:layout_height">60dp</item>
@@ -60,7 +69,7 @@
     <style name="ViewAllTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:text">View all ></item>
+        <item name="android:text">@string/view_all</item>
         <item name="android:fontFamily">@font/montserrat_semibold</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/red</item>
@@ -90,18 +99,33 @@
         <item name ="android:layout_width">match_parent</item>
         <item name ="android:layout_height">wrap_content</item>
         <item name ="android:orientation">horizontal</item>
-        <item name="android:paddingTop">10dp</item>
-        <item name="android:paddingBottom">10dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
         <item name="android:gravity">center_vertical</item>
     </style>
 
     <style name="TextProfileOption" parent="ProfileOption">
         <item name ="android:layout_width">wrap_content</item>
-        <item name ="android:layout_height">wrap_content</item>
+        <item name ="android:layout_height">30dp</item>
         <item name="android:paddingStart">10dp</item>
         <item name ="android:layout_weight">1</item>
         <item name ="android:fontFamily">@font/montserrat_semibold</item>
         <item name ="android:textColor">@color/black</item>
         <item name ="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextProfilePersonal" parent="">
+        <item name ="android:layout_weight">1</item>
+        <item name ="android:layout_width">wrap_content</item>
+        <item name ="android:layout_height">wrap_content</item>
+        <item name ="android:textSize">15sp</item>
+        <item name ="android:textColor">@color/black</item>
+        <item name ="android:fontFamily">@font/montserrat_bold</item>
+        <item name ="android:layout_marginTop">20dp</item>
+        <item name ="android:layout_marginBottom">20dp</item>
+        <item name ="android:layout_marginLeft">10dp</item>
+        <item name ="android:layout_marginRight">10dp</item>
+        <item name ="android:paddingStart">5dp</item>
+        <item name="android:gravity">center_vertical</item>
     </style>
 </resources>

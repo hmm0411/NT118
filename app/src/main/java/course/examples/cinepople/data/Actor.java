@@ -1,0 +1,22 @@
+package course.examples.cinepople.data;
+
+public class Actor {
+    private String name;
+    private String headshotUrl;
+
+    // Cần có một constructor rỗng cho Firestore
+    public Actor() {}
+
+    public Actor(String name, String headshotUrl) {
+        this.name = name;
+        this.headshotUrl = headshotUrl;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getHeadshotUrl() {
+        return headshotUrl;
+    }
+}

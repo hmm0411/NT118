@@ -1,4 +1,4 @@
-package course.examples.cinepople.profile;
+package course.examples.cinepople.ui.profile;
 
 import android.os.Bundle;
 import android.util.Log;

@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Cinepople">
 
         <activity
-            android:name=".splash.SplashActivity"
+            android:name=".ui.splash.SplashActivity"
             android:exported="true"
             android:noHistory="true">
             <intent-filter>
@@ -23,12 +23,17 @@
         </activity>
 
         <activity
-            android:name=".auth.AuthenticationActivity"
+            android:name=".ui.auth.AuthenticationActivity"
             android:exported="false">
         </activity>
 
         <activity
-            android:name=".main.MainActivity"
+            android:name=".ui.main.MainActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui.movies.MovieDetailsActivity"
             android:exported="false">
         </activity>
 

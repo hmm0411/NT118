@@ -1,4 +1,4 @@
-package course.examples.cinepople.auth;
+package course.examples.cinepople.ui.auth;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,16 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-// Đảm bảo import đúng lớp ViewBinding
-// (ví dụ: FragmentOtpBinding nếu tệp layout là fragment_otp.xml)
-import course.examples.cinepople.CreateProfileActivity;
 import course.examples.cinepople.databinding.FragmentOtpBinding;
 
-public class OtpFragment extends Fragment {
+public class OtpSignUpFragment extends Fragment {
 
     private FragmentOtpBinding binding;
 
-    // Mảng chứa các ô EditText
     private EditText[] otpFields;
 
     @Nullable
@@ -40,7 +36,6 @@ public class OtpFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Khởi tạo mảng EditText
         otpFields = new EditText[]{
                 binding.etOtp1,
                 binding.etOtp2,
@@ -48,13 +43,10 @@ public class OtpFragment extends Fragment {
                 binding.etOtp4
         };
 
-        // 1. Cài đặt tự động nhảy ô và xóa lùi
         setupOtpTextWatchers();
 
-        // 2. Tự động mở bàn phím và focus vào ô đầu tiên
         showKeyboard(binding.etOtp1);
 
-        // 3. Xử lý nút "Verify OTP"
         binding.btnVerifyOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,7 +141,7 @@ public class OtpFragment extends Fragment {
         }
 
         // 1. Khởi chạy ProfileActivity MỚI
-        Intent intent = new Intent(getActivity(), CreateProfileActivity.class);
+        Intent intent = new Intent(getActivity(), CreateProfileFragment.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
 

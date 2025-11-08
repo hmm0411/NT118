@@ -1,4 +1,4 @@
-package course.examples.cinepople.auth;
+package course.examples.cinepople.ui.auth;
 
 
 import androidx.fragment.app.Fragment;

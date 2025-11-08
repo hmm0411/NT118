@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@color/white"
     android:fitsSystemWindows="true"
-    tools:context=".CreateProfileActivity">
+    tools:context=".ui.auth.CreateProfileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

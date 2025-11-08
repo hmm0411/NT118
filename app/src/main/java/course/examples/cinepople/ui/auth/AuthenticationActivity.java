@@ -1,4 +1,4 @@
-package course.examples.cinepople.auth;
+package course.examples.cinepople.ui.auth;
 
 import android.os.Bundle;
 import android.view.View;
@@ -43,10 +43,10 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         if (addToBackStack) {
             transaction.setCustomAnimations(
-                    R.anim.slide_in_right,  // 1. Fragment MỚI (SignUp) đi vào
-                    R.anim.slide_out_left,  // 2. Fragment CŨ (Login) đi ra
-                    R.anim.slide_in_left,   // 3. (Khi nhấn Back) Fragment CŨ (Login) quay lại
-                    R.anim.slide_out_right  // 4. (Khi nhấn Back) Fragment MỚI (SignUp) đi ra
+                    R.anim.slide_in_right,
+                    R.anim.slide_out_left,
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_right
             );
         }
 

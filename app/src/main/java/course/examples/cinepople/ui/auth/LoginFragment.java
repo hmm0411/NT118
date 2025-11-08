@@ -1,4 +1,4 @@
-package course.examples.cinepople.auth;
+package course.examples.cinepople.ui.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,8 +23,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 
-import course.examples.cinepople.home.HomeFragment;
 import course.examples.cinepople.R;
+import course.examples.cinepople.ui.main.MainActivity;
 
 public class LoginFragment extends Fragment {
     private static final String TAG = "LoginFragment";
@@ -46,13 +46,11 @@ public class LoginFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
 
         editTextEmail = view.findViewById(R.id.ed_email);
-
         editTextPassword = view.findViewById(R.id.ed_password);
 
         buttonLogin = view.findViewById(R.id.btn_login);
 
         textViewSignUp = view.findViewById(R.id.tv_signup);
-
         textViewForgotPassword = view.findViewById(R.id.tv_forgotPassword);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +64,15 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                   ((AuthenticationActivity) getActivity())
-                        .loadFragment(new SignUpFragment(), true); // true = thêm vào back stack
+                        .loadFragment(new SignUpFragment(), true);
+            }
+        });
+
+        textViewForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((AuthenticationActivity) getActivity())
+                        .loadFragment(new ForgotPasswordFragment(), true);
             }
         });
     }
@@ -88,32 +94,25 @@ public class LoginFragment extends Fragment {
         }
 
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() { // <-- SỬA LỖI 2 (xóa 'this,')
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        // Đảm bảo fragment vẫn còn "attached" (gắn) vào activity
                         if (isAdded()) {
                             if (task.isSuccessful()) {
-                                // Đăng nhập thành công!
-                                Log.d(TAG, "signInWithEmail:success"); // <-- SỬA LỖI 1 (TAG đã được định nghĩa)
 
-                                // <-- SỬA LỖI 3
+                                Log.d(TAG, "LoginWithEmail:success");
+
                                 Toast.makeText(getContext(), "Đăng nhập thành công.",
                                         Toast.LENGTH_SHORT).show();
 
-                                // Chuyển hướng sang màn hình chính (HomeActivity)
-                                // <-- SỬA LỖI 4
-                                Intent intent = new Intent(getActivity(), HomeFragment.class);
+                                Intent intent = new Intent(getActivity(), MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
 
-                                // <-- SỬA LỖI 5
-                                getActivity().finish(); // Đóng AuthenticationActivity
+                                getActivity().finish();
 
                             } else {
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
-
-                                // <-- SỬA LỖI 3
                                 Toast.makeText(getContext(), "Xác thực thất bại: " + task.getException().getMessage(),
                                         Toast.LENGTH_LONG).show();
                             }

@@ -1,4 +1,4 @@
-package course.examples.cinepople.profile; // (Hoặc package của bạn)
+package course.examples.cinepople.ui.profile; // (Hoặc package của bạn)
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.firebase.auth.FirebaseAuth;
 
 import course.examples.cinepople.R;
-import course.examples.cinepople.auth.AuthenticationActivity;
+import course.examples.cinepople.ui.auth.AuthenticationActivity;
 import course.examples.cinepople.databinding.FragmentProfileBinding;
 
 

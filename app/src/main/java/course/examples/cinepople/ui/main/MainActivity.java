@@ -1,4 +1,4 @@
-package course.examples.cinepople.main;
+package course.examples.cinepople.ui.main;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,9 +8,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import course.examples.cinepople.R;
-import course.examples.cinepople.home.HomeFragment;
-import course.examples.cinepople.search.SearchFragment;
-import course.examples.cinepople.profile.ProfileFragment;
+import course.examples.cinepople.ui.home.HomeFragment;
+import course.examples.cinepople.ui.profile.ProfileFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -28,9 +27,15 @@ public class MainActivity extends AppCompatActivity {
             Fragment selectedFragment = new Fragment();
             int itemId = item.getItemId();
 
-            if (itemId == R.id.nav_home) {
+            if (itemId == R.id.nav_home)
+            {
                 selectedFragment = new HomeFragment();
-            } else if (itemId == R.id.nav_profile) {
+            }
+//            else if (itemId == R.id.nav_search)
+//            {
+//                selectedFragment = new SearchFragment();
+            // }
+            else if (itemId == R.id.nav_profile) {
                 selectedFragment = new ProfileFragment();
             }
 

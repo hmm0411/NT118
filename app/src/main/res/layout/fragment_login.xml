@@ -12,7 +12,7 @@
     android:scrollbarAlwaysDrawHorizontalTrack="false"
     android:scrollbarAlwaysDrawVerticalTrack="false"
     app:layout_scrollFlags="noScroll"
-    tools:context=".auth.LoginFragment">
+    tools:context=".ui.auth.LoginFragment">
 
         <!-- 2. LOGO VÀ TÊN APP -->
         <LinearLayout

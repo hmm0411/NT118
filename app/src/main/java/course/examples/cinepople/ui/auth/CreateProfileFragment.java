@@ -1,4 +1,4 @@
-package course.examples.cinepople;
+package course.examples.cinepople.ui.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,14 +11,11 @@ import com.google.firebase.auth.FirebaseAuth;
 // (Import cho Firestore sẽ được thêm sau)
 
 import course.examples.cinepople.databinding.ActivityCreateProfileBinding;
-import course.examples.cinepople.home.HomeFragment;
+import course.examples.cinepople.ui.home.HomeFragment;
 
-public class CreateProfileActivity extends AppCompatActivity {
-
-    // 1. Khai báo View Binding
+public class CreateProfileFragment extends AppCompatActivity {
     private ActivityCreateProfileBinding binding;
 
-    // (Khai báo Firebase Auth và Firestore)
     private FirebaseAuth mAuth;
     // private FirebaseFirestore db;
 
@@ -65,21 +62,16 @@ public class CreateProfileActivity extends AppCompatActivity {
         String phone = binding.etPhoneNumber.getText().toString().trim();
         String birthday = binding.etBirthday.getText().toString().trim();
 
-        // (Kiểm tra dữ liệu đầu vào: không được trống, v.v.)
         if (fullName.isEmpty()) {
             binding.etFullName.setError("Vui lòng nhập họ tên");
             return;
         }
 
-        // (Logic để lưu thông tin này vào Cloud Firestore sẽ ở đây)
-        // ...
-
         Toast.makeText(this, "Hồ sơ đã được lưu!", Toast.LENGTH_SHORT).show();
 
-        // 5. Chuyển sang HomeActivity
-        Intent intent = new Intent(CreateProfileActivity.this, HomeFragment.class);
+        Intent intent = new Intent(CreateProfileFragment.this, HomeFragment.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        finish(); // Đóng ProfileActivity
+        finish();
     }
 }

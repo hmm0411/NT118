@@ -1,4 +1,4 @@
-package course.examples.cinepople.splash;
+package course.examples.cinepople.ui.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +13,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import course.examples.cinepople.R;
-import course.examples.cinepople.auth.AuthenticationActivity; // <-- Import Activity Đăng nhập
-import course.examples.cinepople.home.HomeFragment;
+import course.examples.cinepople.ui.auth.AuthenticationActivity; // <-- Import Activity Đăng nhập
 import course.examples.cinepople.databinding.ActivitySplashBinding;
-import course.examples.cinepople.main.MainActivity;
+import course.examples.cinepople.ui.main.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

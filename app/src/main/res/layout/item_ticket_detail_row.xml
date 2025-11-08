@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp">
+
+    <TextView
+        android:id="@+id/tv_detail_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:textColor="#8A8A8A"
+        android:textSize="14sp"
+        tools:text="Cinema" />
+
+    <TextView
+        android:id="@+id/tv_detail_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@id/tv_detail_label"
+        android:gravity="end"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:text="Cine Pople 1\nMega Mall, Thu Duc, Ho Chi Minh" />
+</RelativeLayout>

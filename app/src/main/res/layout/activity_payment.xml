@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/auto"
+    xmlns:app2="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9F9F9"
+    tools:context=".ui.payment.PaymentActivity">
+
+<!--&lt;!&ndash;    <com.google.android.material.appbar.AppBarLayout&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/app_bar_layout"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:background="@android:color/white"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:elevation="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintTop_toTopOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintEnd_toEndOf="parent">&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <com.google.android.material.appbar.MaterialToolbar&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/toolbar"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="?attr/actionBarSize"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:navigationIcon="@drawable/ic_return"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:title="Payment"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:titleCentered="true"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:titleTextColor="@android:color/black" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;    </com.google.android.material.appbar.AppBarLayout>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <com.google.android.material.button.MaterialButton&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/btn_add_payment"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_margin="16dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:text="Add New Payment"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:paddingVertical="14dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:textSize="16sp"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:backgroundTint="@color/salmon_pink"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:cornerRadius="24dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintBottom_toBottomOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintEnd_toEndOf="parent" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <androidx.core.widget.NestedScrollView&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        app2:layout_constraintTop_toTopOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintBottom_toTopOf="@id/btn_add_payment"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintTop_toBottomOf="@id/app_bar_layout">&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:orientation="vertical"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:padding="16dp">&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <com.google.android.material.card.MaterialCardView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/payment_google_pay"&ndash;&gt;-->
+<!--&lt;!&ndash;                style="@style/PaymentOptionCard">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <LinearLayout style="@style/PaymentOptionLayout">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <ImageView&ndash;&gt;-->
+<!--&lt;!&ndash;                        style="@style/PaymentOptionIcon"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:src="@drawable/ic_logout" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        style="@style/PaymentOptionText"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="Google Pay" />&ndash;&gt;-->
+<!--&lt;!&ndash;                </LinearLayout>&ndash;&gt;-->
+<!--&lt;!&ndash;            </com.google.android.material.card.MaterialCardView>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <com.google.android.material.card.MaterialCardView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/payment_momo"&ndash;&gt;-->
+<!--&lt;!&ndash;                style="@style/PaymentOptionCard">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <LinearLayout style="@style/PaymentOptionLayout">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <ImageView&ndash;&gt;-->
+<!--&lt;!&ndash;                        style="@style/PaymentOptionIcon"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:src="@drawable/ic_logout" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        style="@style/PaymentOptionText"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="Momo" />&ndash;&gt;-->
+<!--&lt;!&ndash;                </LinearLayout>&ndash;&gt;-->
+<!--&lt;!&ndash;            </com.google.android.material.card.MaterialCardView>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <com.google.android.material.card.MaterialCardView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/payment_card"&ndash;&gt;-->
+<!--&lt;!&ndash;                style="@style/PaymentOptionCard">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <LinearLayout style="@style/PaymentOptionLayout">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <ImageView&ndash;&gt;-->
+<!--&lt;!&ndash;                        style="@style/PaymentOptionIcon"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:src="@drawable/ic_logout" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        style="@style/PaymentOptionText"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="**** **** **** 1234" />&ndash;&gt;-->
+<!--&lt;!&ndash;                </LinearLayout>&ndash;&gt;-->
+<!--&lt;!&ndash;            </com.google.android.material.card.MaterialCardView>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <com.google.android.material.card.MaterialCardView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/payment_in_person"&ndash;&gt;-->
+<!--&lt;!&ndash;                style="@style/PaymentOptionCard">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <LinearLayout style="@style/PaymentOptionLayout">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <ImageView&ndash;&gt;-->
+<!--&lt;!&ndash;                        style="@style/PaymentOptionIcon"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:src="@drawable/ic_logout" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        style="@style/PaymentOptionText"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="In-person payment" />&ndash;&gt;-->
+<!--&lt;!&ndash;                </LinearLayout>&ndash;&gt;-->
+<!--&lt;!&ndash;            </com.google.android.material.card.MaterialCardView>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        </LinearLayout>&ndash;&gt;-->
+<!--&lt;!&ndash;    </androidx.core.widget.NestedScrollView>&ndash;&gt;-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

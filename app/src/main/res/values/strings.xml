@@ -3,6 +3,8 @@
     <!-- General App -->
     <string name="app_name">Cine Pople</string>
 
+<!--    Button -->
+    <string name="btn_submit">SUBMIT</string>
     <!-- Accessibility (Content Descriptions for images) -->
     <string name="description_btn_return">Button Return</string>
     <string name="description_btn_next">Button Next</string>
@@ -21,6 +23,10 @@
     <string name="login_with">Or login with</string>
     <string name="no_account">Don\'t have an account?</string>
     <string name="signup">Sign up</string>
+
+    <!-- Forgot Screen -->
+    <string name="forgot_password_tag">FORGOT PASSWORD</string>
+    <string name="forgot_password_info">Please enter your email address. We will send an OTP code to verify.</string>
 
     <!-- Sign Up Screen -->
     <string name="next">Next</string>
@@ -53,7 +59,7 @@
     <string name="profile_info">About Cine Pople</string>
     <string name="profile_logout">Logout</string>
 
-    <!-- Personal infi -->
+    <!-- Personal info -->
     <string name="user_name">Full Name</string>
     <string name="user_phone">Phone Number</string>
     <string name="user_email">Email</string>

@@ -1,0 +1,52 @@
+package course.examples.cinepople.ui.auth.signup;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import course.examples.cinepople.databinding.FragmentAuthSignUpCreateProfileBinding;
+// Các import không cần thiết đã được gỡ bỏ
+
+public class SignUpCreateProfileFragment extends Fragment {
+
+    private FragmentAuthSignUpCreateProfileBinding binding;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        binding = FragmentAuthSignUpCreateProfileBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Chỉ giữ lại sự kiện click vào nút Verify
+        binding.btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Kiểm tra xem Activity có tồn tại không
+                if (getActivity() instanceof SignUpActivity) {
+                    // Gọi hàm loadFragment từ SignUpActivity
+                    ((SignUpActivity) getActivity())
+                            .loadFragment(new SignUpSuccessLoadingFragment(), true);
+                }
+            }
+        });
+
+        // Tất cả logic xử lý OTP khác đã được gỡ bỏ
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+}

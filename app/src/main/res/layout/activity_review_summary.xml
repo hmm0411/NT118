@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".ui.payment.ReviewSummaryActivity">
+
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:id="@+id/app_bar_layout"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@android:color/white"-->
+<!--        app:elevation="0dp"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent">-->
+
+<!--        <com.google.android.material.appbar.MaterialToolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            app:navigationIcon="@drawable/ic_return"-->
+<!--            app:title="Review Summary"-->
+<!--            app:titleCentered="true"-->
+<!--            app:titleTextColor="@android:color/black" />-->
+
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+<!--    <com.google.android.material.card.MaterialCardView-->
+<!--        android:id="@+id/bottom_bar"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:cardElevation="8dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent">-->
+
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/btn_continue"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="16dp"-->
+<!--            android:text="Continue"-->
+<!--            android:paddingVertical="14dp"-->
+<!--            android:textSize="16sp"-->
+<!--            app:backgroundTint="@color/red"-->
+<!--            app:cornerRadius="24dp" />-->
+<!--    </com.google.android.material.card.MaterialCardView>-->
+
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/app_bar_layout"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/bottom_bar"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:padding="16dp">-->
+
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:cardElevation="0dp"-->
+<!--                app:strokeColor="#EEEEEE"-->
+<!--                app:strokeWidth="1dp"-->
+<!--                app:cardCornerRadius="12dp">-->
+
+<!--                <include layout="@layout/item_movie_summary" />-->
+<!--            </com.google.android.material.card.MaterialCardView>-->
+
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:cardElevation="0dp"-->
+<!--                app:strokeColor="#EEEEEE"-->
+<!--                app:strokeWidth="1dp"-->
+<!--                app:cardCornerRadius="12dp">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="16dp">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Booking Details"-->
+<!--                        android:textColor="@android:color/black"-->
+<!--                        android:textSize="18sp"-->
+<!--                        android:textStyle="bold" />-->
+
+<!--                    <include layout="@layout/item_booking_detail_row" android:id="@+id/row_cinema"/>-->
+<!--                    <include layout="@layout/item_booking_detail_row" android:id="@+id/row_package"/>-->
+<!--                    <include layout="@layout/item_booking_detail_row" android:id="@+id/row_seats"/>-->
+<!--                    <include layout="@layout/item_booking_detail_row" android:id="@+id/row_date"/>-->
+<!--                    <include layout="@layout/item_booking_detail_row" android:id="@+id/row_hours"/>-->
+<!--                </LinearLayout>-->
+
+<!--            </com.google.android.material.card.MaterialCardView>-->
+
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:cardElevation="0dp"-->
+<!--                app:strokeColor="#EEEEEE"-->
+<!--                app:strokeWidth="1dp"-->
+<!--                app:cardCornerRadius="12dp">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="16dp">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Price Details"-->
+<!--                        android:textColor="@android:color/black"-->
+<!--                        android:textSize="18sp"-->
+<!--                        android:textStyle="bold" />-->
+
+<!--                    <RelativeLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="12dp">-->
+<!--                        <TextView android:text="Standard (x2)" android:layout_alignParentStart="true" />-->
+<!--                        <TextView android:text="$36.00" android:layout_alignParentEnd="true" />-->
+<!--                    </RelativeLayout>-->
+<!--                    <RelativeLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="8dp">-->
+<!--                        <TextView android:text="VAT" android:layout_alignParentStart="true" />-->
+<!--                        <TextView android:text="$1.00" android:layout_alignParentEnd="true" />-->
+<!--                    </RelativeLayout>-->
+<!--                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" android:layout_marginVertical="12dp"/>-->
+<!--                    <RelativeLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content">-->
+<!--                        <TextView android:text="Actual Pay" android:layout_alignParentStart="true" android:textStyle="bold" android:textColor="@android:color/black"/>-->
+<!--                        <TextView android:text="$37.00" android:layout_alignParentEnd="true" android:textStyle="bold" android:textColor="@color/red"/>-->
+<!--                    </RelativeLayout>-->
+<!--                </LinearLayout>-->
+
+<!--            </com.google.android.material.card.MaterialCardView>-->
+
+<!--        </LinearLayout>-->
+
+<!--    </androidx.core.widget.NestedScrollView>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,7 +18,7 @@
         app:layout_constraintDimensionRatio="3:4">
 
         <ImageView
-            android:id="@+id/img_poster_small"
+            android:id="@+id/img_poster"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"

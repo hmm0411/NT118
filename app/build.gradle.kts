@@ -34,23 +34,30 @@ android {
     buildFeatures{
         viewBinding = true
     }
+
 }
 
 dependencies {
 
+    // Thư viện từ Version Catalog (libs)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation(platform("com.google.firebase:firebase-bom:34.5.0"))
-    implementation("androidx.constraintlayout:constraintlayout:2.1.1")
-    implementation ("com.google.firebase:firebase-auth")
-    implementation ("com.google.firebase:firebase-firestore")
-    implementation("com.google.firebase:firebase-analytics")
-    implementation ("com.github.bumptech.glide:glide:5.0.5")
-    implementation("com.google.android.material:material:1.13.0")
     implementation(libs.recyclerview)
+
+    implementation(platform("com.google.firebase:firebase-bom:34.5.0"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.firebaseui:firebase-ui-firestore:8.0.2")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
+    implementation("com.google.code.gson:gson:2.10.1")
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
 }

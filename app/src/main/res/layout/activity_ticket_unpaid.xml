@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".ui.tickets.TicketUnpaidActivity">
+
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:id="@+id/app_bar_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@android:color/white"-->
+<!--        app:elevation="0dp">-->
+
+<!--        <com.google.android.material.appbar.MaterialToolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            app:navigationIcon="@drawable/ic_return"-->
+<!--            app:titleCentered="true"-->
+<!--            tools:title="Tickets - Spiderman" />-->
+
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/btn_download_code"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="16dp"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        android:text="Download Code"-->
+<!--        android:paddingVertical="14dp"-->
+<!--        app:backgroundTint="@color/red"-->
+<!--        app:cornerRadius="24dp"-->
+<!--        app:iconGravity="textStart" />-->
+
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+<!--        android:layout_marginBottom="80dp">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="center_horizontal"-->
+<!--            android:padding="24dp">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/iv_qr_code"-->
+<!--                android:layout_width="250dp"-->
+<!--                android:layout_height="250dp"-->
+<!--                android:src="@drawable/ic_qr_code_placeholder"-->
+<!--                android:scaleType="fitCenter" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="Scan this code to pay"-->
+<!--                android:textSize="14sp" />-->
+
+<!--            <com.google.android.material.tabs.TabLayout-->
+<!--                android:id="@+id/tab_indicator"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:tabBackground="@drawable/tab_selector"-->
+<!--                app:tabGravity="center"-->
+<!--                app:tabIndicatorHeight="0dp" />-->
+
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                app:cardBackgroundColor="#F9F9F9"-->
+<!--                app:cardCornerRadius="16dp"-->
+<!--                app:cardElevation="0dp">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="16dp">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_movie_title"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Spiderman"-->
+<!--                        android:textColor="@android:color/black"-->
+<!--                        android:textSize="18sp"-->
+<!--                        android:textStyle="bold" />-->
+
+<!--                    <include layout="@layout/item_ticket_detail_row" android:id="@+id/row_cinema"/>-->
+<!--                    <include layout="@layout/item_ticket_detail_row" android:id="@+id/row_date"/>-->
+<!--                    <include layout="@layout/item_ticket_detail_row" android:id="@+id/row_hall"/>-->
+<!--                    <include layout="@layout/item_ticket_detail_row" android:id="@+id/row_seats"/>-->
+<!--                    <include layout="@layout/item_ticket_detail_row" android:id="@+id/row_cost"/>-->
+
+<!--                </LinearLayout>-->
+<!--            </com.google.android.material.card.MaterialCardView>-->
+<!--        </LinearLayout>-->
+<!--    </androidx.core.widget.NestedScrollView>-->
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

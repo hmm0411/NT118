@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:padding="20dp"
+    tools:context=".ui.auth.forgot.ForgotActivity">
+
+
+    <!-- 2. TIÊU ĐỀ -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_extrabold"
+        android:text="@string/forgot_password_tag"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/forgot_password_info"
+        android:textColor="#AAAAAA"
+        android:textSize="14sp"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginBottom="30dp"/>
+
+    <LinearLayout
+        android:id="@+id/input_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/email"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/ed_email_forgot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"                                        android:background="@drawable/background_edittext"
+            android:hint="@string/email"
+            android:textColorHint="#AAAAAA"
+            android:drawableLeft="@drawable/ic_email"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/black"
+            android:inputType="textEmailAddress"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="16dp"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/montserrat_semibold"/>
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semibold"
+        android:paddingVertical="16dp"
+        android:text="@string/btn_submit"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/red"
+        app:cornerRadius="30dp"
+        android:layout_marginTop="30dp"/>
+
+</LinearLayout>

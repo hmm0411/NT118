@@ -44,10 +44,10 @@ public class ForgotActivity extends AppCompatActivity {
 
         if (addToBackStack) {
             transaction.setCustomAnimations(
-                    R.anim.slide_in_right,  // Fragment mới trượt vào từ phải
-                    R.anim.slide_out_left,  // Fragment cũ trượt ra bên trái
-                    R.anim.slide_in_left,   // (Khi back) Fragment cũ trượt vào từ trái
-                    R.anim.slide_out_right  // (Khi back) Fragment hiện tại trượt ra bên phải
+                    R.anim.slide_in_right,
+                    R.anim.slide_out_left,
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_right
             );
         }
 

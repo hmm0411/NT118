@@ -16,7 +16,6 @@ import course.examples.cinepople.fragment.profile.ProfileFragment;
 
 
 public class MainActivity extends AppCompatActivity {
-
     final Fragment fragmentHome = new HomeFragment();
     final Fragment fragmentSearch = new SearchFragment();
     final Fragment fragmentTickets = new TicketsFragment();
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
             Fragment selectedFragment = null;
             int itemId = item.getItemId();
 
-            // 2. Không tạo "new", chỉ chọn fragment đã có
             if (itemId == R.id.nav_home) {
                 selectedFragment = fragmentHome;
             } else if (itemId == R.id.nav_search) {
@@ -50,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (selectedFragment != null) {
-                // 3. Dùng hàm "switchFragment" mới
                 switchFragment(selectedFragment);
                 return true;
             }
@@ -70,20 +67,19 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.fragment_container, fragmentSearch, "2")
                     .hide(fragmentSearch).commit();
 
-            // Hiển thị fragment Home đầu tiên
             fm.beginTransaction()
                     .add(R.id.fragment_container, fragmentHome, "1")
                     .commit();
 
-            activeFragment = fragmentHome; // Đặt Home là active
+            activeFragment = fragmentHome;
         }
     }
 
     private void switchFragment(Fragment fragment) {
         fm.beginTransaction()
-                .hide(activeFragment) // Ẩn fragment đang active
-                .show(fragment)       // Hiện fragment được chọn
+                .hide(activeFragment)
+                .show(fragment)
                 .commit();
-        activeFragment = fragment; // Cập nhật fragment active mới
+        activeFragment = fragment;
     }
 }

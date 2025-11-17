@@ -4,8 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,10 +13,16 @@ import course.examples.cinepople.R;
 
 public class SessionTimeAdapter extends RecyclerView.Adapter<SessionTimeAdapter.TimeViewHolder> {
 
-    private List<String> timeList;
+    public interface OnTimeClickListener {
+        void onTimeClick(String time);
+    }
 
-    public SessionTimeAdapter(List<String> timeList) {
+    private List<String> timeList;
+    private OnTimeClickListener listener;
+
+    public SessionTimeAdapter(List<String> timeList, OnTimeClickListener listener) {
         this.timeList = timeList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -32,15 +36,14 @@ public class SessionTimeAdapter extends RecyclerView.Adapter<SessionTimeAdapter.
     @Override
     public void onBindViewHolder(@NonNull TimeViewHolder holder, int position) {
         String time = timeList.get(position);
-        holder.bind(time);
+        holder.bind(time, listener);
     }
 
     @Override
     public int getItemCount() {
-        return timeList.size();
+        return (timeList != null) ? timeList.size() : 0;
     }
 
-    // --- ViewHolder ---
     class TimeViewHolder extends RecyclerView.ViewHolder {
         TextView tvTime;
 
@@ -49,13 +52,13 @@ public class SessionTimeAdapter extends RecyclerView.Adapter<SessionTimeAdapter.
             tvTime = itemView.findViewById(R.id.tv_session_time);
         }
 
-        public void bind(String time) {
+        public void bind(final String time, final OnTimeClickListener listener) {
             tvTime.setText(time);
 
-            // TODO: Xử lý sự kiện khi người dùng CHỌN một giờ chiếu
             itemView.setOnClickListener(v -> {
-                Toast.makeText(v.getContext(), "Chọn suất: " + time, Toast.LENGTH_SHORT).show();
-                // (Chuyển sang màn hình Chọn Ghế)
+                if (listener != null) {
+                    listener.onTimeClick(time);
+                }
             });
         }
     }

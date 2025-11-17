@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#F8F0EC"
+    android:background="@color/background_color"
     android:fitsSystemWindows="true"
-    tools:context=".ui.splash.SplashActivity">
+    tools:context=".activity.splash.SplashActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -38,7 +38,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:paddingBottom="10dp"
             android:text="YOU’RE ALL SET"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             android:textSize="26sp" />
 
         <TextView
@@ -46,9 +46,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:lineSpacingExtra="5dp"
-            android:text="Start exploring the latest movies, showtimes, and ticket option"
+            android:text="Start exploring the latest movie, showtimes, and ticket option"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -67,9 +67,9 @@
             android:paddingVertical="16dp"
             android:text="@string/next"
             android:textAllCaps="true"
-            android:textColor="@color/white"
+            android:textColor="@color/btn_text_color"
             android:textSize="20sp"
-            app:backgroundTint="@color/red"
+            app:backgroundTint="@color/main_color"
             app:cornerRadius="30dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

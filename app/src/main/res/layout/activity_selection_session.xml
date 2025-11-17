@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/white"
-    tools:context=".ui.session.SelectSessionActivity">
+    android:background="@color/background_color"
+    tools:context=".activity.booking.SelectSessionActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/background_color"
         app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -22,7 +22,7 @@
             app:navigationIcon="@drawable/ic_return"
             app:title="The Batman"
             app:titleCentered="true"
-            app:titleTextColor="@color/red" />
+            app:titleTextColor="@color/main_color" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

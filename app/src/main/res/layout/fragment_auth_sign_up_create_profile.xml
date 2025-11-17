@@ -5,35 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/background_color"
     android:fitsSystemWindows="true"
-    tools:context=".ui.auth.signup.SignUpCreateProfileFragment">
+    tools:context=".fragment.auth.signup.SignUpCreateProfileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingHorizontal="24dp"
+        android:paddingHorizontal="30dp"
         android:paddingBottom="24dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="COMPLETE YOUR PROFILE"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             android:textSize="22sp"
             android:fontFamily="@font/montserrat_extrabold"
-            android:textAllCaps="true"/>
+            android:textAllCaps="true"
+            android:layout_marginBottom="10dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add the finishing touches to your profile..."
-            android:textColor="@color/black"
-            android:fontFamily="@font/montserrat_medium"
-            android:textSize="14sp"
-            android:lineSpacingExtra="6dp"
-            android:layout_marginTop="12dp"/>
+            style="@style/Subtitle"
+            android:justificationMode="inter_word"
+            tools:targetApi="26"
+            android:text="Add the finishing touches to your profile..." />
 
         <RelativeLayout
             android:layout_width="120dp"
@@ -70,16 +67,16 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
-                    style="@style/ProfileInputLabel"
+                    style="@style/Label"
                     android:text="Full Name"/>
                 <EditText
                     android:id="@+id/et_full_name"
-                    style="@style/ProfileInputEditText"
-                    android:hint="Nguyen Hoang Loc"
+                    style="@style/MyEditText.FormInput"
+                    android:hint="Enter your fullname"
                     android:inputType="textPersonName" />
 
                 <TextView
-                    style="@style/ProfileInputLabel"
+                    style="@style/Label"
                     android:text="Phone Number"/>
                 <EditText
                     android:id="@+id/et_phone_number"
@@ -88,31 +85,29 @@
                     android:inputType="phone" />
 
                 <TextView
-                    style="@style/ProfileInputLabel"
+                    style="@style/Label"
                     android:text="Your Birthday"/>
                 <EditText
                     android:id="@+id/et_birthday"
                     style="@style/ProfileInputEditText"
                     android:hint="30/09/2005"
-                    android:drawableTint="@color/black"
+                    android:drawableTint="@color/text_color"
                     android:focusable="false"
                     android:clickable="true" />
             </LinearLayout>
         </ScrollView>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_next"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_semibold"
-            android:paddingVertical="16dp"
-            android:text="NEXT"
-            android:textAllCaps="true"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            app:backgroundTint="@color/red"
-            app:cornerRadius="30dp"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="20dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_next"
+                style="@style/MyButton.Primary.FullWidth"
+                android:paddingVertical="16dp"
+                android:text="@string/btn_next" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

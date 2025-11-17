@@ -15,7 +15,7 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
-import course.examples.cinepople.data.Movie;
+import course.examples.cinepople.domain.Movie;
 import course.examples.cinepople.R;
 
 public class MoviePosterAdapter extends RecyclerView.Adapter<MoviePosterAdapter.PosterViewHolder> {

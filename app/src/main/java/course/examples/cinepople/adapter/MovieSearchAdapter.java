@@ -2,7 +2,6 @@ package course.examples.cinepople.adapter;
 
 import android.content.Context;
 import android.text.TextUtils; // SỬA: Thêm import
-import android.util.Log; // SỬA: Thêm import
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,7 @@ import com.google.android.material.button.MaterialButton; // SỬA: Thêm import
 
 import java.util.List;
 
-import course.examples.cinepople.data.Movie;
+import course.examples.cinepople.domain.Movie;
 import course.examples.cinepople.R;
 
 public class MovieSearchAdapter extends RecyclerView.Adapter<MovieSearchAdapter.MovieViewHolder> {
@@ -28,12 +27,10 @@ public class MovieSearchAdapter extends RecyclerView.Adapter<MovieSearchAdapter.
     private List<Movie> movieList;
     private OnMovieClickListener listener;
 
-    // Interface để gửi sự kiện click về Fragment
     public interface OnMovieClickListener {
         void onMovieClick(Movie movie);
     }
 
-    // Constructor (đúng như trong Fragment của bạn)
     public MovieSearchAdapter(Context context, List<Movie> movieList, OnMovieClickListener listener) {
         this.context = context;
         this.movieList = movieList;

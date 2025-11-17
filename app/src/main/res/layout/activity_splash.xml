@@ -6,17 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#F8F0EC"
+    android:background="@color/background_color"
     android:fitsSystemWindows="true"
-    tools:context=".ui.splash.SplashActivity">
+    tools:context=".activity.splash.SplashActivity">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/logo_splash"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@mipmap/ic_logo"
-        android:contentDescription="App Logo"
         android:layout_marginBottom="16dp"
+        android:contentDescription="App Logo"
+        android:src="@mipmap/ic_logo"
 
         app:shapeAppearanceOverlay="@style/CircularShapeAppearance" />
 
@@ -27,7 +27,7 @@
         android:text="CINE POPLE"
         android:fontFamily="@font/montserrat_bold"
         android:textSize="28sp"
-        android:textColor="@color/black"
+        android:textColor="@color/text_color"
         android:alpha="0"
         android:visibility="invisible" />
 

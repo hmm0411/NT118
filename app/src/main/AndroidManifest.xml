@@ -14,44 +14,50 @@
         android:theme="@style/Theme.Cinepople">
 
         <activity
-            android:name=".ui.splash.SplashActivity"
+            android:name=".activity.splash.SplashActivity"
             android:exported="true"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
             </intent-filter>
         </activity>
 
         <activity
-            android:name=".ui.auth.login.LoginActivity"
+            android:name=".activity.auth.LoginActivity"
             android:exported="false">
         </activity>
 
 <!--        <activity-->
-<!--            android:name=".ui.auth.signup.SignUpActivity"-->
+<!--            android:name=".activity.auth.SignUpActivity"-->
 <!--            android:exported="false">-->
 <!--        </activity>-->
 
 <!--        <activity-->
-<!--            android:name=".ui.auth.forgot.ForgotActivity"-->
+<!--            android:name=".activity.auth.ForgotActivity"-->
 <!--            android:exported="false">-->
 <!--        </activity>-->
 
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".activity.main.MainActivity"
             android:exported="false">
         </activity>
 
-        <activity
-            android:name=".ui.movies.MovieDetailsActivity"
-            android:exported="false">
-        </activity>
+<!--        <activity-->
+<!--            android:name=".activity.movie.MovieDetailsActivity"-->
+<!--            android:exported="false">-->
+<!--        </activity>-->
 
-        <activity
-            android:name=".ui.session.SelectSessionActivity"
-            android:exported="false">
-        </activity>
+<!--        <activity-->
+<!--            android:name=".activity.booking.SelectSessionActivity"-->
+<!--            android:exported="false">-->
+<!--        </activity>-->
+
+
+<!--        <activity-->
+<!--            android:name=".activity.booking.SelectSeatsActivity"-->
+<!--            android:exported="false">-->
+<!--        </activity>-->
 
         <meta-data
             android:name="preloaded_fonts"

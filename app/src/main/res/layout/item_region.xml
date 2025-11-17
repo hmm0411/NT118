@@ -21,14 +21,14 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_location"
-            app:tint="@color/red" />
+            app:tint="@color/main_color" />
 
         <TextView
             android:id="@+id/tv_region_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:textColor="@color/red"
+            android:textColor="@color/main_color"
             android:fontFamily="@font/montserrat_bold"
             android:textSize="16sp"
             tools:text="Gia Lai" />
@@ -38,6 +38,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/red" />
+        android:background="@color/main_color" />
 
 </LinearLayout>

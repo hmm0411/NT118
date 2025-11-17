@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import course.examples.cinepople.R;
-import course.examples.cinepople.data.Region;
+import course.examples.cinepople.domain.Region;
 
 public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.ProvinceViewHolder> {
 

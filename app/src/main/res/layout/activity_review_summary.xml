@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    tools:context=".ui.payment.ReviewSummaryActivity">
+    android:background="@color/background_color"
+    tools:context=".activity.booking.ReviewSummaryActivity">
 
 <!--    <com.google.android.material.appbar.AppBarLayout-->
 <!--        android:id="@+id/app_bar_layout"-->
@@ -72,7 +72,8 @@
 <!--                app:strokeWidth="1dp"-->
 <!--                app:cardCornerRadius="12dp">-->
 
-<!--                <include layout="@layout/item_movie_summary" />-->
+<!--                <include layout="@layout/item_movie_summary_details" />-->
+
 <!--            </com.google.android.material.card.MaterialCardView>-->
 
 <!--            <com.google.android.material.card.MaterialCardView-->
@@ -111,6 +112,7 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginBottom="16dp"-->
 <!--                app:cardElevation="0dp"-->
 <!--                app:strokeColor="#EEEEEE"-->
 <!--                app:strokeWidth="1dp"-->
@@ -134,22 +136,24 @@
 <!--                        android:layout_width="match_parent"-->
 <!--                        android:layout_height="wrap_content"-->
 <!--                        android:layout_marginTop="12dp">-->
-<!--                        <TextView android:text="Standard (x2)" android:layout_alignParentStart="true" />-->
-<!--                        <TextView android:text="$36.00" android:layout_alignParentEnd="true" />-->
+<!--                        <TextView android:id="@+id/label_package_price" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Standard (x2)" android:layout_alignParentStart="true" />-->
+<!--                        <TextView android:id="@+id/tv_package_price" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="$36.00" android:layout_alignParentEnd="true" android:textStyle="bold" android:textColor="@android:color/black"/>-->
 <!--                    </RelativeLayout>-->
 <!--                    <RelativeLayout-->
 <!--                        android:layout_width="match_parent"-->
 <!--                        android:layout_height="wrap_content"-->
 <!--                        android:layout_marginTop="8dp">-->
-<!--                        <TextView android:text="VAT" android:layout_alignParentStart="true" />-->
-<!--                        <TextView android:text="$1.00" android:layout_alignParentEnd="true" />-->
+<!--                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="VAT" android:layout_alignParentStart="true" />-->
+<!--                        <TextView android:id="@+id/tv_vat" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="$1.00" android:layout_alignParentEnd="true" android:textStyle="bold" android:textColor="@android:color/black"/>-->
 <!--                    </RelativeLayout>-->
+
 <!--                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" android:layout_marginVertical="12dp"/>-->
+
 <!--                    <RelativeLayout-->
 <!--                        android:layout_width="match_parent"-->
 <!--                        android:layout_height="wrap_content">-->
-<!--                        <TextView android:text="Actual Pay" android:layout_alignParentStart="true" android:textStyle="bold" android:textColor="@android:color/black"/>-->
-<!--                        <TextView android:text="$37.00" android:layout_alignParentEnd="true" android:textStyle="bold" android:textColor="@color/red"/>-->
+<!--                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Actual Pay" android:layout_alignParentStart="true" android:textStyle="bold" android:textColor="@android:color/black"/>-->
+<!--                        <TextView android:id="@+id/tv_actual_pay" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="$37.00" android:layout_alignParentEnd="true" android:textStyle="bold" android:textColor="@color/red"/>-->
 <!--                    </RelativeLayout>-->
 <!--                </LinearLayout>-->
 

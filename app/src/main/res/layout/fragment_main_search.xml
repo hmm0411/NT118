@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/background_color"
     android:fitsSystemWindows="true"
-    tools:context=".ui.main.search.SearchFragment">
+    tools:context=".fragment.search.SearchFragment">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/search_bar_layout"
@@ -29,7 +29,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_search"
-            app:tint="@color/black" />
+            app:tint="@color/icon_color" />
 
         <EditText
             android:id="@+id/search_edit_text"
@@ -42,9 +42,10 @@
             android:fontFamily="@font/montserrat_medium"
             android:imeOptions="actionSearch"
             android:inputType="text"
+            android:textSize="16dp"
             android:maxLines="1"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/hint_color" />
 
         <ImageView
             android:id="@+id/btn_filter"
@@ -112,7 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Not Found"
-        android:textColor="@color/black"
+        android:textColor="@color/text_color"
         android:textSize="16sp"
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/filter_scroll_view"

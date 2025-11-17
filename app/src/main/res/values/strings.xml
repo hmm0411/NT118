@@ -5,19 +5,33 @@
 
 <!--    Button -->
     <string name="btn_submit">SUBMIT</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_select_session">SELECT SESSION</string>
+    <string name="btn_next">NEXT</string>
+    <string name="btn_continue">CONTINUE</string>
+    <string name="btn_infomation">INFORMATION</string>
+
     <!-- Accessibility (Content Descriptions for images) -->
     <string name="description_btn_return">Button Return</string>
     <string name="description_btn_next">Button Next</string>
-    <string name="description_logo_app">Cine Pople</string>
-    <string name="description_logo_facebook">Facebook</string>
-    <string name="description_logo_google">Google</string>
+    <string name="description_logo_app">Cine Pople Logo</string>
+    <string name="description_logo_facebook">Facebook Logo</string>
+    <string name="description_logo_google">Google Logo</string>
     <string name="description_logo_other">Other</string>
 
     <!-- Login Screen -->
     <string name="login_tag">Login to your account</string>
     <string name="login">Login</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
+
+    <string name="lb_email">Email</string>
+    <string name="hint_email">Enter email</string>
+
+    <string name="lb_password">Password</string>
+    <string name="hint_password">Enter password</string>
+
+    <string name="lb_confirm_password">Confirm password</string>
+    <string name="hint_confirm_password">Enter password</string>
+
     <string name="remember_me">Remember me</string>
     <string name="forgot_password">Forgot your password?</string>
     <string name="login_with">Or login with</string>
@@ -31,7 +45,7 @@
     <!-- Sign Up Screen -->
     <string name="next">Next</string>
     <string name="signup_tag">Create your account</string>
-    <string name="signup_info">Sign up to unlock a world of movies and seamless ticket booking</string>
+    <string name="signup_info">Sign up to unlock a world of movie and seamless ticket booking</string>
     <string name="confirm_password">Confirm your password</string>
     <string name="already_have_account">Already have an account?</string>
     <string name="sign_in">Sign in</string>

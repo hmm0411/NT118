@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".ui.main.tickets.TicketPaidActivity">
+    tools:context=".activity.ticket.TicketPaidActivity">
 
 <!--    <com.google.android.material.appbar.AppBarLayout-->
 <!--        android:id="@+id/app_bar_layout"-->

@@ -5,159 +5,189 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".ui.seats.SelectSeatsActivity">
+    android:background="@color/background_color"
+    android:fitsSystemWindows="true"
+    tools:context=".activity.booking.SelectSeatsActivity">
 
-<!--    <com.google.android.material.appbar.MaterialToolbar-->
-<!--        android:id="@+id/toolbar"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:navigationIcon="@drawable/ic_return" > <LinearLayout-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical"-->
-<!--        android:layout_gravity="center">-->
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Cine Pople 1"-->
-<!--            android:textColor="@android:color/black"-->
-<!--            android:textSize="18sp"-->
-<!--            android:textStyle="bold"/>-->
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="The Batman"-->
-<!--            android:textColor="@android:color/darker_gray"-->
-<!--            android:textSize="14sp"/>-->
-<!--    </LinearLayout>-->
-<!--    </com.google.android.material.appbar.MaterialToolbar>-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/background_color"
+        app:elevation="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/layout_legend"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:gravity="center"-->
-<!--        android:paddingVertical="12dp"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/toolbar"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent">-->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_return"
+            app:titleTextColor="@color/main_color">
 
-<!--        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Available" android:drawableStart="@drawable/legend_available" android:drawablePadding="4dp" android:layout_marginEnd="16dp"/>-->
-<!--        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Occupied" android:drawableStart="@drawable/legend_occupied" android:drawablePadding="4dp" android:layout_marginEnd="16dp"/>-->
-<!--        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Chosen" android:drawableStart="@drawable/legend_chosen" android:drawablePadding="4dp"/>-->
-<!--    </LinearLayout>-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cine Pople 1"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/toolbar_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="The Batman"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
-<!--    <ImageView-->
-<!--        android:id="@+id/iv_screen"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="24dp"-->
-<!--        android:src="@drawable/screen_arc"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/layout_legend"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:layout_marginHorizontal="32dp"-->
-<!--        android:layout_marginTop="16dp" />-->
-<!--    <TextView-->
-<!--        android:id="@+id/tv_screen_label"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="SCREEN"-->
-<!--        android:textSize="12sp"-->
-<!--        android:textColor="@android:color/darker_gray"-->
-<!--        app:layout_constraintTop_toTopOf="@id/iv_screen"-->
-<!--        app:layout_constraintBottom_toBottomOf="@id/iv_screen"-->
-<!--        app:layout_constraintStart_toStartOf="@id/iv_screen"-->
-<!--        app:layout_constraintEnd_toEndOf="@id/iv_screen"/>-->
+    <LinearLayout
+        android:id="@+id/layout_legend"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingVertical="12dp"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-<!--    <com.google.android.material.card.MaterialCardView-->
-<!--        android:id="@+id/bottom_bar"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:cardElevation="8dp">-->
+        <TextView android:text="Available" android:drawableStart="@drawable/legend_available" style="@style/SeatLegendText"/>
+        <TextView android:text="Occupied" android:drawableStart="@drawable/legend_occupied" style="@style/SeatLegendText"/>
+        <TextView android:text="Chosen" android:drawableStart="@drawable/legend_chosen" style="@style/SeatLegendText"/>
+    </LinearLayout>
 
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:padding="16dp">-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/screen_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/layout_legend"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp">
 
-<!--            <TextView-->
-<!--                android:id="@+id/label_total"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Total"-->
-<!--                android:textSize="16sp"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-<!--            <TextView-->
-<!--                android:id="@+id/tv_total_price"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                tools:text="$18.00"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textStyle="bold"-->
-<!--                android:textColor="@android:color/black"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/label_total" />-->
+        <ImageView
+            android:id="@+id/iv_screen"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:src="@color/main_color"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-<!--            <TextView-->
-<!--                android:id="@+id/label_seats"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Seat(s)"-->
-<!--                android:textSize="16sp"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/tv_total_price"-->
-<!--                android:layout_marginTop="8dp"/>-->
-<!--            <TextView-->
-<!--                android:id="@+id/tv_selected_seats"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                tools:text="E5, E6"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textStyle="bold"-->
-<!--                android:textColor="@color/seat_chosen_bg"-->
-<!--                android:maxLines="1"-->
-<!--                android:ellipsize="end"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/label_seats"-->
-<!--                app:layout_constraintEnd_toStartOf="@id/btn_continue"-->
-<!--                android:layout_marginEnd="16dp"/>-->
+        <TextView
+            android:id="@+id/tv_screen_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SCREEN"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintTop_toTopOf="@id/iv_screen"
+            app:layout_constraintBottom_toBottomOf="@id/iv_screen"
+            app:layout_constraintStart_toStartOf="@id/iv_screen"
+            app:layout_constraintEnd_toEndOf="@id/iv_screen"/>
 
-<!--            <com.google.android.material.button.MaterialButton-->
-<!--                android:id="@+id/btn_continue"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Continue"-->
-<!--                android:paddingHorizontal="32dp"-->
-<!--                android:paddingVertical="16dp"-->
-<!--                app:cornerRadius="24dp"-->
-<!--                app:backgroundTint="@color/seat_chosen_bg"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent" />-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-<!--    </com.google.android.material.card.MaterialCardView>-->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bottom_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardElevation="8dp">
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/rv_seats"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/iv_screen"-->
-<!--        app:layout_constraintBottom_toTopOf="@id/bottom_bar"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:layout_margin="16dp"-->
-<!--        tools:listitem="@layout/list_item_seat"-->
-<!--        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
-<!--        tools:spanCount="10" />-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="@color/background_color">
+
+            <TextView
+                android:id="@+id/label_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total"
+                android:textSize="16sp"
+                android:textColor="@color/text_color"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tv_total_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="$18.00"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_color"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_total" />
+
+            <TextView
+                android:id="@+id/label_seats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seat(s)"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_selected_seats"
+                android:layout_marginEnd="16dp"/>
+            <TextView
+                android:id="@+id/tv_selected_seats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="E5 E6"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/main_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_seats" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/MyButton.Primary.FullWidth"
+                android:paddingVertical="16dp"
+                android:id="@+id/btn_continue"
+                android:text="@string/btn_continue"
+                app:backgroundTint="@color/main_color"
+                app:layout_constraintTop_toBottomOf="@id/tv_total_price"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/screen_container"
+        app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_seats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:nestedScrollingEnabled="false"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="10"
+            tools:listitem="@layout/item_seat" />
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

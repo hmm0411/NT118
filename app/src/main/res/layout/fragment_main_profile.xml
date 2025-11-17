@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/background_color"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context=".ui.main.profile.ProfileFragment">
+    tools:context=".fragment.profile.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header_layout"
@@ -24,7 +24,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/profile_tag"
             android:textAllCaps="true"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             android:textSize="18sp"
             android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/view"
@@ -71,7 +71,8 @@
                     app:shapeAppearanceOverlay="@style/CircularShapeAppearance"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:src="@mipmap/ic_logo"/>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -88,7 +89,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text_color"
                         android:textSize="16sp"
                         tools:text="Nguyen Hoang Loc" />
 
@@ -97,7 +98,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat_medium"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text_color"
                         android:textSize="14sp"
                         tools:text="123456@gmail.com" />
                 </LinearLayout>
@@ -108,6 +109,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp">
 
                 <View
@@ -240,7 +242,7 @@
                         style="@style/TextProfileOption"/>
 
                     <ImageView
-                        android:id="@+id/btn_return"
+                        android:id="@+id/btn_next"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/ic_next"

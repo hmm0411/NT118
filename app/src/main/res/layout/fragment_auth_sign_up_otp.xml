@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/background_color"
     android:padding="24dp"
-    tools:context=".ui.auth.signup.SignUpOTPFragment">
+    tools:context=".fragment.auth.signup.SignUpOTPFragment">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="OTP CODE VERIFICATION"
-        android:textColor="@color/black"
+        android:textColor="@color/text_color"
         android:textSize="22sp"
         android:fontFamily="@font/montserrat_extrabold"
         android:textAllCaps="true"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="We have send an OTP code to your email 12***6@gmail.com. Enter the OTP code below to verify."
-        android:textColor="@color/black"
+        android:textColor="@color/text_color"
         android:fontFamily="@font/montserrat_medium"
         android:textSize="14sp"
         android:lineSpacingExtra="6dp"
@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:text="Didn't receive email? "
             android:fontFamily="@font/montserrat_medium"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             android:textSize="13sp"/>
 
         <TextView
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:text="You can resend code in 36s"
             android:fontFamily="@font/montserrat_bold"
-            android:textColor="@color/red"
+            android:textColor="@color/main_color"
             android:textSize="13sp"/>
     </LinearLayout>
 
@@ -96,8 +96,8 @@
         android:text="VERIFY OTP"
         android:textAllCaps="true"
         android:textSize="20sp"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/red"
+        android:textColor="@color/btn_text_color"
+        app:backgroundTint="@color/main_color"
         app:cornerRadius="30dp"
         android:layout_marginTop="16dp"/>
 

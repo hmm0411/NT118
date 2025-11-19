@@ -14,13 +14,18 @@
         android:theme="@style/Theme.Cinepople">
 
         <activity
-            android:name=".activity.splash.SplashActivity"
+            android:name=".activity.main.MainActivity"
             android:exported="true"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.movie.MovieDetailsActivity"
+            android:exported="false">
         </activity>
 
         <activity
@@ -28,31 +33,11 @@
             android:exported="false">
         </activity>
 
-<!--        <activity-->
-<!--            android:name=".activity.auth.SignUpActivity"-->
-<!--            android:exported="false">-->
-<!--        </activity>-->
-
-<!--        <activity-->
-<!--            android:name=".activity.auth.ForgotActivity"-->
-<!--            android:exported="false">-->
-<!--        </activity>-->
-
-        <activity
-            android:name=".activity.main.MainActivity"
-            android:exported="false">
-        </activity>
-
-<!--        <activity-->
-<!--            android:name=".activity.movie.MovieDetailsActivity"-->
-<!--            android:exported="false">-->
-<!--        </activity>-->
 
 <!--        <activity-->
 <!--            android:name=".activity.booking.SelectSessionActivity"-->
 <!--            android:exported="false">-->
 <!--        </activity>-->
-
 
 <!--        <activity-->
 <!--            android:name=".activity.booking.SelectSeatsActivity"-->

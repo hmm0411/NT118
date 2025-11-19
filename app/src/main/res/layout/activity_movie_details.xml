@@ -20,23 +20,16 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:contentInsetStart="0dp">
-
-            <ImageButton
-                android:id="@+id/button_return"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_return"
-                android:scaleType="fitCenter"
-                android:padding="7dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/description_btn_return" />
+            app:contentInsetStart="0dp"
+            app:navigationIcon="@drawable/ic_return"
+            app:navigationIconTint="@color/main_color">
 
             <TextView
                 android:id="@+id/toolbar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="The Batman"
+                android:textAlignment="gravity"
                 android:textColor="@color/main_color"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -50,10 +43,9 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/footer_layout"
             android:layout_width="0dp"
             android:layout_marginHorizontal="30dp"
@@ -61,14 +53,19 @@
             android:backgroundTint="@color/background_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            >
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_select_session"
                 style="@style/MyButton.Primary.FullWidth"
+                android:paddingVertical="10dp"
                 android:text="@string/btn_select_session"
-                android:paddingVertical="16dp"/>
-        </com.google.android.material.card.MaterialCardView>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <androidx.core.widget.NestedScrollView
@@ -132,7 +129,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="-60dp"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="8dp"
+                    app:cardElevation="10dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/banner_container">
 
@@ -410,7 +407,7 @@
                     app:layout_constraintTop_toBottomOf="@id/text_comments_title">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="384dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"

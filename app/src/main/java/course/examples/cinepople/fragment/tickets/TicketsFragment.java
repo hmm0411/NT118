@@ -1,5 +1,8 @@
 package course.examples.cinepople.fragment.tickets;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,27 +10,25 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import course.examples.cinepople.activity.auth.LoginActivity;
+import course.examples.cinepople.activity.auth.SignUpActivity;
+import course.examples.cinepople.adapter.TicketAdapter;
 import course.examples.cinepople.domain.Booking;
 import course.examples.cinepople.databinding.FragmentMainTicketsBinding;
 
 public class TicketsFragment extends Fragment {
 
-    private static final String TAG = "TicketsFragment";
     private FragmentMainTicketsBinding binding;
-    private FirebaseFirestore db;
-    private FirebaseAuth mAuth;
-    private String currentUserId;
 
     private List<Booking> paidTicketsList = new ArrayList<>();
-
     private List<Booking> unpaidTicketsList = new ArrayList<>();
+    private TicketAdapter paidTicketAdapter;
+    private TicketAdapter unpaidTicketAdapter;
 
     @Nullable
     @Override
@@ -39,83 +40,61 @@ public class TicketsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
-
-        if (mAuth.getCurrentUser() != null) {
-            currentUserId = mAuth.getCurrentUser().getUid();
-        } else {
-        }
+        // Logic sẽ nằm trong onResume để tự cập nhật khi quay lại
     }
 
-//    private void setupRecyclerViews() {
-//        // --- 1. Vé Đã Thanh Toán (PAID) ---
-//        paidTicketAdapter = new TicketAdapter(getContext(), paidTicketsList, booking -> {
-//            // TODO: Mở TicketPaidActivity
-//        });
-//        binding.recyclerPaidTickets.setLayoutManager(new LinearLayoutManager(getContext()));
-//        binding.recyclerPaidTickets.setAdapter(paidTicketAdapter);
-//
-//        // --- 2. Vé Chưa Thanh Toán (UNPAID) ---
-//        unpaidTicketAdapter = new TicketAdapter(getContext(), unpaidTicketsList, booking -> {
-//            // TODO: Mở TicketUnpaidActivity
-//        });
-//        binding.recyclerUnpaidTickets.setLayoutManager(new LinearLayoutManager(getContext()));
-//        binding.recyclerUnpaidTickets.setAdapter(unpaidTicketAdapter);
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkLoginStatus();
+    }
 
-//    private void loadTickets() {
-//        if (currentUserId == null) return;
+    private void checkLoginStatus() {
+//        if (getContext() == null || binding == null) return;
 //
-//        // Tải vé đã thanh toán
-//        loadPaidTickets();
+//        SharedPreferences sharedPref = getContext().getSharedPreferences(
+//                LoginActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
+//        String token = sharedPref.getString(LoginActivity.KEY_AUTH_TOKEN, null);
 //
-//        // Tải vé chưa thanh toán
-//        loadUnpaidTickets();
-//    }
+//        if (token != null && !token.isEmpty()) {
+//            // --- ĐÃ ĐĂNG NHẬP ---
+//            binding.loggedOutView.setVisibility(View.GONE);
+//            binding.loggedInView.setVisibility(View.VISIBLE);
+//
+//            // Khởi tạo RecyclerView và load data (nếu chưa load)
+//            setupRecyclerViews();
+//            // loadTicketsData(); // (Hàm gọi API tải vé của bạn)
+//
+//        } else {
+            // --- CHƯA ĐĂNG NHẬP ---
+            binding.loggedInView.setVisibility(View.GONE);
+            binding.loggedOutView.setVisibility(View.VISIBLE);
 
-//    private void loadPaidTickets() {
-//        // Truy vấn Firebase: Lọc theo userId và status = "paid"
-//        db.collection("bookings")
-//                .whereEqualTo("userId", currentUserId)
-//                .whereEqualTo("status", "paid")
-//                .get()
-//                .addOnSuccessListener(queryDocumentSnapshots -> {
-//                    paidTicketsList.clear();
-//                    for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-//                        Booking booking = doc.toObject(Booking.class);
-//                        if (booking != null) {
-//                            paidTicketsList.add(booking);
-//                        }
-//                    }
-//                    paidTicketAdapter.notifyDataSetChanged();
-//                })
-//                .addOnFailureListener(e -> {
-//
-//                });
-//    }
+            // Set sự kiện click
+            binding.btnGoToLogin.setOnClickListener(v -> {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            });
 
-//    private void loadUnpaidTickets() {
-//        // Truy vấn Firebase: Lọc theo userId và status = "unpaid"
-//        db.collection("bookings")
-//                .whereEqualTo("userId", currentUserId)
-//                .whereEqualTo("status", "unpaid")
-//                .get()
-//                .addOnSuccessListener(queryDocumentSnapshots -> {
-//                    unpaidTicketsList.clear();
-//                    for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-//                        Booking booking = doc.toObject(Booking.class);
-//                        if (booking != null) {
-//                            unpaidTicketsList.add(booking);
-//                        }
-//                    }
-//                    unpaidTicketAdapter.notifyDataSetChanged();
-//                })
-//                .addOnFailureListener(e -> {
-//                    // TODO: Xử lý lỗi tải vé chưa thanh toán
-//                });
-//    }
+            binding.btnGoToSignup.setOnClickListener(v -> {
+                startActivity(new Intent(getActivity(), SignUpActivity.class));
+            });
+        //}
+    }
+
+    private void setupRecyclerViews() {
+        // (Chỉ setup nếu adapter chưa được tạo để tránh tạo lại nhiều lần)
+        if (paidTicketAdapter == null) {
+            paidTicketAdapter = new TicketAdapter(getContext(), paidTicketsList, booking -> {});
+            binding.recyclerPaidTickets.setLayoutManager(new LinearLayoutManager(getContext()));
+            binding.recyclerPaidTickets.setAdapter(paidTicketAdapter);
+        }
+
+        if (unpaidTicketAdapter == null) {
+            unpaidTicketAdapter = new TicketAdapter(getContext(), unpaidTicketsList, booking -> {});
+            binding.recyclerUnpaidTickets.setLayoutManager(new LinearLayoutManager(getContext()));
+            binding.recyclerUnpaidTickets.setAdapter(unpaidTicketAdapter);
+        }
+    }
 
     @Override
     public void onDestroyView() {

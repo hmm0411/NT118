@@ -18,6 +18,7 @@ public class Movie {
     private Double imdbRating;
     private String ageRating;
     private String status;
+    private boolean isTopMovie;
 
     public Movie() {}
 
@@ -35,6 +36,7 @@ public class Movie {
     public String getLanguage() { return language; }
     public Double getImdbRating() { return imdbRating; }
     public String getAgeRating() { return ageRating; }
+    public boolean isTopMovie(){ return isTopMovie;}
 
     public String getStatus() { return status; }
 

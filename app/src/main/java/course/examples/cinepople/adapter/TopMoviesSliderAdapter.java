@@ -17,7 +17,6 @@ import java.util.List;
 import course.examples.cinepople.domain.Movie;
 import course.examples.cinepople.R;
 
-// <<< SỬA: ViewPager2 dùng RecyclerView.Adapter
 public class TopMoviesSliderAdapter extends RecyclerView.Adapter<TopMoviesSliderAdapter.SliderViewHolder> {
 
     private Context context;
@@ -69,7 +68,6 @@ public class TopMoviesSliderAdapter extends RecyclerView.Adapter<TopMoviesSlider
         ImageView imgPoster;
         public SliderViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Giả sử ID của poster trong item_top_movie_card.xml là img_poster_card
             imgPoster = itemView.findViewById(R.id.img_poster_card);
         }
     }

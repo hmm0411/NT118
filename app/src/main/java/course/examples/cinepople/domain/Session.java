@@ -17,8 +17,6 @@ public class Session {
     private String cinemaAddress;
 
     private List<String> showtimes;
-    private List<String> bookedSeats;
-    private List<String> seatMap;
     public Session() {}
 
     public String getId() { return id; }
@@ -31,11 +29,4 @@ public class Session {
     public String getCinemaAddress() { return cinemaAddress; }
     public List<String> getShowtimes() { return showtimes; }
 
-    public List<String> getSeatMap() {
-        return seatMap;
-    }
-
-    public List<String> getBookedSeats() {
-        return bookedSeats;
-    }
 }

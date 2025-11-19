@@ -28,7 +28,6 @@
         android:fontFamily="@font/montserrat_bold"
         android:textSize="28sp"
         android:textColor="@color/text_color"
-        android:alpha="0"
-        android:visibility="invisible" />
+        android:alpha="0"/>
 
 </LinearLayout>

@@ -40,7 +40,6 @@ public class ForgotOTPFragment extends Fragment {
                 }
             }
         });
-
     }
 
     @Override

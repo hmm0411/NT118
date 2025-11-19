@@ -15,8 +15,8 @@ public class UserRepository {
         this.apiService = ApiClient.getClient().create(ApiService.class);
     }
 
-    public void loginUser(String email, String password, Callback<LoginResponse> callback) {
-        LoginRequest request = new LoginRequest(email, password);
-        apiService.login(request).enqueue(callback);
-    }
+//    public void loginUser(String email, String password, Callback<LoginResponse> callback) {
+//        LoginRequest request = new LoginRequest(email, password);
+//        apiService.login(request).enqueue(callback);
+//    }
 }

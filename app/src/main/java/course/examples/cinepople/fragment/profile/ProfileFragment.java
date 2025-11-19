@@ -2,33 +2,27 @@ package course.examples.cinepople.fragment.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate; // Giữ lại import quan trọng này
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import course.examples.cinepople.R;
 import course.examples.cinepople.activity.auth.LoginActivity;
-import course.examples.cinepople.databinding.FragmentMainProfileBinding;
+import course.examples.cinepople.activity.auth.SignUpActivity;
 
+import course.examples.cinepople.databinding.FragmentMainProfileBinding;
 
 public class ProfileFragment extends Fragment {
 
     private static final String TAG = "ProfileFragment";
-    private FragmentMainProfileBinding binding;
-    private FirebaseAuth mAuth;
 
-    private FirebaseFirestore db;
+    private FragmentMainProfileBinding binding;
+    private boolean isLoggedIn = true;
 
     @Nullable
     @Override
@@ -41,97 +35,97 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
-        loadUserProfile();
+        isLoggedIn = true; // Mặc định: CHƯA ĐĂNG NHẬP
 
-        binding.optionPersonalInfo.setOnClickListener(v -> {
+        // --- KHÔNG CẦN loadDarkModeState() NỮA ---
 
-            Fragment personalInfoFragment = new PersonalInfoFragment();
-            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
+        // Đảm bảo Switch hiển thị đúng trạng thái hệ thống hiện tại
+        setInitialSwitchState();
 
-            transaction.setCustomAnimations(
-                    R.anim.slide_in_right,
-                    R.anim.slide_out_left,
-                    R.anim.slide_in_left,
-                    R.anim.slide_out_right
-            );
-            transaction.replace(R.id.fragment_container, personalInfoFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+        updateProfileUI();
+        setupListeners();
+    }
+
+    // --- LOGIC DARK MODE ĐƯỢC ĐƠN GIẢN HÓA ---
+
+    private void setInitialSwitchState() {
+        // Thiết lập Switch dựa trên chế độ đang hoạt động của ứng dụng
+        int currentMode = AppCompatDelegate.getDefaultNightMode();
+        boolean isDark = (currentMode == AppCompatDelegate.MODE_NIGHT_YES ||
+                currentMode == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+
+        if (binding.switchDarkMode != null) {
+            binding.switchDarkMode.setChecked(isDark);
+        }
+    }
+
+    private void applyDarkMode(boolean isDark) {
+        // Chỉ áp dụng chế độ mới, không lưu trữ
+        int mode = isDark ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO;
+        AppCompatDelegate.setDefaultNightMode(mode);
+    }
+
+    private void setupListeners() {
+        if (binding == null) return;
+
+        // --- LISTENER CHO DARK MODE SWITCH ---
+        if (binding.switchDarkMode != null) {
+            binding.switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                applyDarkMode(isChecked);
+                // Vì không dùng SharedPreferences, trạng thái này sẽ bị mất khi ứng dụng thoát
+            });
+        }
+
+        // --- Listeners cho trạng thái CHƯA ĐĂNG NHẬP (Giữ nguyên) ---
+        binding.btnGoToLogin.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), LoginActivity.class));
         });
 
+        binding.btnGoToSignup.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), SignUpActivity.class));
+        });
+
+        // --- Listener cho trạng thái ĐÃ ĐĂNG NHẬP (Giữ nguyên) ---
         binding.btnLogout.setOnClickListener(v -> {
             logout();
         });
     }
 
+    private void updateProfileUI() {
+        if (binding == null) return;
 
-    private void loadUserProfile() {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        if (currentUser == null) {
-            logout();
-            return;
-        }
-
-        String email = currentUser.getEmail();
-        if (email != null && !email.isEmpty()) {
-            binding.tvUserEmail.setText(email);
+        if (isLoggedIn) {
+            // Logic ĐÃ ĐĂNG NHẬP (Giữ nguyên)
+            binding.scrollView.setVisibility(View.VISIBLE);
+            //binding.user_info_layout.setVisibility(View.VISIBLE);
+            binding.loggedOutView.setVisibility(View.GONE);
+            binding.optionWatchlist.setVisibility(View.VISIBLE);
+            binding.optionPaymentMethods.setVisibility(View.VISIBLE);
+            binding.optionPersonalInfo.setVisibility(View.VISIBLE);
+            binding.optionSecurity.setVisibility(View.VISIBLE);
+            binding.btnLogout.setVisibility(View.VISIBLE);
         } else {
-            binding.tvUserEmail.setText("No email provided");
+            // Logic CHƯA ĐĂNG NHẬP (Giữ nguyên)
+            binding.scrollView.setVisibility(View.GONE);
+            //binding.user_info_layout.setVisibility(View.GONE);
+            binding.loggedOutView.setVisibility(View.VISIBLE);
+            binding.optionWatchlist.setVisibility(View.GONE);
+            binding.optionPaymentMethods.setVisibility(View.GONE);
+            binding.optionPersonalInfo.setVisibility(View.GONE);
+            binding.optionSecurity.setVisibility(View.GONE);
+            binding.btnLogout.setVisibility(View.GONE);
         }
-
-        // 2. Lấy Tên (Name) từ Firestore
-        String uid = currentUser.getUid();
-        db.collection("users").document(uid).get()
-                .addOnCompleteListener(task -> {
-                    // Kiểm tra Fragment còn tồn tại
-                    if (!isAdded() || binding == null) {
-                        return;
-                    }
-
-                    String nameToShow = "User"; // Tên mặc định
-
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document != null && document.exists()) {
-                            String firestoreName = document.getString("name");
-                            if (firestoreName != null && !firestoreName.isEmpty()) {
-                                nameToShow = firestoreName;
-                            }
-                        }
-                    } else {
-                        Log.w(TAG, "Failed to load user profile from Firestore.", task.getException());
-                    }
-
-                    // 3. Nếu không có tên trong Firestore, thử lấy DisplayName từ Auth
-                    if (nameToShow.equals("User") && currentUser.getDisplayName() != null && !currentUser.getDisplayName().isEmpty()) {
-                        nameToShow = currentUser.getDisplayName();
-                    }
-
-                    // 4. Hiển thị tên
-                    binding.tvUserName.setText(nameToShow);
-
-                    // (Tùy chọn) Tải ảnh đại diện (avatar)
-                    // if (currentUser.getPhotoUrl() != null) {
-                    //    Glide.with(this).load(currentUser.getPhotoUrl()).into(binding.ivAvatar);
-                    // }
-                });
     }
 
-    /**
-     * SỬA: Hàm mới để xử lý đăng xuất
-     */
+    public void setIsLoggedIn(boolean status) {
+        this.isLoggedIn = status;
+        updateProfileUI();
+    }
+
     private void logout() {
-        mAuth.signOut();
-        // Đảm bảo getContext() không null
-        if (getContext() != null) {
-            Intent intent = new Intent(getContext(), LoginActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
+        isLoggedIn = false;
+        updateProfileUI();
+        Toast.makeText(getContext(), "Đã đăng xuất thành công!", Toast.LENGTH_SHORT).show();
     }
 
     @Override

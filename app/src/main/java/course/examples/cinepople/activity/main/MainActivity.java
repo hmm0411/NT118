@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.core.splashscreen.SplashScreen;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -37,15 +39,10 @@ public class MainActivity extends AppCompatActivity {
             Fragment selectedFragment = null;
             int itemId = item.getItemId();
 
-            if (itemId == R.id.nav_home) {
-                selectedFragment = fragmentHome;
-            } else if (itemId == R.id.nav_search) {
-                selectedFragment = fragmentSearch;
-            } else if (itemId == R.id.nav_tickets) {
-                selectedFragment = fragmentTickets;
-            } else if (itemId == R.id.nav_profile) {
-                selectedFragment = fragmentProfile;
-            }
+            if (itemId == R.id.nav_home) { selectedFragment = fragmentHome; }
+            else if (itemId == R.id.nav_search) { selectedFragment = fragmentSearch; }
+            else if (itemId == R.id.nav_tickets) { selectedFragment = fragmentTickets; }
+            else if (itemId == R.id.nav_profile) { selectedFragment = fragmentProfile; }
 
             if (selectedFragment != null) {
                 switchFragment(selectedFragment);
@@ -74,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
             activeFragment = fragmentHome;
         }
     }
-
     private void switchFragment(Fragment fragment) {
         fm.beginTransaction()
                 .hide(activeFragment)

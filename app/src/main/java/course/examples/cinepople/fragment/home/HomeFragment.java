@@ -2,7 +2,6 @@ package course.examples.cinepople.fragment.home;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,17 +15,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-import course.examples.cinepople.activity.auth.LoginActivity;
 import course.examples.cinepople.activity.movie.MovieDetailsActivity;
 import course.examples.cinepople.adapter.TopMoviesSliderAdapter;
 import course.examples.cinepople.adapter.MoviePosterAdapter;
 import course.examples.cinepople.domain.Movie;
 import course.examples.cinepople.databinding.FragmentMainHomeBinding;
-import course.examples.cinepople.viewmodel.HomeViewModel; // <-- THÊM
+import course.examples.cinepople.viewmodel.HomeViewModel;
 
 public class HomeFragment extends Fragment
         implements TopMoviesSliderAdapter.OnMovieClickListener,
@@ -34,9 +31,9 @@ public class HomeFragment extends Fragment
 
     private static final String TAG = "HomeFragment";
     private FragmentMainHomeBinding binding;
-
     private HomeViewModel viewModel;
 
+    // Adapters & Lists
     private TopMoviesSliderAdapter sliderAdapter;
     private List<Movie> topMovieList;
     private MoviePosterAdapter nowPlayingAdapter;
@@ -44,14 +41,9 @@ public class HomeFragment extends Fragment
     private MoviePosterAdapter comingSoonAdapter;
     private List<Movie> comingSoonList;
 
-    private String currentUserId;
-    private String currentUserEmail;
-
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentMainHomeBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -60,25 +52,54 @@ public class HomeFragment extends Fragment
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // 1. Init ViewModel
         viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-        loadUserSession();
+
+        // 2. Setup UI
         setupViews();
 
+        // 3. Observe Data (Fragment chỉ việc nhận data đã lọc và hiển thị)
         observeViewModel();
+
+        // 4. Call API
         viewModel.fetchAllHomeData();
     }
 
-    private void observeViewModel() {
+    private void setupViews() {
+        Context context = requireContext();
 
+        // Top Movies Slider
+        topMovieList = new ArrayList<>();
+        sliderAdapter = new TopMoviesSliderAdapter(context, topMovieList, this);
+        binding.viewpagerTopMovies.setAdapter(sliderAdapter);
+        setupPageChangeListener();
+        setupSliderTransformer();
+
+        // Now Playing Recycler
+        nowPlayingList = new ArrayList<>();
+        nowPlayingAdapter = new MoviePosterAdapter(context, nowPlayingList, this);
+        binding.recyclerNowPlaying.setAdapter(nowPlayingAdapter);
+        binding.recyclerNowPlaying.setLayoutManager(
+                new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        );
+
+        // Coming Soon Recycler
+        comingSoonList = new ArrayList<>();
+        comingSoonAdapter = new MoviePosterAdapter(context, comingSoonList, this);
+        binding.recyclerComingSoon.setAdapter(comingSoonAdapter);
+        binding.recyclerComingSoon.setLayoutManager(
+                new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        );
+    }
+
+    private void observeViewModel() {
+        // ViewModel đã lọc sẵn (Top=3, Now=6, Soon=6), Fragment chỉ việc hiển thị
         viewModel.getTopMovies().observe(getViewLifecycleOwner(), movies -> {
             if (movies != null) {
                 topMovieList.clear();
                 topMovieList.addAll(movies);
                 sliderAdapter.notifyDataSetChanged();
-
-                if (!topMovieList.isEmpty()) {
-                    updateTopMovieInfo(0);
-                }
+                if (!topMovieList.isEmpty()) updateTopMovieInfo(0);
             }
         });
 
@@ -99,65 +120,17 @@ public class HomeFragment extends Fragment
         });
 
         viewModel.getIsLoading().observe(getViewLifecycleOwner(), isLoading -> {
-            if (isLoading) {
-                // binding.progressBar.setVisibility(View.VISIBLE);
-                // binding.mainContent.setVisibility(View.GONE); // (Ẩn nội dung)
-            } else {
-                // binding.progressBar.setVisibility(View.GONE);
-                // binding.mainContent.setVisibility(View.VISIBLE);
-            }
+            if (binding == null) return;
+            binding.progressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
         });
 
-        // 5. Lắng nghe Lỗi
         viewModel.getErrorMessage().observe(getViewLifecycleOwner(), error -> {
             if (error != null) {
                 Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
-                Log.e(TAG, "API Error: " + error);
             }
         });
     }
 
-    // --- (Các hàm loadUserSession và setupViews giữ nguyên) ---
-    private void loadUserSession() {
-        if (getContext() == null) return;
-        SharedPreferences sharedPref = getContext().getSharedPreferences(
-                LoginActivity.APP_PREFERENCES,
-                Context.MODE_PRIVATE
-        );
-        currentUserId = sharedPref.getString(LoginActivity.KEY_USER_ID, null);
-        currentUserEmail = sharedPref.getString(LoginActivity.KEY_USER_EMAIL, "Guest");
-    }
-
-    private void setupViews() {
-        // (Không thay đổi gì ở hàm này)
-        topMovieList = new ArrayList<>();
-        sliderAdapter = new TopMoviesSliderAdapter(getContext(), topMovieList, this);
-        binding.viewpagerTopMovies.setAdapter(sliderAdapter);
-        setupSliderTransformer();
-        setupPageChangeListener();
-
-        nowPlayingList = new ArrayList<>();
-        nowPlayingAdapter = new MoviePosterAdapter(getContext(), nowPlayingList, this);
-        binding.recyclerNowPlaying.setAdapter(nowPlayingAdapter);
-        binding.recyclerNowPlaying.setLayoutManager(
-                new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)
-        );
-
-        comingSoonList = new ArrayList<>();
-        comingSoonAdapter = new MoviePosterAdapter(getContext(), comingSoonList, this);
-        binding.recyclerComingSoon.setAdapter(comingSoonAdapter);
-        binding.recyclerComingSoon.setLayoutManager(
-                new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)
-        );
-    }
-
-    // --- XÓA TOÀN BỘ CÁC HÀM "load...Movies()" ---
-    // private void loadAllMovieData() { ... }
-    // private void loadTopMovies() { ... }
-    // private void loadNowPlayingMovies() { ... }
-    // private void loadComingSoonMovies() { ... }
-
-    // --- (Các hàm sự kiện và UI còn lại giữ nguyên) ---
     @Override
     public void onMovieClick(Movie movie) {
         Intent intent = new Intent(getActivity(), MovieDetailsActivity.class);
@@ -176,12 +149,9 @@ public class HomeFragment extends Fragment
     }
 
     private void updateTopMovieInfo(int position) {
-        if (topMovieList == null || topMovieList.isEmpty() || position >= topMovieList.size()) {
-            return;
-        }
+        if (topMovieList == null || topMovieList.isEmpty() || position >= topMovieList.size()) return;
         Movie selectedMovie = topMovieList.get(position);
-        binding.tvMovieTitle.setText(selectedMovie.getTitle());
-        //binding.tvMovieDuration.setText(selectedMovie.getDuration());
+        if (binding.tvMovieTitle != null) binding.tvMovieTitle.setText(selectedMovie.getTitle());
     }
 
     private void setupSliderTransformer() {
@@ -193,6 +163,8 @@ public class HomeFragment extends Fragment
             page.setScaleX(scale);
         });
     }
+
+
 
     @Override
     public void onDestroyView() {

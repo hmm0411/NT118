@@ -37,8 +37,6 @@ public class SelectSeatsViewModel extends ViewModel {
                     Session session = documentSnapshot.toObject(Session.class);
                     if (session != null) {
                         currentSession = session;
-                        Set<String> bookedSeats = new HashSet<>(session.getBookedSeats());
-                        initializeSeatMap(session.getSeatMap(), bookedSeats);
                     }
                 })
                 .addOnFailureListener(e -> {

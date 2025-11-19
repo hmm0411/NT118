@@ -13,20 +13,20 @@ public class AuthInterceptor implements Interceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {
-        // Lấy SharedPreferences từ Application Context
-        SharedPreferences sharedPref = MyApplication.getAppContext()
-                .getSharedPreferences(LoginActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
-
-        String token = sharedPref.getString(LoginActivity.KEY_AUTH_TOKEN, null);
+//        // Lấy SharedPreferences từ Application Context
+//        SharedPreferences sharedPref = MyApplication.getAppContext()
+//                .getSharedPreferences(LoginActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
+//
+//        String token = sharedPref.getString(LoginActivity.KEY_AUTH_TOKEN, null);
 
         // Lấy request gốc
         Request originalRequest = chain.request();
         Request.Builder requestBuilder = originalRequest.newBuilder();
 
-        // Nếu có token, thêm vào header
-        if (token != null && !token.isEmpty()) {
-            requestBuilder.addHeader("Authorization", "Bearer " + token);
-        }
+//        // Nếu có token, thêm vào header
+//        if (token != null && !token.isEmpty()) {
+//            requestBuilder.addHeader("Authorization", "Bearer " + token);
+//        }
 
         Request newRequest = requestBuilder.build();
         return chain.proceed(newRequest);

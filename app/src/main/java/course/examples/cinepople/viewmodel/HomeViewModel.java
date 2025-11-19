@@ -4,6 +4,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import java.util.ArrayList;
 import java.util.List;
 import course.examples.cinepople.data.repository.MovieRepository;
 import course.examples.cinepople.domain.Movie;
@@ -13,9 +14,9 @@ import retrofit2.Response;
 
 public class HomeViewModel extends ViewModel {
 
-    private static final String TAG = "HomeViewModel";
     private MovieRepository movieRepository;
 
+    // LiveData chứa danh sách ĐÃ ĐƯỢC LỌC
     private MutableLiveData<List<Movie>> topMovies = new MutableLiveData<>();
     private MutableLiveData<List<Movie>> nowPlayingMovies = new MutableLiveData<>();
     private MutableLiveData<List<Movie>> comingSoonMovies = new MutableLiveData<>();
@@ -27,77 +28,66 @@ public class HomeViewModel extends ViewModel {
         this.movieRepository = new MovieRepository();
     }
 
-    // --- Getters để Fragment theo dõi ---
+    // Getters
     public LiveData<List<Movie>> getTopMovies() { return topMovies; }
     public LiveData<List<Movie>> getNowPlayingMovies() { return nowPlayingMovies; }
     public LiveData<List<Movie>> getComingSoonMovies() { return comingSoonMovies; }
     public LiveData<Boolean> getIsLoading() { return isLoading; }
     public LiveData<String> getErrorMessage() { return errorMessage; }
 
-
-    /**
-     * Hàm gọi tất cả API cho trang chủ
-     */
     public void fetchAllHomeData() {
         isLoading.setValue(true);
 
-        // 1. Tải Top Movies
-        movieRepository.getTopMoviesApi(new Callback<List<Movie>>() {
+        // Gọi API lấy TOÀN BỘ phim
+        movieRepository.getAllMoviesApi(new Callback<List<Movie>>() {
             @Override
             public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
-                if (response.isSuccessful()) {
-                    topMovies.postValue(response.body());
+                if (response.isSuccessful() && response.body() != null) {
+                    // --- GỌI HÀM LỌC DỮ LIỆU TẠI ĐÂY ---
+                    filterMovies(response.body());
                 } else {
-                    errorMessage.postValue("API Error (Top): " + response.message());
+                    errorMessage.postValue("Error: " + response.message());
                 }
-                // (Chỉ tắt loading sau khi tất cả API hoàn thành - đây là cách đơn giản)
-                // isLoading.setValue(false);
+                isLoading.postValue(false);
             }
 
             @Override
             public void onFailure(Call<List<Movie>> call, Throwable t) {
-                Log.e(TAG, "onFailure: getTopMoviesApi", t);
-                errorMessage.postValue("Network Error (Top): " + t.getMessage());
-                // isLoading.setValue(false);
+                errorMessage.postValue("Network Error: " + t.getMessage());
+                isLoading.postValue(false);
             }
         });
+    }
 
-        // 2. Tải Now Playing
-        movieRepository.getNowPlayingMoviesApi(new Callback<List<Movie>>() {
-            @Override
-            public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
-                if (response.isSuccessful()) {
-                    nowPlayingMovies.postValue(response.body());
-                } else {
-                    errorMessage.postValue("API Error (Now): " + response.message());
-                }
+    /**
+     * LOGIC LỌC PHIM THEO YÊU CẦU CỦA BẠN
+     */
+    private void filterMovies(List<Movie> allMovies) {
+        List<Movie> topList = new ArrayList<>();
+        List<Movie> nowList = new ArrayList<>();
+        List<Movie> soonList = new ArrayList<>();
+
+        for (Movie movie : allMovies) {
+
+            // 1. TOP MOVIES: isTopMovie == true (Tối đa 3 phim)
+            if (movie.isTopMovie() && topList.size() < 3) {
+                topList.add(movie);
             }
 
-            @Override
-            public void onFailure(Call<List<Movie>> call, Throwable t) {
-                Log.e(TAG, "onFailure: getNowPlayingMoviesApi", t);
-                errorMessage.postValue("Network Error (Now): " + t.getMessage());
-            }
-        });
-
-        // 3. Tải Coming Soon
-        movieRepository.getComingSoonMoviesApi(new Callback<List<Movie>>() {
-            @Override
-            public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
-                if (response.isSuccessful()) {
-                    comingSoonMovies.postValue(response.body());
-                } else {
-                    errorMessage.postValue("API Error (Soon): " + response.message());
-                }
-                isLoading.setValue(false); // Tắt loading sau khi API cuối cùng hoàn thành
+            // 2. NOW PLAYING: status == "now_showing" (Tối đa 6 phim)
+            if ("now_showing".equals(movie.getStatus()) && nowList.size() < 6) {
+                nowList.add(movie);
             }
 
-            @Override
-            public void onFailure(Call<List<Movie>> call, Throwable t) {
-                Log.e(TAG, "onFailure: getComingSoonMoviesApi", t);
-                errorMessage.postValue("Network Error (Soon): " + t.getMessage());
-                isLoading.setValue(false); // Tắt loading sau khi API cuối cùng hoàn thành (dù lỗi)
+            // 3. COMING SOON: status == "coming_soon" (Tối đa 6 phim)
+            if ("coming_soon".equals(movie.getStatus()) && soonList.size() < 6) {
+                soonList.add(movie);
             }
-        });
+        }
+
+        // Đẩy dữ liệu đã lọc về Fragment
+        topMovies.postValue(topList);
+        nowPlayingMovies.postValue(nowList);
+        comingSoonMovies.postValue(soonList);
     }
 }

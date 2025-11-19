@@ -2,7 +2,7 @@ package course.examples.cinepople.fragment.search;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log; // <-- THÊM IMPORT NÀY
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,31 +12,29 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot; // <-- THÊM IMPORT NÀY
+// --- BẠN CÓ THỂ COMMENT CÁC IMPORT CỦA FIREBASE ---
+// import com.google.firebase.firestore.FirebaseFirestore;
+// import com.google.firebase.firestore.Query;
+// import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import course.examples.cinepople.R; // <-- THÊM IMPORT NÀY
+import course.examples.cinepople.R;
 import course.examples.cinepople.activity.movie.MovieDetailsActivity;
 import course.examples.cinepople.adapter.MovieSearchAdapter;
 import course.examples.cinepople.domain.Movie;
 import course.examples.cinepople.databinding.FragmentMainSearchBinding;
 
-// SỬA: Implement interface click của Adapter
 public class SearchFragment extends Fragment implements MovieSearchAdapter.OnMovieClickListener {
 
-    private static final String TAG = "SearchFragment"; // Thêm TAG để debug
+    private static final String TAG = "SearchFragment";
     private FragmentMainSearchBinding binding;
-    private FirebaseFirestore db;
 
     private MovieSearchAdapter searchAdapter;
     private List<Movie> searchResultList = new ArrayList<>();
 
-    // SỬA: Thêm biến để quản lý bộ lọc
-    private String currentFilterStatus = "all"; // "all", "now_showing", "coming_soon"
+    private String currentFilterStatus = "all";
 
     @Nullable
     @Override
@@ -48,49 +46,27 @@ public class SearchFragment extends Fragment implements MovieSearchAdapter.OnMov
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        db = FirebaseFirestore.getInstance();
-
         setupRecyclerView();
         setupSearchListener();
-
-        // SỬA: Thêm hàm lắng nghe các Chip
         setupChipListeners();
-
-        // SỬA: Tải tất cả phim (mặc định) ngay khi mở
-        loadMoviesByFilter();
     }
 
     private void setupRecyclerView() {
-        // SỬA: Truyền "this" làm listener
         searchAdapter = new MovieSearchAdapter(getContext(), searchResultList, this);
-
         binding.recyclerSearchResults.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerSearchResults.setAdapter(searchAdapter);
     }
 
     private void setupSearchListener() {
-        // SỬA: Đổi ID cho đúng với XML của bạn
         binding.searchEditText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                String query = binding.searchEditText.getText().toString().trim();
-
-                // Nếu ô tìm kiếm trống, tải lại theo filter chip
-                if (query.isEmpty()) {
-                    loadMoviesByFilter();
-                } else {
-                    // Nếu có chữ, thực hiện tìm kiếm
-                    performSearch(query);
-                }
+                Log.d(TAG, "Search clicked (Data loading disabled)");
                 return true;
             }
             return false;
         });
     }
 
-    /**
-     * SỬA: Hàm mới để lắng nghe các Chip
-     */
     private void setupChipListeners() {
         binding.chipGroupFilters.setOnCheckedStateChangeListener((group, checkedIds) -> {
             if (checkedIds.isEmpty()) return;
@@ -105,77 +81,23 @@ public class SearchFragment extends Fragment implements MovieSearchAdapter.OnMov
                 currentFilterStatus = "coming_soon";
             }
 
-            loadMoviesByFilter();
+            // --- COMMENT CÁC HÀM GỌI DATA ---
+            // loadMoviesByFilter();
+            Log.d(TAG, "Filter changed (Data loading disabled)");
             binding.searchEditText.setText("");
         });
     }
 
     private void loadMoviesByFilter() {
-        binding.textNoResults.setVisibility(View.GONE);
-        binding.progressBar.setVisibility(View.VISIBLE);
-
-        Query query = db.collection("movies");
-
-        if (!"all".equals(currentFilterStatus)) {
-            query = query.whereEqualTo("status", currentFilterStatus);
-        }
-
-        query = query.orderBy("title").limit(20);
-
-        query.get().addOnCompleteListener(task -> {
-            binding.progressBar.setVisibility(View.GONE);
-            if (isAdded() && task.isSuccessful()) {
-                searchResultList.clear();
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    Movie movie = document.toObject(Movie.class);
-                    movie.setId(document.getId());
-                    searchResultList.add(movie);
-                }
-                searchAdapter.notifyDataSetChanged();
-
-                if (searchResultList.isEmpty()) {
-                    binding.textNoResults.setVisibility(View.VISIBLE);
-                }
-            } else if (isAdded()) {
-                Log.w(TAG, "Error loading filtered movies: ", task.getException());
-                binding.textNoResults.setText("Error loading results.");
-                binding.textNoResults.setVisibility(View.VISIBLE);
-            }
-        });
+        // binding.textNoResults.setVisibility(View.GONE);
+        // binding.progressBar.setVisibility(View.VISIBLE);
+        // ... (Toàn bộ code Firebase) ...
     }
 
     private void performSearch(String searchText) {
-        binding.textNoResults.setVisibility(View.GONE);
-        binding.progressBar.setVisibility(View.VISIBLE);
-
-        binding.chipGroupFilters.clearCheck();
-
-        db.collection("movies")
-                .orderBy("title")
-                .startAt(searchText)
-                .endAt(searchText + "\uf8ff")
-                .limit(20)
-                .get()
-                .addOnCompleteListener(task -> {
-                    binding.progressBar.setVisibility(View.GONE);
-                    if (isAdded() && task.isSuccessful()) {
-                        searchResultList.clear();
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            Movie movie = document.toObject(Movie.class);
-                            movie.setId(document.getId());
-                            searchResultList.add(movie);
-                        }
-                        searchAdapter.notifyDataSetChanged();
-
-                        if (searchResultList.isEmpty()) {
-                            binding.textNoResults.setVisibility(View.VISIBLE);
-                        }
-                    } else if (isAdded()) {
-                        Log.w(TAG, "Error performing search: ", task.getException());
-                        binding.textNoResults.setText("Error loading results.");
-                        binding.textNoResults.setVisibility(View.VISIBLE);
-                    }
-                });
+        // binding.textNoResults.setVisibility(View.GONE);
+        // binding.progressBar.setVisibility(View.VISIBLE);
+        // ... (Toàn bộ code Firebase) ...
     }
 
     @Override

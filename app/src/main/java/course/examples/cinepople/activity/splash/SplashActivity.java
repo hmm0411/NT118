@@ -19,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //binding = ActivitySplashBinding.inflate(getLayoutInflater);
+        binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         Animation logoMoveUp = AnimationUtils.loadAnimation(this, R.anim.logo_move_up);

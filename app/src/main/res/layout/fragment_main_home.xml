@@ -78,14 +78,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-<!--                Tittle Top Movies -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:gravity="center_horizontal">
-                    <TextView
-                        style="@style/TitleTextStyle"
+
+                    <TextView style="@style/TitleTextStyle"
                         android:text="@string/top_movies" />
                 </LinearLayout>
 
@@ -118,6 +117,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <LinearLayout
                     android:id="@+id/layout_info_bar"
                     android:layout_width="match_parent"
@@ -154,18 +154,14 @@
                             tools:text="63 h 36 m 36 s" />
                     </LinearLayout>
 
-                    <com.google.android.material.button.MaterialButton
+                    <com.google.android.material.button.MaterialButton style="@style/MyButton.Primary"
                         android:id="@+id/btn_book_movie"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:fontFamily="@font/montserrat_semibold"
-                        android:text="Book"
-                        android:textColor="@color/btn_text_color"
-                        app:backgroundTint="@color/main_color"
-                        app:cornerRadius="10dp" />
+                        android:textSize="14sp"
+                        android:paddingVertical="10dp"
+                        android:text="@string/btn_book"/>
                 </LinearLayout>
-
             </LinearLayout>
 
             <View
@@ -174,14 +170,14 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:background="#AAAAAA" />
+                android:background="@color/line_color" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:orientation="vertical">
-                <!-- ... (Nội dung Now Playing của bạn) ... -->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -189,9 +185,8 @@
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="10dp">
 
-                    <TextView
+                    <TextView style="@style/TitleTextStyle"
                         android:id="@+id/tv_title_now_playing"
-                        style="@style/TitleTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
@@ -206,8 +201,7 @@
                         android:layout_gravity="center_horizontal"
                         android:orientation="horizontal">
 
-                        <TextView
-                            style="@style/ViewAllTextStyle"
+                        <TextView style="@style/ViewAllTextStyle"
                             android:gravity="center_vertical" />
 
                         <ImageView
@@ -221,9 +215,8 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView style="@style/HorizontalRecyclerViewStyle"
                     android:id="@+id/recycler_now_playing"
-                    style="@style/HorizontalRecyclerViewStyle"
                     android:layout_height="225dp" />
             </LinearLayout>
 
@@ -233,7 +226,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:background="#AAAAAA" />
+                android:background="@color/line_color" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -248,9 +241,8 @@
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="10dp">
 
-                    <TextView
+                    <TextView style="@style/TitleTextStyle"
                         android:id="@+id/tv_title_coming_soon"
-                        style="@style/TitleTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
@@ -265,8 +257,7 @@
                         android:layout_gravity="center_horizontal"
                         android:orientation="horizontal">
 
-                        <TextView
-                            style="@style/ViewAllTextStyle"
+                        <TextView style="@style/ViewAllTextStyle"
                             android:gravity="center_vertical" />
 
                         <ImageView
@@ -280,9 +271,8 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView style="@style/HorizontalRecyclerViewStyle"
                     android:id="@+id/recycler_coming_soon"
-                    style="@style/HorizontalRecyclerViewStyle"
                     android:layout_height="225dp" />
             </LinearLayout>
 

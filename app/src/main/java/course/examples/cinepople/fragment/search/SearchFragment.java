@@ -7,15 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Toast; // THÊM IMPORT
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider; // THÊM IMPORT
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-// --- BẠN CÓ THỂ COMMENT CÁC IMPORT CỦA FIREBASE ---
-// import com.google.firebase.firestore.FirebaseFirestore;
-// import com.google.firebase.firestore.Query;
-// import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +22,14 @@ import course.examples.cinepople.activity.movie.MovieDetailsActivity;
 import course.examples.cinepople.adapter.MovieSearchAdapter;
 import course.examples.cinepople.domain.Movie;
 import course.examples.cinepople.databinding.FragmentMainSearchBinding;
+import course.examples.cinepople.viewmodel.SearchViewModel;
 
 public class SearchFragment extends Fragment implements MovieSearchAdapter.OnMovieClickListener {
 
     private static final String TAG = "SearchFragment";
     private FragmentMainSearchBinding binding;
+
+    private SearchViewModel viewModel;
 
     private MovieSearchAdapter searchAdapter;
     private List<Movie> searchResultList = new ArrayList<>();
@@ -46,10 +46,55 @@ public class SearchFragment extends Fragment implements MovieSearchAdapter.OnMov
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // 1. KHỞI TẠO VIEWMODEL
+        viewModel = new ViewModelProvider(this).get(SearchViewModel.class);
+
         setupRecyclerView();
         setupSearchListener();
         setupChipListeners();
+
+        // 2. BẮT ĐẦU LẮNG NGHE DỮ LIỆU
+        observeViewModel();
+
+        // 3. GỌI API ĐỂ TẢI TẤT CẢ PHIM NGAY KHI MỞ TRANG
+        viewModel.fetchAllMovies();
     }
+
+    // --- HÀM MỚI: LẮNG NGHE LIVEDATA TỪ VIEWMODEL ---
+    private void observeViewModel() {
+        // Lắng nghe danh sách kết quả
+        viewModel.getSearchResults().observe(getViewLifecycleOwner(), movies -> {
+            if (movies != null) {
+                searchResultList.clear();
+                searchResultList.addAll(movies);
+                searchAdapter.notifyDataSetChanged();
+
+                // Hiển thị thông báo nếu không có kết quả
+                binding.textNoResults.setVisibility(movies.isEmpty() ? View.VISIBLE : View.GONE);
+
+                // Cập nhật trạng thái loading
+                binding.progressBar.setVisibility(View.GONE);
+            }
+        });
+
+        // Lắng nghe trạng thái Loading
+        viewModel.getIsLoading().observe(getViewLifecycleOwner(), isLoading -> {
+            if (binding == null) return;
+            // Hiển thị ProgressBar khi tải
+            binding.progressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+        });
+
+        // Lắng nghe Lỗi
+        viewModel.getErrorMessage().observe(getViewLifecycleOwner(), error -> {
+            if (error != null) {
+                Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
+                Log.e(TAG, "API Error: " + error);
+                binding.progressBar.setVisibility(View.GONE);
+            }
+        });
+    }
+
 
     private void setupRecyclerView() {
         searchAdapter = new MovieSearchAdapter(getContext(), searchResultList, this);
@@ -60,7 +105,8 @@ public class SearchFragment extends Fragment implements MovieSearchAdapter.OnMov
     private void setupSearchListener() {
         binding.searchEditText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                Log.d(TAG, "Search clicked (Data loading disabled)");
+                // TODO: Triển khai performSearch(query) sau
+                Log.d(TAG, "Search action triggered");
                 return true;
             }
             return false;
@@ -71,40 +117,26 @@ public class SearchFragment extends Fragment implements MovieSearchAdapter.OnMov
         binding.chipGroupFilters.setOnCheckedStateChangeListener((group, checkedIds) -> {
             if (checkedIds.isEmpty()) return;
 
-            int checkedId = checkedIds.get(0);
-
-            if (checkedId == R.id.chip_all) {
-                currentFilterStatus = "all";
-            } else if (checkedId == R.id.chip_now_playing) {
-                currentFilterStatus = "now_showing";
-            } else if (checkedId == R.id.chip_coming_soon) {
-                currentFilterStatus = "coming_soon";
-            }
-
-            // --- COMMENT CÁC HÀM GỌI DATA ---
-            // loadMoviesByFilter();
-            Log.d(TAG, "Filter changed (Data loading disabled)");
+            // TODO: Triển khai loadMoviesByFilter() sau
+            Log.d(TAG, "Filter changed (data loading disabled)");
             binding.searchEditText.setText("");
         });
     }
 
+    // --- CÁC HÀM NÀY GIỮ NGUYÊN (CHỈ LÀ SKELETON) ---
     private void loadMoviesByFilter() {
-        // binding.textNoResults.setVisibility(View.GONE);
-        // binding.progressBar.setVisibility(View.VISIBLE);
-        // ... (Toàn bộ code Firebase) ...
+        // ... (Sẽ dùng ViewModel.fetchFilteredMovies() sau)
     }
 
     private void performSearch(String searchText) {
-        // binding.textNoResults.setVisibility(View.GONE);
-        // binding.progressBar.setVisibility(View.VISIBLE);
-        // ... (Toàn bộ code Firebase) ...
+        // ... (Sẽ dùng ViewModel.fetchSearchQuery() sau)
     }
+    // ----------------------------------------------------
 
     @Override
     public void onMovieClick(Movie movie) {
         Intent intent = new Intent(getActivity(), MovieDetailsActivity.class);
         intent.putExtra(MovieDetailsActivity.MOVIE_ID_KEY, movie.getId());
-        intent.putExtra(MovieDetailsActivity.MOVIE_TITLE_KEY, movie.getTitle());
         startActivity(intent);
     }
 

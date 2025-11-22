@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_extrabold"
-        android:text="@string/forgot_password_tag"
+        android:text="@string/forgot_password_title"
         android:textColor="@color/text_color"
         android:textSize="24sp"
         android:layout_marginBottom="10dp"/>
@@ -28,7 +28,7 @@
         style="@style/Subtitle"
         android:justificationMode="inter_word"
         tools:targetApi="26"
-        android:text="@string/forgot_password_info" />
+        android:text="@string/forgot_password_subtitle" />
     </LinearLayout>
 
     <LinearLayout
@@ -46,7 +46,7 @@
             android:id="@+id/ed_email"
             style="@style/MyEditText.FormInput"
             android:autofillHints="email"
-            android:drawableStart="@drawable/ic_email"
+            android:drawableStart="@drawable/ic_language"
             android:hint="@string/hint_email"
             android:inputType="textEmailAddress"
             android:paddingHorizontal="16dp"

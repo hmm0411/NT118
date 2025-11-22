@@ -28,7 +28,6 @@ public class RegionSelectFragment extends Fragment {
     public interface OnProvinceSelectedListener {
         void onProvinceSelected(String regionId, String regionName);
     }
-    // ---
 
     private OnProvinceSelectedListener listener;
     private FragmentRegionSelectBinding binding;

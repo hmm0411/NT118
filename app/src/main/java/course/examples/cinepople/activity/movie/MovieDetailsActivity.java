@@ -23,7 +23,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     public static final String MOVIE_TITLE_KEY = "movie_title";
 
     private ActivityMovieDetailsBinding binding;
-    private MovieDetailsViewModel viewModel; // Khai báo ViewModel
+    private MovieDetailsViewModel viewModel;
 
     private String movieId;
     private String trailerUrl = "";

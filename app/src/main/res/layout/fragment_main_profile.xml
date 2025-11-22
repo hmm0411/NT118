@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_bold"
-            android:text="TICKETS"
+            android:text="@string/main_profile_tag"
             android:textAllCaps="true"
             android:textColor="@color/text_color"
             android:textSize="18sp"
@@ -116,37 +116,29 @@
                     android:layout_weight="1"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/option_watchlist"
-                style="@style/ProfileOption">
+            <LinearLayout style="@style/ProfileOption"
+                android:id="@+id/option_watchlist">
 
-                <ImageView
-                    style="@style/Icon.ImageView"
+                <ImageView style="@style/Icon.ImageView"
                     android:src="@drawable/ic_list"/>
 
-                <TextView
-                    android:text="@string/profile_watchlist"
-                    style="@style/TextProfileOption"/>
+                <TextView style="@style/TextProfileOption"
+                    android:text="@string/profile_link_watchlist"/>
 
-                <ImageView
-                    style="@style/Icon.ImageView"
+                <ImageView style="@style/Icon.ImageView"
                     android:src="@drawable/ic_next"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/option_payment_methods"
-                style="@style/ProfileOption">
+            <LinearLayout style="@style/ProfileOption"
+                android:id="@+id/option_payment_methods">
 
-                <ImageView
-                    style="@style/Icon.ImageView"
+                <ImageView style="@style/Icon.ImageView"
                     android:src="@drawable/ic_payment"/>
 
-                <TextView
-                    android:text="@string/profile_payment"
-                    style="@style/TextProfileOption"/>
+                <TextView style="@style/TextProfileOption"
+                    android:text="@string/profile_link_payment"/>
 
-                <ImageView
-                    style="@style/Icon.ImageView"
+                <ImageView style="@style/Icon.ImageView"
                     android:src="@drawable/ic_next"/>
             </LinearLayout>
 
@@ -161,161 +153,138 @@
                     android:id="@+id/tv_header_general"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#AAAAAA"
+                    android:textColor="@color/text_color"
                     android:paddingStart="0dp"
                     android:paddingEnd="8dp"
-                    android:text="@string/profile_general" />
+                    android:text="@string/profile_seperate_general" />
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:background="#AAAAAA"
+                    android:background="@color/line_color"
                     android:layout_weight="1"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/option_personal_info"
-                style="@style/ProfileOption">
+            <LinearLayout style="@style/ProfileOption"
+                android:id="@+id/option_personal_info">
 
-                <ImageView
-                    style="@style/Icon.ImageView"
+                <ImageView style="@style/Icon.ImageView"
                     android:src="@drawable/ic_profile"/>
 
-                <TextView
-                    android:text="@string/profile_personal"
-                    style="@style/TextProfileOption"/>
+                <TextView style="@style/TextProfileOption"
+                    android:text="@string/profile_link_personal_info"/>
 
-                <ImageView
-                    style="@style/Icon.ImageView"
+                <ImageView style="@style/Icon.ImageView"
                     android:src="@drawable/ic_next"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/option_security"
-                style="@style/ProfileOption">
+            <LinearLayout style="@style/ProfileOption"
+                android:id="@+id/option_security">
 
-                <ImageView
-                    style="@style/Icon.ImageView"
+                <ImageView style="@style/Icon.ImageView"
                     android:src="@drawable/ic_security"/>
 
-                <TextView
-                    android:text="@string/profile_security"
-                    style="@style/TextProfileOption"/>
+                <TextView style="@style/TextProfileOption"
+                    android:text="@string/profile_link_security"/>
 
-                <ImageView
-                    style="@style/Icon.ImageView"
+                <ImageView style="@style/Icon.ImageView"
                     android:src="@drawable/ic_next"/>
-                </LinearLayout>
+            </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/option_language"
-                    style="@style/ProfileOption">
+            <LinearLayout style="@style/ProfileOption"
+                    android:id="@+id/option_language">
 
-                    <ImageView
-                        style="@style/Icon.ImageView"
-                        android:src="@drawable/ic_language"/>
+                <ImageView style="@style/Icon.ImageView"
+                    android:src="@drawable/ic_language"/>
 
-                    <TextView
-                        android:text="@string/profile_language"
-                        style="@style/TextProfileOption"/>
+                <TextView style="@style/TextProfileOption"
+                    android:text="@string/profile_link_language"/>
 
-                    <ImageView
-                        style="@style/Icon.ImageView"
-                        android:src="@drawable/ic_next"/>
-                </LinearLayout>
+                <ImageView style="@style/Icon.ImageView"
+                    android:src="@drawable/ic_next"/>
+            </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/option_mode"
-                    style="@style/ProfileOption">
+            <LinearLayout style="@style/ProfileOption"
+                android:id="@+id/option_mode">
 
-                    <ImageView
-                        style="@style/Icon.ImageView"
-                        android:src="@drawable/ic_mode"/>
+                <ImageView style="@style/Icon.ImageView"
+                    android:src="@drawable/ic_mode"/>
 
-                    <TextView
-                        android:text="@string/profile_mode"
-                        style="@style/TextProfileOption"/>
+                <TextView style="@style/TextProfileOption"
+                    android:text="@string/profile_link_mode"/>
 
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/switch_dark_mode"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#AAAAAA"
-                        android:paddingStart="0dp"
-                        android:paddingEnd="8dp"
-                        android:text="@string/profile_about" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:background="#AAAAAA"
-                        android:layout_weight="1"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/option_help"
-                    style="@style/ProfileOption">
-
-                    <ImageView
-                        style="@style/Icon.ImageView"
-                        android:src="@drawable/ic_help"/>
-
-                    <TextView
-                        android:text="@string/profile_help"
-                        style="@style/TextProfileOption"/>
-
-                    <ImageView
-                        style="@style/Icon.ImageView"
-                        android:src="@drawable/ic_next"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/option_about"
-                    style="@style/ProfileOption">
-
-                    <ImageView
-                        style="@style/Icon.ImageView"
-                        android:src="@drawable/ic_about"/>
-
-                    <TextView
-                        android:text="@string/profile_about"
-                        style="@style/TextProfileOption"/>
-
-                    <ImageView
-                        style="@style/Icon.ImageView"
-                        android:src="@drawable/ic_next"/>
-                </LinearLayout>
-
-                <LinearLayout
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switch_dark_mode"
                     android:layout_width="wrap_content"
-                    android:id="@+id/btnLogout"
-                    style="@style/ProfileOption">
+                    android:layout_height="30dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </LinearLayout>
 
-                    <ImageView
-                        style="@style/Icon.ImageView"
-                        android:src="@drawable/ic_logout"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="5dp">
 
-                    <TextView
-                        android:text="@string/profile_logout"
-                        style="@style/TextProfileOption"/>
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="8dp"
+                    android:text="@string/profile_seperate_about" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/line_color"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <LinearLayout style="@style/ProfileOption"
+                android:id="@+id/option_help">
+
+                <ImageView style="@style/Icon.ImageView"
+                    android:src="@drawable/ic_help"/>
+
+                <TextView style="@style/TextProfileOption"
+                    android:text="@string/profile_link_help"/>
+
+                <ImageView style="@style/Icon.ImageView"
+                    android:src="@drawable/ic_next"/>
+            </LinearLayout>
+
+            <LinearLayout style="@style/ProfileOption"
+                android:id="@+id/option_about" >
+
+                <ImageView style="@style/Icon.ImageView"
+                    android:src="@drawable/ic_about"/>
+
+                <TextView style="@style/TextProfileOption"
+                    android:text="@string/profile_link_info"/>
+
+                <ImageView style="@style/Icon.ImageView"
+                    android:src="@drawable/ic_next"/>
+            </LinearLayout>
+
+            <LinearLayout style="@style/ProfileOption"
+                android:layout_width="wrap_content"
+                android:id="@+id/btnLogout">
+
+                <ImageView style="@style/Icon.ImageView"
+                    app:tint="@color/main_color"
+                    android:src="@drawable/ic_logout"/>
+
+                <TextView style="@style/TextProfileOption"
+                    android:text="@string/profile_logout"
+                    android:textColor="@color/main_color"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/logged_out_view"
         android:layout_width="0dp"

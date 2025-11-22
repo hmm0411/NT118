@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/signup_tag"
+            android:text="@string/signup_title"
             android:textAllCaps="true"
             android:fontFamily="@font/montserrat_extrabold"
             android:textColor="@color/text_color"
@@ -35,7 +35,7 @@
             style="@style/Subtitle"
             android:justificationMode="inter_word"
             tools:targetApi="26"
-            android:text="@string/signup_info"/>
+            android:text="@string/signup_subtitle"/>
     </LinearLayout>
 
     <LinearLayout
@@ -59,7 +59,7 @@
                 android:id="@+id/ed_email"
                 style="@style/MyEditText.FormInput"
                 android:autofillHints="email"
-                android:drawableStart="@drawable/ic_email"
+                android:drawableStart="@drawable/ic_language"
                 android:hint="@string/hint_email"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="16dp"
@@ -81,7 +81,7 @@
                 android:id="@+id/ed_password"
                 style="@style/MyEditText.FormInput"
                 android:autofillHints="Enter your password"
-                android:drawableStart="@drawable/ic_password"
+                android:drawableStart="@drawable/ic_pass"
                 android:hint="@string/hint_password"
                 android:inputType="textPassword"
                 android:paddingHorizontal="16dp"
@@ -103,7 +103,7 @@
                 android:id="@+id/ed_confirm_password"
                 style="@style/MyEditText.FormInput"
                 android:autofillHints="Enter your password"
-                android:drawableStart="@drawable/ic_password"
+                android:drawableStart="@drawable/ic_pass"
                 android:hint="@string/hint_confirm_password"
                 android:inputType="textPassword"
                 android:paddingHorizontal="16dp"
@@ -140,7 +140,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center_vertical"
                 android:paddingVertical="6dp"
-                android:text="@string/agree_license"
+                android:text="@string/sign_up_checkbox_agree_license"
                 android:textColor="@color/text_color"
                 android:textSize="13sp" />
 
@@ -151,7 +151,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center_vertical"
                 android:paddingVertical="6dp"
-                android:text="@string/license"
+                android:text="@string/link_license"
                 android:textColor="@color/main_color"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -175,7 +175,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="@string/signup_other_tag"
+                android:text="@string/sign_up_promt_already_have_account"
                 android:textColor="@color/text_color"
                 android:textSize="13sp" />
 
@@ -184,7 +184,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="@string/sign_in"
+                android:text="@string/link_sign_in"
                 android:textColor="@color/main_color"
                 android:textSize="13sp"
                 android:textStyle="bold" />

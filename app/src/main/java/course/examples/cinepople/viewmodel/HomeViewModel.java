@@ -59,9 +59,6 @@ public class HomeViewModel extends ViewModel {
         });
     }
 
-    /**
-     * LOGIC LỌC PHIM THEO YÊU CẦU CỦA BẠN
-     */
     private void filterMovies(List<Movie> allMovies) {
         List<Movie> topList = new ArrayList<>();
         List<Movie> nowList = new ArrayList<>();

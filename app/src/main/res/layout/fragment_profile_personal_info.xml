@@ -68,9 +68,8 @@
                 android:orientation="vertical"
                 android:layout_marginBottom="10dp">
 
-                <TextView
-                    style="@style/Label"
-                    android:text="@string/user_name"/>
+                <TextView style="@style/Label"
+                    android:text="@string/lb_fullname"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -86,10 +85,8 @@
                         android:src="@drawable/ic_profile"
                         android:contentDescription="@string/description_btn_next"/>
 
-                    <TextView
-                        android:id="@+id/txt_full_name"
-                        android:text="@string/user_name"
-                        style="@style/TextProfilePersonal"/>
+                    <TextView style="@style/TextProfilePersonal"
+                        android:id="@+id/txt_full_name"/>
 
                     <ImageView
                         android:layout_width="30dp"
@@ -108,7 +105,7 @@
 
                 <TextView
                     style="@style/Label"
-                    android:text="@string/user_email"/>
+                    android:text="@string/lb_email"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -121,12 +118,11 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="20dp"
-                        android:src="@drawable/ic_email"
+                        android:src="@drawable/ic_language"
                         android:contentDescription="@string/description_btn_next"/>
 
                     <TextView
                         android:id="@+id/txt_email"
-                        android:text="@string/user_email"
                         style="@style/TextProfilePersonal"/>
 
                     <ImageView
@@ -144,9 +140,8 @@
                 android:orientation="vertical"
                 android:layout_marginBottom="10dp">
 
-                <TextView
-                    style="@style/Label"
-                    android:text="@string/user_phone"/>
+                <TextView style="@style/Label"
+                    android:text="@string/lb_phone"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -159,12 +154,11 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="20dp"
-                        android:src="@drawable/ic_email"
+                        android:src="@drawable/ic_language"
                         android:contentDescription="@string/description_btn_next"/>
 
                     <TextView
                         android:id="@+id/txt_phone"
-                        android:text="@string/user_phone"
                         style="@style/TextProfilePersonal"/>
 
                     <ImageView
@@ -184,7 +178,7 @@
 
                 <TextView
                     style="@style/Label"
-                    android:text="@string/user_birthday"/>
+                    android:text="@string/lb_birthday"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -195,7 +189,6 @@
 
                     <TextView
                         android:id="@+id/txt_birthday"
-                        android:text="@string/user_birthday"
                         style="@style/TextProfilePersonal"/>
 
                     <ImageView
@@ -215,7 +208,7 @@
 
                 <TextView
                     style="@style/Label"
-                    android:text="@string/user_gender"/>
+                    android:text="@string/lb_gender"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -226,7 +219,7 @@
 
                     <TextView
                         android:id="@+id/txt_gender"
-                        android:text="@string/user_gender"
+                        android:text="@string/lb_gender"
                         style="@style/TextProfilePersonal"/>
 
                     <ImageView

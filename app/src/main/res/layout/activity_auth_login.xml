@@ -21,6 +21,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="center_vertical"
             app:contentInsetStart="0dp">
 
             <ImageButton
@@ -31,7 +32,8 @@
                 android:contentDescription="@string/description_btn_return"
                 android:padding="7dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_return"/>
+                android:src="@drawable/ic_return"
+                tools:ignore="RedundantDescriptionCheck" />
         </com.google.android.material.appbar.MaterialToolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -55,7 +57,6 @@
                 android:id="@+id/login_main"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:paddingVertical="16dp"
@@ -114,7 +115,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat_extrabold"
-                        android:text="@string/login_tag"
+                        android:text="@string/login_title"
                         android:textAlignment="center"
                         android:textAllCaps="true"
                         android:textColor="@color/text_color"
@@ -137,15 +138,13 @@
                         android:layout_marginBottom="15dp"
                         android:orientation="vertical">
 
-                        <TextView
-                            style="@style/Label"
+                        <TextView style="@style/Label"
                             android:text="@string/lb_email" />
 
-                        <EditText
+                        <EditText style="@style/MyEditText.FormInput"
                             android:id="@+id/ed_email"
-                            style="@style/MyEditText.FormInput"
                             android:autofillHints="email"
-                            android:drawableStart="@drawable/ic_email"
+                            android:drawableStart="@drawable/ic_mail"
                             android:hint="@string/hint_email"
                             android:inputType="textEmailAddress"
                             android:paddingHorizontal="16dp"
@@ -159,15 +158,13 @@
                         android:layout_marginBottom="10dp"
                         android:orientation="vertical">
 
-                        <TextView
-                            style="@style/Label"
+                        <TextView style="@style/Label"
                             android:text="@string/lb_password" />
 
-                        <EditText
+                        <EditText style="@style/MyEditText.FormInput"
                             android:id="@+id/ed_password"
-                            style="@style/MyEditText.FormInput"
                             android:autofillHints="Enter password"
-                            android:drawableStart="@drawable/ic_security"
+                            android:drawableStart="@drawable/ic_pass"
                             android:drawableEnd="@drawable/ic_view"
                             android:hint="@string/hint_password"
                             android:inputType="textPassword"
@@ -187,7 +184,7 @@
                             android:layout_height="48dp"
                             android:buttonTint="@color/main_color"
                             android:fontFamily="@font/montserrat_medium"
-                            android:text="@string/remember_me"
+                            android:text="@string/login_checkbox_remember_me"
                             android:textColor="@color/text_color"
                             android:textSize="13sp" />
 
@@ -203,7 +200,7 @@
                             android:fontFamily="@font/montserrat_bold"
                             android:gravity="center_vertical"
                             android:paddingVertical="6dp"
-                            android:text="@string/forgot_password"
+                            android:text="@string/link_forgot_password"
                             android:textColor="@color/main_color"
                             android:textSize="13sp" />
                     </LinearLayout>
@@ -215,11 +212,11 @@
                     android:layout_marginTop="20dp"
                     android:paddingHorizontal="30dp">
 
-                    <com.google.android.material.button.MaterialButton
+                    <com.google.android.material.button.MaterialButton style="@style/MyButton.Primary.FullWidth"
                         android:id="@+id/btn_login"
-                        style="@style/MyButton.Primary.FullWidth"
                         android:paddingVertical="16dp"
-                        android:text="@string/btn_login" />
+                        android:text="@string/btn_login"
+                        tools:ignore="VisualLintButtonSize" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -241,7 +238,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
                         android:fontFamily="@font/montserrat"
-                        android:text="@string/login_with"
+                        android:text="@string/login_seperate_or_login_with"
                         android:textColor="@color/text_color"
                         android:textSize="13sp" />
 
@@ -295,7 +292,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="4dp"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="@string/no_account"
+                        android:text="@string/login_promt_no_account"
                         android:textColor="@color/text_color"
                         android:textSize="13sp" />
 
@@ -305,7 +302,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat_medium"
                         android:gravity="center_vertical"
-                        android:text="@string/signup"
+                        android:text="@string/link_sign_up"
                         android:textColor="@color/main_color"
                         android:textSize="13sp"
                         android:textStyle="bold" />

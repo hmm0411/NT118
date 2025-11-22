@@ -66,14 +66,50 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <TextView
-                    style="@style/Label"
-                    android:text="Full Name"/>
-                <EditText
-                    android:id="@+id/et_full_name"
-                    style="@style/MyEditText.FormInput"
-                    android:hint="Enter your fullname"
-                    android:inputType="textPersonName" />
+
+                <LinearLayout
+                    android:id="@+id/input_fullname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Label"
+                        android:text="@string/lb_fullname" />
+
+                    <EditText
+                        android:id="@+id/ed_fullname"
+                        style="@style/MyEditText.FormInput"
+                        android:autofillHints="fullnamw"
+                        android:drawableStart="@drawable/ic_profile"
+                        android:hint="@string/hint_fullname"
+                        android:inputType="text"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/input_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Label"
+                        android:text="@string/lb_phone" />
+
+                    <EditText
+                        android:id="@+id/ed_phone"
+                        style="@style/MyEditText.FormInput"
+                        android:autofillHints="fullnamw"
+                        android:drawableStart="@drawable/ic_profile"
+                        android:hint="@string/hint_phone"
+                        android:inputType="text"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="16dp" />
+                </LinearLayout>
 
                 <TextView
                     style="@style/Label"

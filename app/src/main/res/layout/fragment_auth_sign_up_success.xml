@@ -65,7 +65,7 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/montserrat_semibold"
             android:paddingVertical="16dp"
-            android:text="@string/next"
+            android:text="@string/btn_next"
             android:textAllCaps="true"
             android:textColor="@color/btn_text_color"
             android:textSize="20sp"

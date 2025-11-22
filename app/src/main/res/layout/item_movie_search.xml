@@ -7,37 +7,47 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
     app:cardCornerRadius="16dp"
-    android:backgroundTint="#D9D9D9"
-    app:cardElevation="2dp">
+    android:backgroundTint="@color/card_color"
+    app:cardElevation="6dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#D9D9D9"
+        android:backgroundTint="@color/card_color"
         android:padding="12dp">
 
-        <ImageView
-            android:id="@+id/img_movie_poster"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/movie_poster"
             android:layout_width="100dp"
             android:layout_height="150dp"
-            android:scaleType="centerCrop"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:src="@tools:sample/avatars" />
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/img_movie_poster"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:src="@tools:sample/avatars" />
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tv_movie_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
+
             android:textColor="@color/text_color"
             android:textSize="16sp"
             android:textStyle="bold"
             android:maxLines="1"
             android:ellipsize="end"
-            app:layout_constraintTop_toTopOf="@id/img_movie_poster"
-            app:layout_constraintStart_toEndOf="@id/img_movie_poster"
+            app:layout_constraintTop_toTopOf="@id/movie_poster"
+            app:layout_constraintStart_toEndOf="@id/movie_poster"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="The Batman" />
 
@@ -45,7 +55,7 @@
             android:id="@+id/tv_movie_genre"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="6dp"
             android:textColor="@color/text_color"
             android:textSize="12sp"
             android:maxLines="1"
@@ -56,50 +66,82 @@
             tools:text="Action, Crime, Drama" />
 
         <TextView
+            android:id="@+id/text_age_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/background_rating"
+            android:paddingLeft="8dp"
+            android:paddingTop="2dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="2dp"
+            android:text="16+"
+            android:textColor="@color/rating_text_color"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/movie_poster"
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_genre" />
+
+        <TextView
+            android:id="@+id/text_age_rating_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/montserrat"
+            android:text="For audiences 16 and older"
+            android:textColor="@color/text_color"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/text_age_rating"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/text_age_rating"
+            app:layout_constraintTop_toTopOf="@id/text_age_rating" />
+
+        <TextView
             android:id="@+id/tv_movie_description"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="6dp"
             android:ellipsize="end"
-            android:textColor="@color/text_color"
             android:maxLines="3"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/text_color"
             android:textSize="12sp"
-            app:layout_constraintVertical_bias="0"
-            app:layout_constraintHeight_min="40dp"
-            app:layout_constraintTop_toBottomOf="@id/tv_movie_genre"
-            app:layout_constraintStart_toStartOf="@id/tv_movie_title"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:justificationMode="inter_word"
             app:layout_constraintBottom_toTopOf="@id/btn_booking"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_min="40dp"
+            app:layout_constraintStart_toStartOf="@id/tv_movie_title"
+            app:layout_constraintTop_toBottomOf="@+id/text_age_rating_desc"
+            app:layout_constraintVertical_bias="0"
             tools:text="When the Riddler, a sadistic serial killer, begins murdering key political figures..." />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_booking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Booking"
+            android:text="@string/btn_book"
             android:textColor="@color/btn_text_color"
             android:textSize="12sp"
             android:fontFamily="@font/montserrat_bold"
             app:backgroundTint="@color/main_color"
             app:cornerRadius="18dp"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/img_movie_poster"
+            app:layout_constraintBottom_toBottomOf="@id/movie_poster"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
+        <com.google.android.material.button.MaterialButton style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:id="@+id/btn_information"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Information"
+            android:text="@string/btn_info"
             android:fontFamily="@font/montserrat_bold"
             android:textSize="12sp"
             android:textColor="@color/main_color"
             app:strokeColor="@color/main_color"
             app:cornerRadius="18dp"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/img_movie_poster"
+            app:layout_constraintBottom_toBottomOf="@id/movie_poster"
             app:layout_constraintEnd_toEndOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

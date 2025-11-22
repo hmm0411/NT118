@@ -46,7 +46,6 @@ public class ProfileFragment extends Fragment {
         setupListeners();
     }
 
-    // --- LOGIC DARK MODE ĐƯỢC ĐƠN GIẢN HÓA ---
 
     private void setInitialSwitchState() {
         // Thiết lập Switch dựa trên chế độ đang hoạt động của ứng dụng

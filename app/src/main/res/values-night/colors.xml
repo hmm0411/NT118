@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background_color">#282424</color>
+    <color name="background_color">#1f283e</color>
     <color name="background_poster">#000000</color>
 
     <color name="text_color">#FFFFFF</color>
@@ -11,8 +11,9 @@
     <color name="line_color">#AAAAAA</color>
     <color name="hint_color">#757575</color>
     <color name="icon_color">#FFFFFF</color>
+    <color name="card_color">#000000</color>
 
-    <color name="main_color">#990011</color>
+    <color name="main_color">#FF0B55</color>
 
     <color name="icon_pause_color">#AFAFAF</color>
 

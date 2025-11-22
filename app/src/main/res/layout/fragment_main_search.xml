@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         app:cardCornerRadius="28dp"
         app:cardElevation="2dp"
         app:cardBackgroundColor="#F5F5F5"
@@ -58,7 +58,7 @@
         android:id="@+id/filter_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:scrollbars="none"
         app:layout_constraintTop_toBottomOf="@id/search_bar_layout">
         <com.google.android.material.chip.ChipGroup
@@ -101,8 +101,9 @@
         android:id="@+id/recycler_search_results"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:paddingHorizontal="20dp"
+        android:paddingBottom="100dp"
         android:clipToPadding="false"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/filter_scroll_view"

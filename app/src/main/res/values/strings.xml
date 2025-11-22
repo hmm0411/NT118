@@ -1,9 +1,8 @@
 <resources>
-
     <!-- General App -->
-    <string name="app_name">Cine Pople</string>
+    <string name="app_name" translatable="false">Cine Pople</string>
 
-<!--    Button -->
+    <!-- Button -->
     <string name="btn_submit">SUBMIT</string>
     <string name="btn_login">LOGIN</string>
     <string name="btn_sign_up">SIGN UP</string>
@@ -11,20 +10,19 @@
     <string name="btn_next">NEXT</string>
     <string name="btn_continue">CONTINUE</string>
     <string name="btn_infomation">INFORMATION</string>
+    <string name="btn_info">INFO</string>
+    <string name="btn_book">BOOK</string>
 
     <!-- Accessibility (Content Descriptions for images) -->
-    <string name="description_btn_return">Button Return</string>
-    <string name="description_btn_next">Button Next</string>
-    <string name="description_logo_app">Cine Pople Logo</string>
-    <string name="description_logo_facebook">Facebook Logo</string>
-    <string name="description_logo_google">Google Logo</string>
+    <string name="description_btn_return" translatable="false">Button Return</string>
+    <string name="description_btn_next" translatable="false">Button Next</string>
+    <string name="description_logo_app" translatable="false">Cine Pople Logo</string>
+    <string name="description_logo_facebook" translatable="false">Facebook Logo</string>
+    <string name="description_logo_google" translatable="false">Google Logo</string>
     <string name="description_logo_other">Other</string>
 
-    <!-- Login Screen -->
-    <string name="login_tag">Login to your account</string>
-    <string name="login">Login</string>
-
-    <string name="lb_email">Email</string>
+    <!-- EditText -->
+    <string name="lb_email" translatable="false">Email</string>
     <string name="hint_email">Enter email</string>
 
     <string name="lb_password">Password</string>
@@ -33,51 +31,69 @@
     <string name="lb_confirm_password">Confirm password</string>
     <string name="hint_confirm_password">Enter password</string>
 
-    <string name="remember_me">Remember me</string>
-    <string name="forgot_password">Forgot your password?</string>
-    <string name="login_with">Or login with</string>
-    <string name="no_account">Don\'t have an account?</string>
-    <string name="signup">Sign up</string>
+    <string name="lb_fullname">Full Name</string>
+    <string name="hint_fullname">Enter your fullname</string>
 
-    <!-- Forgot Screen -->
-    <string name="forgot_password_tag">FORGOT PASSWORD</string>
-    <string name="forgot_password_info">Please enter your email address. We will send an OTP code to verify.</string>
+    <string name="lb_phone">Phone Number</string>
+    <string name="hint_phone">Enter your phone</string>
 
-    <!-- Sign Up Screen -->
-    <string name="next">Next</string>
-    <string name="signup_tag">Create your account</string>
-    <string name="signup_info">Sign up to unlock a world of movie and seamless ticket booking</string>
-    <string name="confirm_password">Confirm your password</string>
-    <string name="already_have_account">Already have an account?</string>
-    <string name="sign_in">Sign in</string>
-    <string name="agree_license">I agree to Cine Pople</string>
-    <string name="license">Term &amp; Condition</string>
-    <string name="signup_other_tag">Already have an account?</string>
+    <string name="lb_gender">Gender</string>
+    <string name="hint_gender">Select gender</string>
 
-    <!-- Home -->
-    <string name="top_movies">Top Movies</string>
-    <string name="now_playing">Now Playing</string>
-    <string name="coming_soon">Coming Soon</string>
-    <string name="view_all">View All</string>
+    <string name="lb_birthday">Birthday</string>
+    <string name="hint_birthday">Select your birthday</string>
 
-    <!-- Profile -->
-    <string name="profile_tag">Account</string>
-    <string name="profile_general">General</string>
-    <string name="profile_watchlist">Watchlist</string>
-    <string name="profile_payment">Payment Methods</string>
-    <string name="profile_personal">Personal Info</string>
-    <string name="profile_security">Security</string>
-    <string name="profile_language">Language</string>
-    <string name="profile_mode">Dark Mode</string>
-    <string name="profile_help">Help Center</string>
-    <string name="profile_about">About</string>
-    <string name="profile_info">About Cine Pople</string>
-    <string name="profile_logout">Logout</string>
+    <!-- Login -->
+    <string name="login_title">Login to your account</string>
 
-    <!-- Personal info -->
-    <string name="user_name">Full Name</string>
-    <string name="user_phone">Phone Number</string>
-    <string name="user_email">Email</string>
-    <string name="user_gender">Gender</string>
-    <string name="user_birthday">Birthday</string>
+    <string name="login_checkbox_remember_me">Remember me</string>
+    <string name="link_forgot_password">Forgot your password?</string>
+
+    <string name="login_seperate_or_login_with">Or login with</string>
+
+    <string name="login_promt_no_account">Don\'t have an account?</string>
+    <string name="link_sign_up">Sign up</string>
+
+    <!-- Sign up -->
+    <string name="signup_title">Create your account</string>
+    <string name="signup_subtitle">Sign up to unlock a world of movie and seamless ticket booking</string>
+
+    <string name="sign_up_checkbox_agree_license">I agree to Cine Pople</string>
+    <string name="link_license">Term &amp; Condition</string>
+
+    <string name="sign_up_promt_already_have_account">Already have an account?</string>
+    <string name="link_sign_in">Sign in</string>
+
+    <!-- Forgot password -->
+    <string name="forgot_password_title">FORGOT PASSWORD</string>
+    <string name="forgot_password_subtitle">Please enter your email address. We will send an OTP code to verify.</string>
+
+    <!-- OTP -->
+    <string name="Otp_title">FORGOT PASSWORD</string>
+    <string name="Otp_subtitle">Please enter your email address. We will send an OTP code to verify.</string>
+
+    <!-- Main -->
+    <!-- Home Fragment -->
+    <string name="main_tag_home">Home</string>
+        <string name="top_movies">Top Movies</string>
+        <string name="now_playing">Now Playing</string>
+        <string name="coming_soon">Coming Soon</string>
+        <string name="view_all">View All</string>
+
+    <!-- Profile Fragment -->
+    <string name="main_profile_tag">Account</string>
+        <string name="profile_link_watchlist">Watchlist</string>
+        <string name="profile_link_payment">Payment Methods</string>
+
+        <string name="profile_seperate_general">General</string>
+            <string name="profile_link_personal_info">Personal Info</string>
+            <string name="profile_link_security">Security</string>
+            <string name="profile_link_language">Language</string>
+            <string name="profile_link_mode">Dark Mode</string>
+            <string name="profile_link_help">Help Center</string>
+
+        <string name="profile_seperate_about">About</string>
+                <string name="profile_link_info">About Cine Pople</string>
+                <string name="profile_logout">Logout</string>
+
 </resources>

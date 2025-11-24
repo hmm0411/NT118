@@ -12,8 +12,8 @@ import retrofit2.http.Path;
 
 public interface ApiService {
 
-    @GET("movies")
+    @GET("api/movies")
     Call<List<Movie>> getAllMovies();
-    @GET("movies/{id}")
+    @GET("api/movies/{id}")
     Call<Movie> getMovieById(@Path("id") String id);
 }

@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    private static final String BASE_URL = "https://cine-backend-app.azurewebsites.net/api/";
+    private static final String BASE_URL = "http://135.171.171.14/";
 
     private static Retrofit retrofit = null;
 

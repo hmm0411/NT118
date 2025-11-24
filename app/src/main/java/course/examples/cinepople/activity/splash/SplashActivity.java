@@ -27,17 +27,12 @@ public class SplashActivity extends AppCompatActivity {
         binding.logoSplash.startAnimation(logoMoveUp);
         binding.nameAppSplash.startAnimation(textSlideInUp);
 
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
 
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
 
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-                startActivity(intent);
-                finish();
-            }
-        }, 2500);
+        }, 2000);
     }
 }

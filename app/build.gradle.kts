@@ -1,7 +1,17 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     id("com.google.gms.google-services")
 }
+
+val localProps = Properties().apply {
+    load(File(rootProject.rootDir, "local.properties").inputStream())
+}
+
+val FB_APP_ID = localProps.getProperty("FACEBOOK_APP_ID") ?: ""
+val FB_CLIENT_TOKEN = localProps.getProperty("FACEBOOK_CLIENT_TOKEN") ?: ""
+val GOOGLE_WEB_CLIENT_ID = localProps.getProperty("GOOGLE_WEB_CLIENT_ID") ?: ""
 
 android {
     namespace = "course.examples.cinepople"
@@ -15,6 +25,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "FACEBOOK_APP_ID", "\"$FB_APP_ID\"")
+        buildConfigField("String", "FACEBOOK_CLIENT_TOKEN", "\"$FB_CLIENT_TOKEN\"")
+        buildConfigField("String", "GOOGLE_WEB_CLIENT_ID", "\"$GOOGLE_WEB_CLIENT_ID\"")
     }
 
     buildTypes {
@@ -65,5 +79,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
 }

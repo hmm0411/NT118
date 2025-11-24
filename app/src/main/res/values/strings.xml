@@ -53,9 +53,9 @@
 
     <string name="login_promt_no_account">Don\'t have an account?</string>
     <string name="link_sign_up">Sign up</string>
-    <string name="default_web_client_id">797797873300-omolfq7mmff7n2f5kuj46t9oi7k0ciot.apps.googleusercontent.com</string>
-    <string name="facebook_app_id">2247219395758210</string>
-    <string name="facebook_client_token">7e4f6ecaa5652dacd8ebdf52a16e9c13</string>
+<!--    <string name="default_web_client_id">@null</string>-->
+<!--    <string name="facebook_app_id">@null</string>-->
+<!--    <string name="facebook_client_token">@null</string>-->
 
 
 

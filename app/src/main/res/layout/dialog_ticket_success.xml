@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="24dp"
-    android:background="@drawable/background_rounded_dialog">
+    android:background="@drawable/bg_rounded_dialog">
 
     <ImageView
         android:id="@+id/image_success_icon"
@@ -22,7 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Ticket Successfully Booked!"
-        android:textColor="@android:color/black"
+        android:textColor="@color/text_color"
+        android:textAllCaps="true"
         android:textSize="20sp"
         android:textStyle="bold" />
 

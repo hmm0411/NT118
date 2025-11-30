@@ -5,12 +5,15 @@ import java.util.List;
 
 public class Movie {
     @Exclude
+
     private String id;
     private String title;
     private String posterUrl;
     private String duration;
     private String bannerImageUrl;
     private String trailerUrl;
+    private String director;
+    // private String cast;
     private String description;
     private List<String> genres;
     private String releaseDate;
@@ -37,7 +40,6 @@ public class Movie {
     public Double getImdbRating() { return imdbRating; }
     public String getAgeRating() { return ageRating; }
     public boolean isTopMovie(){ return isTopMovie;}
-
     public String getStatus() { return status; }
 
     @Exclude

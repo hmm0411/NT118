@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".app.MyApplication"
         android:allowBackup="true"
@@ -16,12 +17,13 @@
 
         <activity
             android:name=".activity.main.MainActivity"
-            android:exported="false"
+            android:exported="true"
             android:noHistory="false">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
@@ -34,25 +36,32 @@
             android:exported="false">
         </activity>
 
-
-<!--        <activity-->
-<!--            android:name=".activity.booking.SelectSessionActivity"-->
-<!--            android:exported="false">-->
-<!--        </activity>-->
-
-<!--        <activity-->
-<!--            android:name=".activity.booking.SelectSeatsActivity"-->
-<!--            android:exported="false">-->
-<!--        </activity>-->
         <activity
-            android:name=".activity.splash.SplashActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+            android:name=".activity.auth.ForgotActivity"
+            android:exported="false">
         </activity>
-        <!-- Facebook Login SDK -->
+
+        <activity
+            android:name=".activity.auth.SignUpActivity"
+            android:exported="false">
+        </activity>
+
+        <activity android:name=".activity.booking.SelectSessionActivity"
+            android:exported="false">
+        </activity>
+
+        <activity android:name=".activity.booking.SelectSeatsActivity"
+            android:exported="false">
+        </activity>
+
+        <activity android:name=".activity.booking.ReviewSummaryActivity"
+            android:exported="false">
+        </activity>
+
+        <activity android:name=".activity.booking.PaymentActivity"
+            android:exported="false" />
+
+<!--         Facebook Login SDK -->
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -65,15 +74,14 @@
         <meta-data
             android:name="com.facebook.sdk.ClientToken"
             android:value="@string/facebook_client_token" />
+
         <meta-data
             android:name="com.google.android.gms.auth.api.credentials.ClientId"
             android:value="@string/default_web_client_id" />
 
-
         <meta-data
             android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts"
-            />
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

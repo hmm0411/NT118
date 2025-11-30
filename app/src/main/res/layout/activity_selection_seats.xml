@@ -30,21 +30,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:gravity="center_horizontal"
                 android:layout_gravity="center_horizontal">
                 <TextView
                     android:id="@+id/toolbar_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cine Pople 1"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textColor="@color/main_color"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textSize="18sp"/>
+
                 <TextView
                     android:id="@+id/toolbar_subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="The Batman"
-                    android:textColor="@android:color/darker_gray"
+                    android:textColor="@color/text_color"
+                    android:fontFamily="@font/montserrat_bold"
                     android:textSize="14sp"/>
             </LinearLayout>
         </com.google.android.material.appbar.MaterialToolbar>
@@ -61,9 +64,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView android:text="Available" android:drawableStart="@drawable/legend_available" style="@style/SeatLegendText"/>
-        <TextView android:text="Occupied" android:drawableStart="@drawable/legend_occupied" style="@style/SeatLegendText"/>
-        <TextView android:text="Chosen" android:drawableStart="@drawable/legend_chosen" style="@style/SeatLegendText"/>
+        <TextView
+            android:text="Available"
+            android:drawableStart="@drawable/bg_seat_available"
+            style="@style/SeatLegendText"/>
+
+        <TextView
+            android:text="Occupied"
+            android:drawableStart="@drawable/bg_seat_occupied"
+            style="@style/SeatLegendText"/>
+        <TextView android:text="Chosen" android:drawableStart="@drawable/bg_seat_chosen" style="@style/SeatLegendText"/>
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -93,7 +103,7 @@
             android:text="SCREEN"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@android:color/white"
             app:layout_constraintTop_toTopOf="@id/iv_screen"
             app:layout_constraintBottom_toBottomOf="@id/iv_screen"
             app:layout_constraintStart_toStartOf="@id/iv_screen"
@@ -182,7 +192,7 @@
             android:id="@+id/rv_seats"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
+            android:paddingHorizontal="20dp"
             android:nestedScrollingEnabled="false"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="10"

@@ -1,95 +1,92 @@
 package course.examples.cinepople.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.ListAdapter;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import course.examples.cinepople.R;
-import course.examples.cinepople.domain.SeatModel;
+import course.examples.cinepople.domain.Seat;
 import course.examples.cinepople.viewmodel.SelectSeatsViewModel;
 
-public class SeatsAdapter extends ListAdapter<SeatModel, SeatsAdapter.SeatViewHolder> {
+public class SeatsAdapter extends RecyclerView.Adapter<SeatsAdapter.SeatViewHolder> {
 
-    private final SelectSeatsViewModel viewModel;
+    private List<Seat> seats = new ArrayList<>();
+    private List<String> selectedIds = new ArrayList<>(); // Danh sách ID đang chọn để đổi màu
+    private SelectSeatsViewModel viewModel;
 
     public SeatsAdapter(SelectSeatsViewModel viewModel) {
-        super(DIFF_CALLBACK);
         this.viewModel = viewModel;
+    }
+
+    public void submitList(List<Seat> newSeats) {
+        this.seats = newSeats;
+        notifyDataSetChanged();
+    }
+
+    // Cập nhật danh sách đang chọn từ ViewModel để render lại màu
+    public void updateSelectedIds(List<String> ids) {
+        this.selectedIds = ids;
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public SeatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_seat, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_seat, parent, false);
         return new SeatViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull SeatViewHolder holder, int position) {
-        SeatModel seat = getItem(position);
-        holder.bind(seat, viewModel);
+        Seat seat = seats.get(position);
+        holder.bind(seat);
     }
 
-    static class SeatViewHolder extends RecyclerView.ViewHolder {
-        TextView tvSeatName;
+    @Override
+    public int getItemCount() {
+        return seats.size();
+    }
+
+    class SeatViewHolder extends RecyclerView.ViewHolder {
+        TextView tvSeat;
 
         public SeatViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvSeatName = itemView.findViewById(R.id.tv_seat_name);
+            tvSeat = itemView.findViewById(R.id.tv_seat_code);
         }
 
-        public void bind(final SeatModel seat, final SelectSeatsViewModel viewModel) {
-            tvSeatName.setText(seat.getId());
+        void bind(Seat seat) {
+            tvSeat.setText(seat.getCode());
 
-            int bgColorRes;
-            int textColorRes;
-            boolean isClickable;
-
-            if (seat.isOccupied()) {
-                bgColorRes = R.color.seat_occupied_bg;
-                textColorRes = R.color.seat_occupied_text;
-                isClickable = false;
-            } else if (seat.isChosen()) {
-                bgColorRes = R.color.main_color;
-                textColorRes = R.color.btn_text_color;
-                isClickable = true;
+            if (seat.isSold()) {
+                // Ghế đã bán: Màu xám, không click được
+                tvSeat.setBackgroundResource(R.drawable.bg_seat_chosen);
+                tvSeat.setTextColor(Color.WHITE);
+                tvSeat.setEnabled(false);
+            } else if (selectedIds.contains(seat.getCode())) {
+                // Ghế đang chọn: Màu chủ đạo
+                tvSeat.setBackgroundResource(R.drawable.bg_seat_occupied);
+                tvSeat.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.text_color_dark));
+                tvSeat.setEnabled(true);
             } else {
-                bgColorRes = R.color.seat_available_bg;
-                textColorRes = R.color.seat_available_text;
-                isClickable = true;
+                // Ghế trống: Viền xám
+                tvSeat.setBackgroundResource(R.drawable.bg_seat_available);
+                tvSeat.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.text_color));
+                tvSeat.setEnabled(true);
             }
 
-            tvSeatName.setBackgroundTintList(ContextCompat.getColorStateList(itemView.getContext(), bgColorRes));
-            tvSeatName.setTextColor(ContextCompat.getColor(itemView.getContext(), textColorRes));
-
-            itemView.setClickable(isClickable);
-            if (isClickable) {
-                itemView.setOnClickListener(v -> viewModel.onSeatClicked(seat));
-            } else {
-                itemView.setOnClickListener(null);
-            }
+            tvSeat.setOnClickListener(v -> {
+                viewModel.toggleSeatSelection(seat);
+            });
         }
     }
-
-    private static final DiffUtil.ItemCallback<SeatModel> DIFF_CALLBACK = new DiffUtil.ItemCallback<SeatModel>() {
-        @Override
-        public boolean areItemsTheSame(@NonNull SeatModel oldItem, @NonNull SeatModel newItem) {
-            return oldItem.getId().equals(newItem.getId());
-        }
-
-        @Override
-        public boolean areContentsTheSame(@NonNull SeatModel oldItem, @NonNull SeatModel newItem) {
-            // So sánh cả hai trạng thái boolean để xác định item đã thay đổi
-            return oldItem.getId().equals(newItem.getId()) &&
-                    oldItem.isOccupied() == newItem.isOccupied() &&
-                    oldItem.isChosen() == newItem.isChosen();
-        }
-    };
 }

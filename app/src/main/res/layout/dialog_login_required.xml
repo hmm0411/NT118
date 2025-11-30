@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/rounded_dialog_background">
+
+    <TextView
+        android:id="@+id/tv_dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_login_required_title"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textAllCaps="true"
+        android:textColor="@color/text_color"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_dialog_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:justificationMode="inter_word"
+        android:lineSpacingExtra="8dp"
+        android:text="@string/dialog_login_required_message"
+        android:textColor="@color/text_color"
+        android:layout_marginBottom="24dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <com.google.android.material.button.MaterialButton style="@style/MyButton.Primary2"
+            android:id="@+id/btn_dialog_cancel"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_cancel"
+            android:paddingVertical="14dp"
+            android:textSize="14dp"/>
+
+        <com.google.android.material.button.MaterialButton style="@style/MyButton.Primary"
+            android:id="@+id/btn_dialog_login"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="14dp"
+            android:textSize="14dp"
+            android:text="@string/btn_login"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+</LinearLayout>

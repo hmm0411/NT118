@@ -12,6 +12,7 @@
     <string name="btn_infomation">INFORMATION</string>
     <string name="btn_info">INFO</string>
     <string name="btn_book">BOOK</string>
+    <string name="btn_cancel">CANCEL</string>
 
     <!-- Accessibility (Content Descriptions for images) -->
     <string name="description_btn_return" translatable="false">Button Return</string>
@@ -43,6 +44,8 @@
     <string name="lb_birthday">Birthday</string>
     <string name="hint_birthday">Select your birthday</string>
 
+    <string name="hint_comment">Your Comment</string>
+
     <!-- Login -->
     <string name="login_title">Login to your account</string>
 
@@ -53,11 +56,6 @@
 
     <string name="login_promt_no_account">Don\'t have an account?</string>
     <string name="link_sign_up">Sign up</string>
-    <string name="default_web_client_id">7e4f6ecaa5652dacd8ebdf52a16e9c13</string>
-    <string name="facebook_app_id">2247219395758210</string>
-    <string name="facebook_client_token">797797873300-omolfq7mmff7n2f5kuj46t9oi7k0ciot.apps.googleusercontent.com</string>
-
-
 
     <!-- Sign up -->
     <string name="signup_title">Create your account</string>
@@ -100,5 +98,9 @@
         <string name="profile_seperate_about">About</string>
                 <string name="profile_link_info">About Cine Pople</string>
                 <string name="profile_logout">Logout</string>
+
+<!--    Dialog -->
+    <string name="dialog_login_required_title">Login Required</string>
+    <string name="dialog_login_required_message">You must log in to proceed with booking tickets. Please log in or create a new account.</string>"
 
 </resources>

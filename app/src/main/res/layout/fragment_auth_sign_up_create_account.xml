@@ -127,8 +127,8 @@
 
             <CheckBox
                 android:id="@+id/cb_agree_terms"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:buttonTint="@color/main_color"
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center_vertical" />

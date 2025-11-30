@@ -29,7 +29,7 @@ public class SessionTimeAdapter extends RecyclerView.Adapter<SessionTimeAdapter.
     @Override
     public TimeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_session_time, parent, false);
+                .inflate(R.layout.item_time_slot, parent, false);
         return new TimeViewHolder(view);
     }
 
@@ -49,7 +49,7 @@ public class SessionTimeAdapter extends RecyclerView.Adapter<SessionTimeAdapter.
 
         public TimeViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTime = itemView.findViewById(R.id.tv_session_time);
+            tvTime = itemView.findViewById(R.id.text_time_slot);
         }
 
         public void bind(final String time, final OnTimeClickListener listener) {

@@ -3,7 +3,6 @@ package course.examples.cinepople.fragment.home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,14 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import course.examples.cinepople.activity.movie.MovieDetailsActivity;
-import course.examples.cinepople.adapter.TopMoviesSliderAdapter;
+import course.examples.cinepople.adapter.TopMoviesAdapter;
 import course.examples.cinepople.adapter.MoviePosterAdapter;
 import course.examples.cinepople.domain.Movie;
 import course.examples.cinepople.databinding.FragmentMainHomeBinding;
 import course.examples.cinepople.viewmodel.HomeViewModel;
 
 public class HomeFragment extends Fragment
-        implements TopMoviesSliderAdapter.OnMovieClickListener,
+        implements TopMoviesAdapter.OnMovieClickListener,
         MoviePosterAdapter.OnMovieClickListener {
 
     private static final String TAG = "HomeFragment";
@@ -34,7 +33,7 @@ public class HomeFragment extends Fragment
     private HomeViewModel viewModel;
 
     // Adapters & Lists
-    private TopMoviesSliderAdapter sliderAdapter;
+    private TopMoviesAdapter sliderAdapter;
     private List<Movie> topMovieList;
     private MoviePosterAdapter nowPlayingAdapter;
     private List<Movie> nowPlayingList;
@@ -70,7 +69,7 @@ public class HomeFragment extends Fragment
 
         // Top Movies Slider
         topMovieList = new ArrayList<>();
-        sliderAdapter = new TopMoviesSliderAdapter(context, topMovieList, this);
+        sliderAdapter = new TopMoviesAdapter(context, topMovieList, this);
         binding.viewpagerTopMovies.setAdapter(sliderAdapter);
         setupPageChangeListener();
         setupSliderTransformer();

@@ -2,27 +2,28 @@ package course.examples.cinepople.fragment.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDelegate; // Giữ lại import quan trọng này
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import course.examples.cinepople.R;
 import course.examples.cinepople.activity.auth.LoginActivity;
 import course.examples.cinepople.activity.auth.SignUpActivity;
-
 import course.examples.cinepople.databinding.FragmentMainProfileBinding;
+import course.examples.cinepople.utility.SessionManager;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileFragment extends Fragment {
 
     private static final String TAG = "ProfileFragment";
-
     private FragmentMainProfileBinding binding;
-    private boolean isLoggedIn = true;
 
     @Nullable
     @Override
@@ -35,47 +36,71 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        isLoggedIn = true; // Mặc định: CHƯA ĐĂNG NHẬP
+        // 1. Cập nhật giao diện (Login/Logout view)
+        updateProfileUI();
 
-        // --- KHÔNG CẦN loadDarkModeState() NỮA ---
-
-        // Đảm bảo Switch hiển thị đúng trạng thái hệ thống hiện tại
+        // 2. Thiết lập trạng thái ban đầu cho Switch
         setInitialSwitchState();
 
-        updateProfileUI();
-        setupListeners();
+        // 3. Cài đặt các sự kiện click khác (Login, Logout...)
+        setupClickListeners();
     }
 
-
+    /**
+     * Thiết lập trạng thái bật/tắt cho Switch và gán sự kiện lắng nghe
+     * Hàm này được gọi ở onViewCreated và onResume để đảm bảo đồng bộ
+     */
     private void setInitialSwitchState() {
-        // Thiết lập Switch dựa trên chế độ đang hoạt động của ứng dụng
-        int currentMode = AppCompatDelegate.getDefaultNightMode();
-        boolean isDark = (currentMode == AppCompatDelegate.MODE_NIGHT_YES ||
-                currentMode == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        if (binding.switchDarkMode != null && getActivity() != null) {
+            // Lấy trạng thái đã lưu
+            boolean isDarkSaved = SessionManager.isDarkMode(getActivity());
 
-        if (binding.switchDarkMode != null) {
-            binding.switchDarkMode.setChecked(isDark);
+            // ⚠️ QUAN TRỌNG: Gỡ bỏ listener trước khi setChecked để tránh kích hoạt sự kiện không mong muốn
+            binding.switchDarkMode.setOnCheckedChangeListener(null);
+
+            // Set trạng thái hiển thị
+            binding.switchDarkMode.setChecked(isDarkSaved);
+
+            // Gán lại listener sau khi đã set xong trạng thái
+            setupDarkModeListener();
         }
     }
 
-    private void applyDarkMode(boolean isDark) {
-        // Chỉ áp dụng chế độ mới, không lưu trữ
-        int mode = isDark ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO;
-        AppCompatDelegate.setDefaultNightMode(mode);
+    /**
+     * Tách riêng logic lắng nghe của Dark Mode
+     */
+    private void setupDarkModeListener() {
+        binding.switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (getActivity() == null) return;
+
+            // 1. Lưu trạng thái
+            SessionManager.setDarkMode(getActivity(), isChecked);
+
+            // 2. Cài đặt chế độ
+            int mode = isChecked ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO;
+            AppCompatDelegate.setDefaultNightMode(mode);
+
+            // 3. Xử lý chuyển đổi mượt mà
+            // Sử dụng Handler để đợi nút Switch gạt xong mới reload -> Tránh bị khựng (freeze)
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                if (getActivity() != null) {
+                    // Áp dụng Style Animation chúng ta vừa tạo ở Bước 1
+                    getActivity().getWindow().setWindowAnimations(R.style.WindowAnimationFade);
+
+                    // Tải lại Activity hiện tại (Giữ nguyên vị trí Fragment)
+                    getActivity().recreate();
+                }
+            }, 200); // Delay 200ms
+        });
     }
 
-    private void setupListeners() {
+    /**
+     * Thiết lập các sự kiện click cho các nút khác
+     */
+    private void setupClickListeners() {
         if (binding == null) return;
 
-        // --- LISTENER CHO DARK MODE SWITCH ---
-        if (binding.switchDarkMode != null) {
-            binding.switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                applyDarkMode(isChecked);
-                // Vì không dùng SharedPreferences, trạng thái này sẽ bị mất khi ứng dụng thoát
-            });
-        }
-
-        // --- Listeners cho trạng thái CHƯA ĐĂNG NHẬP (Giữ nguyên) ---
+        // --- Listeners cho trạng thái CHƯA ĐĂNG NHẬP ---
         binding.btnGoToLogin.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), LoginActivity.class));
         });
@@ -84,7 +109,7 @@ public class ProfileFragment extends Fragment {
             startActivity(new Intent(getActivity(), SignUpActivity.class));
         });
 
-        // --- Listener cho trạng thái ĐÃ ĐĂNG NHẬP (Giữ nguyên) ---
+        // --- Listener cho trạng thái ĐÃ ĐĂNG NHẬP ---
         binding.btnLogout.setOnClickListener(v -> {
             logout();
         });
@@ -93,38 +118,45 @@ public class ProfileFragment extends Fragment {
     private void updateProfileUI() {
         if (binding == null) return;
 
+        boolean isLoggedIn = false;
+        if (getActivity() != null) {
+            isLoggedIn = SessionManager.isLoggedIn(getActivity());
+        }
+
         if (isLoggedIn) {
-            // Logic ĐÃ ĐĂNG NHẬP (Giữ nguyên)
             binding.scrollView.setVisibility(View.VISIBLE);
-            //binding.user_info_layout.setVisibility(View.VISIBLE);
             binding.loggedOutView.setVisibility(View.GONE);
-            binding.optionWatchlist.setVisibility(View.VISIBLE);
-            binding.optionPaymentMethods.setVisibility(View.VISIBLE);
-            binding.optionPersonalInfo.setVisibility(View.VISIBLE);
-            binding.optionSecurity.setVisibility(View.VISIBLE);
-            binding.btnLogout.setVisibility(View.VISIBLE);
         } else {
-            // Logic CHƯA ĐĂNG NHẬP (Giữ nguyên)
             binding.scrollView.setVisibility(View.GONE);
-            //binding.user_info_layout.setVisibility(View.GONE);
             binding.loggedOutView.setVisibility(View.VISIBLE);
-            binding.optionWatchlist.setVisibility(View.GONE);
-            binding.optionPaymentMethods.setVisibility(View.GONE);
-            binding.optionPersonalInfo.setVisibility(View.GONE);
-            binding.optionSecurity.setVisibility(View.GONE);
-            binding.btnLogout.setVisibility(View.GONE);
         }
     }
 
-    public void setIsLoggedIn(boolean status) {
-        this.isLoggedIn = status;
-        updateProfileUI();
-    }
-
     private void logout() {
-        isLoggedIn = false;
+        // 1. Đăng xuất Firebase
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            FirebaseAuth.getInstance().signOut();
+        }
+
+        // 2. Xóa phiên cục bộ (Chỉ xóa trạng thái đăng nhập, không xóa setting Dark Mode nếu không muốn)
+        if (getActivity() != null) {
+            // Giả sử clearSession chỉ xóa thông tin user, giữ lại setting app
+            SessionManager.clearSession(getActivity());
+        }
+
+        // 3. Cập nhật giao diện
         updateProfileUI();
         Toast.makeText(getContext(), "Đã đăng xuất thành công!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Cập nhật lại UI mỗi khi quay lại Fragment
+        updateProfileUI();
+
+        // Đảm bảo Switch hiển thị đúng trạng thái (quan trọng sau khi recreate)
+        setInitialSwitchState();
     }
 
     @Override

@@ -100,10 +100,9 @@
                         style="@style/Label"
                         android:text="@string/lb_phone" />
 
-                    <EditText
+                    <EditText style="@style/MyEditText.FormInput"
                         android:id="@+id/ed_phone"
-                        style="@style/MyEditText.FormInput"
-                        android:autofillHints="fullnamw"
+                        android:autofillHints="fullname"
                         android:drawableStart="@drawable/ic_profile"
                         android:hint="@string/hint_phone"
                         android:inputType="text"
@@ -114,20 +113,26 @@
                 <TextView
                     style="@style/Label"
                     android:text="Phone Number"/>
-                <EditText
+
+                <EditText style="@style/MyEditText.FormInput"
                     android:id="@+id/et_phone_number"
-                    style="@style/ProfileInputEditText"
+                    android:autofillHints="phone"
+                    android:drawableStart="@drawable/ic_profile"
                     android:hint="+84 0123456789"
-                    android:inputType="phone" />
+                    android:inputType="phone"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="16dp" />
 
                 <TextView
                     style="@style/Label"
                     android:text="Your Birthday"/>
-                <EditText
+
+                <EditText style="@style/MyEditText.FormInput"
                     android:id="@+id/et_birthday"
-                    style="@style/ProfileInputEditText"
                     android:hint="30/09/2005"
                     android:drawableTint="@color/text_color"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="16dp"
                     android:focusable="false"
                     android:clickable="true" />
             </LinearLayout>

@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import course.examples.cinepople.databinding.FragmentProfilePersonalInfoBinding;
-import course.examples.cinepople.domain.Users;
+import course.examples.cinepople.domain.User;
 
 public class PersonalInfoFragment extends Fragment {
 
@@ -59,15 +59,15 @@ public class PersonalInfoFragment extends Fragment {
                     if (!isAdded()) return;
 
                     if (documentSnapshot.exists()) {
-                        Users usersProfile = documentSnapshot.toObject(Users.class);
+                        User userProfile = documentSnapshot.toObject(User.class);
 
-                        if (usersProfile != null) {
+                        if (userProfile != null) {
                             // SỬA: Dùng getName() (tên đã sửa) và getDob()
-                            binding.txtFullName.setText(usersProfile.getName());
-                            binding.txtEmail.setText(usersProfile.getEmail());
-                            binding.txtPhone.setText(usersProfile.getPhone());
-                            binding.txtBirthday.setText(usersProfile.getDob());
-                            binding.txtGender.setText(usersProfile.getGender());
+                            binding.txtFullName.setText(userProfile.getName());
+                            binding.txtEmail.setText(userProfile.getEmail());
+                            binding.txtPhone.setText(userProfile.getPhone());
+                            binding.txtBirthday.setText(userProfile.getDob());
+                            binding.txtGender.setText(userProfile.getGender());
                         }
                     } else {
                         Toast.makeText(getContext(), "Vui lòng cập nhật thông tin của bạn", Toast.LENGTH_SHORT).show();

@@ -28,7 +28,7 @@
     <style name="MyEditText.FormInput" parent="Widget.AppCompat.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/background_edittext</item>
+        <item name="android:background">@drawable/bg_edittext</item>
         <item name="android:drawablePadding">8dp</item>
         <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/montserrat_semibold</item>
@@ -39,11 +39,11 @@
 
 <!-- OTP Input-->
     <style name="OtpEditTextStyle" parent="Widget.AppCompat.EditText">
-        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_width">60dp</item>
         <item name="android:layout_height">60dp</item>
-        <item name="android:background">@drawable/background_edittext_otp</item>
+        <item name="android:background">@drawable/bg_edittext_otp</item>
         <item name="android:gravity">center</item>
-        <item name="android:inputType">number</item>
+        <item name="android:inputType">numberDecimal</item>
         <item name="android:maxLength">1</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textSize">24sp</item>
@@ -74,7 +74,7 @@
     <style name="ProfileInputEditText" parent="Widget.AppCompat.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/background_edittext_otp</item> <item name="android:textColorHint">#AAAAAA</item>
+        <item name="android:background">@drawable/bg_edittext_otp</item> <item name="android:textColorHint">#AAAAAA</item>
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:fontFamily">@font/montserrat_semibold</item>
@@ -236,5 +236,14 @@
         <item name="android:layout_width">30dp</item>
         <item name="android:layout_height">30dp</item>
         <item name="android:tint">@color/icon_color</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="RoundedCornerImage">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
     </style>
 </resources>

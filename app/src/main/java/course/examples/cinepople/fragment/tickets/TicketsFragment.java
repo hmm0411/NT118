@@ -1,8 +1,8 @@
 package course.examples.cinepople.fragment.tickets;
 
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +20,7 @@ import course.examples.cinepople.activity.auth.SignUpActivity;
 import course.examples.cinepople.adapter.TicketAdapter;
 import course.examples.cinepople.domain.Booking;
 import course.examples.cinepople.databinding.FragmentMainTicketsBinding;
+import course.examples.cinepople.utility.SessionManager;
 
 public class TicketsFragment extends Fragment {
 
@@ -40,7 +41,7 @@ public class TicketsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // Logic sẽ nằm trong onResume để tự cập nhật khi quay lại
+        checkLoginStatus();
     }
 
     @Override
@@ -50,39 +51,25 @@ public class TicketsFragment extends Fragment {
     }
 
     private void checkLoginStatus() {
-//        if (getContext() == null || binding == null) return;
-//
-//        SharedPreferences sharedPref = getContext().getSharedPreferences(
-//                LoginActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
-//        String token = sharedPref.getString(LoginActivity.KEY_AUTH_TOKEN, null);
-//
-//        if (token != null && !token.isEmpty()) {
-//            // --- ĐÃ ĐĂNG NHẬP ---
-//            binding.loggedOutView.setVisibility(View.GONE);
-//            binding.loggedInView.setVisibility(View.VISIBLE);
-//
-//            // Khởi tạo RecyclerView và load data (nếu chưa load)
-//            setupRecyclerViews();
-//            // loadTicketsData(); // (Hàm gọi API tải vé của bạn)
-//
-//        } else {
-            // --- CHƯA ĐĂNG NHẬP ---
-            binding.loggedInView.setVisibility(View.GONE);
-            binding.loggedOutView.setVisibility(View.VISIBLE);
+        if (binding == null || getActivity() == null) return;
 
-            // Set sự kiện click
+        boolean isLoggedIn = SessionManager.isLoggedIn(getActivity());
+
+        if (isLoggedIn) {
+            binding.loggedInView.setVisibility(View.VISIBLE);
+            binding.loggedOutView.setVisibility(View.GONE);
+        } else {
+            binding.loggedInView.setVisibility(View.GONE);
+            binding.loggedInView.setVisibility(View.VISIBLE);
+
             binding.btnGoToLogin.setOnClickListener(v -> {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
             });
-
-            binding.btnGoToSignup.setOnClickListener(v -> {
-                startActivity(new Intent(getActivity(), SignUpActivity.class));
-            });
-        //}
+        }
     }
 
+
     private void setupRecyclerViews() {
-        // (Chỉ setup nếu adapter chưa được tạo để tránh tạo lại nhiều lần)
         if (paidTicketAdapter == null) {
             paidTicketAdapter = new TicketAdapter(getContext(), paidTicketsList, booking -> {});
             binding.recyclerPaidTickets.setLayoutManager(new LinearLayoutManager(getContext()));

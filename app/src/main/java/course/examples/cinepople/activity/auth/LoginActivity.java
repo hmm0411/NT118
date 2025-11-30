@@ -28,27 +28,25 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.*;
+import com.facebook.FacebookSdk; // ⬅️ Giữ nguyên import này
 
 import java.util.Arrays;
 
 import course.examples.cinepople.R;
 import course.examples.cinepople.activity.main.MainActivity;
-import android.content.Context;
-import android.content.SharedPreferences;
+import course.examples.cinepople.utility.SessionManager; // ⬅️ Giữ nguyên import SessionManager của bạn
 
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
-
     private EditText editTextEmail, editTextPassword;
     private MaterialButton buttonLogin;
     private TextView textViewSignUp, textViewForgotPassword;
-
     FirebaseAuth mAuth;
     GoogleSignInClient googleSignInClient;
     CallbackManager callbackManager;
 
-    public static final String APP_PREFERENCES = "AppSession";
+    // ❌ Xóa public static final String APP_PREFERENCES = "AppSession"; (Đã chuyển sang SessionManager)
 
     private static final int DIALOG_DISPLAY_TIME = 1000;
     private static final String titleSuccess = "Login Successful!";
@@ -58,6 +56,10 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
+        // 🟢 KHẮC PHỤC LỖI CRASH: Khởi tạo Facebook SDK trước khi sử dụng bất kỳ thành phần nào của nó
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth_login);
 
@@ -71,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
         textViewForgotPassword = findViewById(R.id.tv_forgotPassword);
 
         setupGoogleLogin();
-        setupFacebookLogin();
+        setupFacebookLogin(); // Gọi sau khi SDK đã được khởi tạo
 
         buttonLogin.setOnClickListener(v -> loginUser());
 
@@ -89,15 +91,20 @@ public class LoginActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(email)) {
             editTextEmail.setError("Enter email");
+            editTextEmail.requestFocus(); // Thêm requestFocus
             return;
         }
         if (TextUtils.isEmpty(password)) {
             editTextPassword.setError("Enter password");
+            editTextPassword.requestFocus(); // Thêm requestFocus
             return;
         }
 
+        // TODO: Nên hiển thị ProgressBar tại đây
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener(authResult -> {
+                    // Đăng nhập thành công
                     saveUserSession(email);
                     showLoginSuccessDialog(titleSuccess, messageSuccess);
                 })
@@ -109,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
     private void setupGoogleLogin() {
         GoogleSignInOptions gso = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))  // Firebase Web client ID
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
@@ -126,6 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                         firebaseAuthWithGoogle(account.getIdToken());
                     } catch (Exception e) {
                         Log.e(TAG, "Google login failed", e);
+                        Toast.makeText(this, "Google sign in failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
         );
@@ -137,13 +145,15 @@ public class LoginActivity extends AppCompatActivity {
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
 
+        // TODO: Nên hiển thị ProgressBar tại đây
+
         mAuth.signInWithCredential(credential)
                 .addOnSuccessListener(authResult -> {
                     saveUserSession(mAuth.getCurrentUser().getEmail());
                     showLoginSuccessDialog(titleSuccess, messageSuccess);
                 })
                 .addOnFailureListener(e ->
-                        Toast.makeText(this, "Google Login failed", Toast.LENGTH_SHORT).show());
+                        Toast.makeText(this, "Google Login failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 
     // ------------------ FACEBOOK LOGIN ---------------------
@@ -160,32 +170,33 @@ public class LoginActivity extends AppCompatActivity {
                         AuthCredential credential =
                                 FacebookAuthProvider.getCredential(loginResult.getAccessToken().getToken());
 
+                        // TODO: Nên hiển thị ProgressBar tại đây
+
                         mAuth.signInWithCredential(credential)
                                 .addOnSuccessListener(authResult -> {
                                     saveUserSession(mAuth.getCurrentUser().getEmail());
                                     showLoginSuccessDialog(titleSuccess, messageSuccess);
                                 })
                                 .addOnFailureListener(e ->
-                                        Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show());
+                                        Toast.makeText(LoginActivity.this, "Facebook Login failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
                     }
 
                     @Override
-                    public void onCancel() { }
+                    public void onCancel() {
+                        Toast.makeText(LoginActivity.this, "Facebook Login cancelled", Toast.LENGTH_SHORT).show();
+                    }
 
                     @Override
                     public void onError(FacebookException error) {
-                        Toast.makeText(LoginActivity.this, "Facebook Login failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Facebook Login failed: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
     // ------------------ SAVE SESSION ---------------------
     private void saveUserSession(String email) {
-        SharedPreferences prefs = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
-        prefs.edit()
-                .putBoolean("LOGGED_IN", true)
-                .putString("USER_EMAIL", email)
-                .apply();
+        // 🟢 Sử dụng SessionManager đã tái cấu trúc
+        SessionManager.saveUserSession(this, email);
     }
 
     // ------------------ SUCCESS DIALOG ---------------------
@@ -201,7 +212,10 @@ public class LoginActivity extends AppCompatActivity {
         dialog.show();
 
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            dialog.dismiss();
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
+            // Chuyển hướng đến MainActivity và xóa stack Activity
             startActivity(new Intent(LoginActivity.this, MainActivity.class)
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
             finish();

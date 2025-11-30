@@ -21,6 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Subtext"
+        android:textAllCaps="true"
+        android:fontFamily="@font/montserrat_bold"
         android:textAlignment="center"
         android:textColor="@color/main_color"
         android:textSize="20sp"
@@ -32,7 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Message"
-        android:textColor="@android:color/darker_gray"
+        android:fontFamily="@font/montserrat_semibold"
+        android:textColor="@color/text_color"
         android:textSize="14sp"
         android:gravity="center"
         android:lineSpacingExtra="4dp"/>

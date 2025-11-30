@@ -2,39 +2,62 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginTop="12dp"
     app:cardCornerRadius="12dp"
     app:cardElevation="2dp"
-    android:clickable="true"
-    android:focusable="true"
-    android:background="?attr/selectableItemBackground">
+    app:cardBackgroundColor="@android:color/white"
+    android:layout_marginBottom="16dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/tv_cinema_name"
-            android:layout_width="wrap_content"
+            android:id="@+id/text_cinema_name"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="Cine Pople 1"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             android:textStyle="bold"
-            tools:text="Cine Pople 1" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/text_cinema_distance"/>
 
         <TextView
-            android:id="@+id/tv_cinema_address"
-            android:layout_width="wrap_content"
+            android:id="@+id/text_cinema_address"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:text="Thu Duc, Ho Chi Minh City"
             android:textSize="14sp"
-            tools:text="123 Duong ABC, Thu Duc, TP. HCM" />
+            android:textColor="#555555"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_cinema_name"
+            app:layout_constraintEnd_toEndOf="@id/text_cinema_name"/>
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/text_cinema_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.0km"
+            android:textColor="@color/main_color"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_time_slots"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_cinema_address" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

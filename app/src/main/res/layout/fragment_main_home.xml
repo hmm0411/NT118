@@ -54,7 +54,8 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:contentDescription="@string/description_btn_return"
-                android:src="@drawable/ic_noti" />
+                android:background="@drawable/ic_noti"
+                android:backgroundTint="@color/text_color"/>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -100,8 +101,9 @@
                         android:layout_height="400dp"
                         android:clipChildren="false"
                         android:clipToPadding="false"
-                        android:paddingStart="40dp"
-                        android:paddingEnd="40dp"
+                        android:paddingStart="60dp"
+                        android:paddingEnd="60dp"
+                        android:elevation="10dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -149,7 +151,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat_medium"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/text_color"
                             android:textSize="12sp"
                             tools:text="63 h 36 m 36 s" />
                     </LinearLayout>
@@ -211,7 +213,8 @@
                             android:backgroundTint="@color/main_color"
                             android:contentDescription="@string/description_btn_next"
                             android:rotation="180"
-                            android:src="@drawable/ic_return" />
+                            android:src="@drawable/ic_return"
+                            app:tint="@color/main_color"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -267,7 +270,8 @@
                             android:backgroundTint="@color/main_color"
                             android:contentDescription="@string/description_btn_next"
                             android:rotation="180"
-                            android:src="@drawable/ic_return" />
+                            android:src="@drawable/ic_return"
+                            app:tint="@color/main_color"/>
                     </LinearLayout>
                 </LinearLayout>
 

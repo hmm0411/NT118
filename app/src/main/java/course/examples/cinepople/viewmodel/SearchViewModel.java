@@ -1,15 +1,11 @@
 package course.examples.cinepople.viewmodel;
 
-import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import java.util.List;
 import course.examples.cinepople.data.repository.MovieRepository;
 import course.examples.cinepople.domain.Movie;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class SearchViewModel extends ViewModel {
 
@@ -30,23 +26,30 @@ public class SearchViewModel extends ViewModel {
 
     public void fetchAllMovies() {
         isLoading.setValue(true);
-        movieRepository.getAllMoviesApi(new Callback<List<Movie>>() {
-            @Override
-            public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    searchResults.postValue(response.body());
-                } else {
-                    errorMessage.postValue("API Error: Failed to load movies (" + response.message() + ")");
-                }
-                isLoading.postValue(false);
-            }
 
+        // 🟢 1. Tạo Receiver hứng dữ liệu thành công
+        MutableLiveData<List<Movie>> dataReceiver = new MutableLiveData<List<Movie>>() {
             @Override
-            public void onFailure(Call<List<Movie>> call, Throwable t) {
-                Log.e(TAG, "Network Error: ", t);
-                errorMessage.postValue("Network connection failed: " + t.getMessage());
-                isLoading.postValue(false);
+            public void postValue(List<Movie> movies) {
+                super.postValue(movies);
+                if (movies != null) {
+                    searchResults.postValue(movies);
+                }
+                isLoading.postValue(false); // Tắt loading khi có dữ liệu
             }
-        });
+        };
+
+        // 🟢 2. Tạo Receiver hứng lỗi
+        MutableLiveData<String> errorReceiver = new MutableLiveData<String>() {
+            @Override
+            public void postValue(String error) {
+                super.postValue(error);
+                errorMessage.postValue(error);
+                isLoading.postValue(false); // Tắt loading khi có lỗi
+            }
+        };
+
+        // 🟢 3. Gọi Repository (Sử dụng hàm mới getAllMovies không có hậu tố Api)
+        movieRepository.getAllMovies(dataReceiver, errorReceiver);
     }
 }

@@ -9,20 +9,35 @@
     android:background="@color/background_color"
     tools:context=".activity.booking.SelectSessionActivity">
 
+
+
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/background_color"
-        app:elevation="0dp">
+        app:elevation="10dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            app:contentInsetStart="0dp"
             app:navigationIcon="@drawable/ic_return"
-            app:title="The Batman"
-            app:titleCentered="true"
-            app:titleTextColor="@color/main_color" />
+            app:navigationIconTint="@color/main_color">
+
+            <TextView
+                android:id="@+id/text_toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="The Batman"
+                android:textAlignment="gravity"
+                android:textColor="@color/main_color"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_gravity="center" />
+        </com.google.android.material.appbar.MaterialToolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 

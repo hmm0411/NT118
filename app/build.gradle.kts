@@ -26,6 +26,10 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
+        manifestPlaceholders["FACEBOOK_APP_ID"] = FB_APP_ID
+        manifestPlaceholders["FACEBOOK_CLIENT_TOKEN"] = FB_CLIENT_TOKEN
+        manifestPlaceholders["GOOGLE_WEB_CLIENT_ID"] = GOOGLE_WEB_CLIENT_ID
+
         buildConfigField("String", "FACEBOOK_APP_ID", "\"$FB_APP_ID\"")
         buildConfigField("String", "FACEBOOK_CLIENT_TOKEN", "\"$FB_CLIENT_TOKEN\"")
         buildConfigField("String", "GOOGLE_WEB_CLIENT_ID", "\"$GOOGLE_WEB_CLIENT_ID\"")
@@ -47,6 +51,7 @@ android {
 
     buildFeatures{
         viewBinding = true
+        buildConfig = true
     }
 
 }
@@ -70,6 +75,8 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
     implementation ("androidx.core:core-splashscreen:1.0.1")
 
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.aar", "*.jar"))))
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")

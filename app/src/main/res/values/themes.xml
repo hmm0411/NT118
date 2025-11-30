@@ -8,4 +8,9 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
+    <style name="WindowAnimationFade">
+        <item name="android:windowEnterAnimation">@anim/fade_in_dark_mode</item>
+        <item name="android:windowExitAnimation">@anim/fade_out_light_mode</item>
+    </style>
+
 </resources>

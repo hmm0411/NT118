@@ -40,22 +40,21 @@
         android:gravity="center_horizontal"
         android:layout_marginTop="40dp">
 
-        <EditText
-            android:id="@+id/et_otp_1"
-            style="@style/OtpEditTextStyle"
-            android:inputType="phone"/>
-        <EditText
-            android:id="@+id/et_otp_2"
-            style="@style/OtpEditTextStyle"
-            android:inputType="phone"/>
-        <EditText
-            android:id="@+id/et_otp_3"
-            style="@style/OtpEditTextStyle"
-            android:inputType="phone"/>
-        <EditText
-            android:id="@+id/et_otp_4"
-            style="@style/OtpEditTextStyle"
-            android:inputType="phone"/>
+        <EditText style="@style/OtpEditTextStyle"
+            android:layout_marginHorizontal="10dp"
+            android:id="@+id/et_otp_1"/>
+
+        <EditText style="@style/OtpEditTextStyle"
+            android:layout_marginHorizontal="10dp"
+            android:id="@+id/et_otp_2"/>
+
+        <EditText style="@style/OtpEditTextStyle"
+            android:layout_marginHorizontal="10dp"
+            android:id="@+id/et_otp_3"/>
+
+        <EditText style="@style/OtpEditTextStyle"
+            android:layout_marginHorizontal="10dp"
+            android:id="@+id/et_otp_4"/>
 
     </LinearLayout>
 

@@ -17,10 +17,7 @@
 
     <color name="icon_pause_color">#AFAFAF</color>
 
-    <color name="seat_available_bg">#EEEEEE</color>
-    <color name="seat_occupied_bg">#D32F2F</color>
-    <color name="seat_chosen_bg">#C62828</color>
-    <color name="seat_available_text">#424242</color>
-    <color name="seat_occupied_text">#FFFFFF</color>
-    <color name="seat_chosen_text">#FFFFFF</color>
+
+    <color name="seat_available">#6E6767</color>
+    <color name="seat_occupied">#DC5252</color>
 </resources>

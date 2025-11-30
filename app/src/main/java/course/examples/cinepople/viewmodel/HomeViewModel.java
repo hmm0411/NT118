@@ -1,6 +1,5 @@
 package course.examples.cinepople.viewmodel;
 
-import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -8,15 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import course.examples.cinepople.data.repository.MovieRepository;
 import course.examples.cinepople.domain.Movie;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class HomeViewModel extends ViewModel {
 
     private MovieRepository movieRepository;
 
-    // LiveData chứa danh sách ĐÃ ĐƯỢC LỌC
+    // LiveData chứa danh sách ĐÃ ĐƯỢC LỌC để Fragment quan sát
     private MutableLiveData<List<Movie>> topMovies = new MutableLiveData<>();
     private MutableLiveData<List<Movie>> nowPlayingMovies = new MutableLiveData<>();
     private MutableLiveData<List<Movie>> comingSoonMovies = new MutableLiveData<>();
@@ -38,25 +34,33 @@ public class HomeViewModel extends ViewModel {
     public void fetchAllHomeData() {
         isLoading.setValue(true);
 
-        // Gọi API lấy TOÀN BỘ phim
-        movieRepository.getAllMoviesApi(new Callback<List<Movie>>() {
+        // 🟢 1. Tạo một LiveData tạm để hứng dữ liệu thô từ Repository
+        // Chúng ta override hàm postValue để biết khi nào có dữ liệu trả về
+        MutableLiveData<List<Movie>> rawDataReceiver = new MutableLiveData<List<Movie>>() {
             @Override
-            public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    // --- GỌI HÀM LỌC DỮ LIỆU TẠI ĐÂY ---
-                    filterMovies(response.body());
-                } else {
-                    errorMessage.postValue("Error: " + response.message());
+            public void postValue(List<Movie> allMovies) {
+                super.postValue(allMovies);
+                // Khi Repository trả dữ liệu về đây -> Tiến hành lọc
+                if (allMovies != null) {
+                    filterMovies(allMovies);
                 }
-                isLoading.postValue(false);
+                isLoading.postValue(false); // Tắt loading
             }
+        };
 
+        // 🟢 2. Tạo một LiveData tạm để hứng lỗi
+        MutableLiveData<String> errorReceiver = new MutableLiveData<String>() {
             @Override
-            public void onFailure(Call<List<Movie>> call, Throwable t) {
-                errorMessage.postValue("Network Error: " + t.getMessage());
-                isLoading.postValue(false);
+            public void postValue(String error) {
+                super.postValue(error);
+                // Truyền lỗi ra ngoài cho Fragment
+                errorMessage.postValue(error);
+                isLoading.postValue(false); // Tắt loading
             }
-        });
+        };
+
+        // 🟢 3. Gọi Repository (Không dùng Callback nữa)
+        movieRepository.getAllMovies(rawDataReceiver, errorReceiver);
     }
 
     private void filterMovies(List<Movie> allMovies) {
@@ -65,24 +69,23 @@ public class HomeViewModel extends ViewModel {
         List<Movie> soonList = new ArrayList<>();
 
         for (Movie movie : allMovies) {
-
-            // 1. TOP MOVIES: isTopMovie == true (Tối đa 3 phim)
-            if (movie.isTopMovie() && topList.size() < 3) {
+            // 1. TOP MOVIES (Tối đa 5 phim)
+            if (movie.isTopMovie() && topList.size() < 5) {
                 topList.add(movie);
             }
 
-            // 2. NOW PLAYING: status == "now_showing" (Tối đa 6 phim)
+            // 2. NOW PLAYING (Tối đa 6 phim)
             if ("now_showing".equals(movie.getStatus()) && nowList.size() < 6) {
                 nowList.add(movie);
             }
 
-            // 3. COMING SOON: status == "coming_soon" (Tối đa 6 phim)
+            // 3. COMING SOON (Tối đa 6 phim)
             if ("coming_soon".equals(movie.getStatus()) && soonList.size() < 6) {
                 soonList.add(movie);
             }
         }
 
-        // Đẩy dữ liệu đã lọc về Fragment
+        // Đẩy dữ liệu đã lọc về các LiveData chính
         topMovies.postValue(topList);
         nowPlayingMovies.postValue(nowList);
         comingSoonMovies.postValue(soonList);

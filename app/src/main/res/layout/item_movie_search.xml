@@ -13,11 +13,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/card_color"
         android:padding="12dp">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/movie_poster"
+            android:id="@+id/movie_poster_container"
             android:layout_width="100dp"
             android:layout_height="150dp"
             app:cardCornerRadius="12dp"
@@ -40,16 +39,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-
             android:textColor="@color/text_color"
             android:textSize="16sp"
             android:textStyle="bold"
             android:maxLines="1"
             android:ellipsize="end"
-            app:layout_constraintTop_toTopOf="@id/movie_poster"
-            app:layout_constraintStart_toEndOf="@id/movie_poster"
+            app:layout_constraintTop_toTopOf="@id/movie_poster_container"
+            app:layout_constraintStart_toEndOf="@id/movie_poster_container"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="The Batman" />
+            tools:text="The Silence of the Lambs" />
 
         <TextView
             android:id="@+id/tv_movie_genre"
@@ -63,24 +61,21 @@
             app:layout_constraintTop_toBottomOf="@id/tv_movie_title"
             app:layout_constraintStart_toStartOf="@id/tv_movie_title"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="Action, Crime, Drama" />
+            tools:text="Crime, Thriller, Drama" />
 
         <TextView
             android:id="@+id/text_age_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:layout_marginTop="6dp"
-            android:background="@drawable/background_rating"
-            android:paddingLeft="8dp"
-            android:paddingTop="2dp"
-            android:paddingRight="8dp"
-            android:paddingBottom="2dp"
+            android:background="@drawable/bg_rating"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
             android:text="16+"
             android:textColor="@color/rating_text_color"
             android:textSize="12sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/movie_poster"
+            app:layout_constraintStart_toStartOf="@id/tv_movie_title"
             app:layout_constraintTop_toBottomOf="@id/tv_movie_genre" />
 
         <TextView
@@ -108,40 +103,59 @@
             android:textColor="@color/text_color"
             android:textSize="12sp"
             android:justificationMode="inter_word"
-            app:layout_constraintBottom_toTopOf="@id/btn_booking"
+            app:layout_constraintBottom_toTopOf="@id/btn_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_movie_title"
+        app:layout_constraintTop_toBottomOf="@+id/text_age_rating_desc"
+        app:layout_constraintVertical_bias="0"
+        tools:text="Clarice Starling is a top student at the FBI's training academy. Jack Crawford wants Clarice to interview Dr. Hannibal..." />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btn_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/movie_poster_container"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_min="40dp"
-            app:layout_constraintStart_toStartOf="@id/tv_movie_title"
-            app:layout_constraintTop_toBottomOf="@+id/text_age_rating_desc"
-            app:layout_constraintVertical_bias="0"
-            tools:text="When the Riddler, a sadistic serial killer, begins murdering key political figures..." />
+            app:layout_constraintStart_toStartOf="@id/tv_movie_title">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_booking"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_book"
-            android:textColor="@color/btn_text_color"
-            android:textSize="12sp"
-            android:fontFamily="@font/montserrat_bold"
-            app:backgroundTint="@color/main_color"
-            app:cornerRadius="18dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/movie_poster"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_booking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_book"
+                android:textColor="@color/btn_text_color"
+                android:textSize="12sp"
+                app:backgroundTint="@color/main_color"
+                app:cornerRadius="18dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="16dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
-        <com.google.android.material.button.MaterialButton style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:id="@+id/btn_information"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_info"
-            android:fontFamily="@font/montserrat_bold"
-            android:textSize="12sp"
-            android:textColor="@color/main_color"
-            app:strokeColor="@color/main_color"
-            app:cornerRadius="18dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/movie_poster"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <com.google.android.material.button.MaterialButton style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:id="@+id/btn_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_info"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="12sp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/main_color"
+                app:strokeColor="@color/main_color"
+                app:cornerRadius="18dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

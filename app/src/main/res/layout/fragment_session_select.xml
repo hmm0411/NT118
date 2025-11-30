@@ -32,20 +32,20 @@
                 android:paddingBottom="16dp"
                 android:clipToPadding="false"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_date_card" />
+                tools:listitem="@layout/item_date_session" />
 
-            <com.google.android.material.button.MaterialButton
+            <com.google.android.material.button.MaterialButton style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:id="@+id/btn_location_filter"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginEnd="16dp"
-                android:text="Ho Chi Minh City"
-                android:textAllCaps="false"
+                android:gravity="center_vertical"
+                android:layout_marginEnd="20dp"
+                android:text="Ho Chi Minh"
+                android:textAllCaps="true"
                 android:textColor="@color/main_color"
                 app:icon="@drawable/ic_location"
-                app:iconTint="@color/icon_color"
+                app:iconTint="@color/main_color"
                 app:strokeColor="#DDDDDD"
                 app:cornerRadius="20dp" />
 
@@ -57,7 +57,7 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_cinema_session" />
+                tools:listitem="@layout/item_cinema" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

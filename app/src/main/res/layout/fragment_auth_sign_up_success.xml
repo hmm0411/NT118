@@ -8,7 +8,7 @@
     android:gravity="center"
     android:background="@color/background_color"
     android:fitsSystemWindows="true"
-    tools:context=".activity.splash.SplashActivity">
+    tools:context=".activity.auth.SignUpActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"

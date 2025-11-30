@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/text_time_slot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:text="14:00"
-    android:textColor="@android:color/black"
-    android:gravity="center"
-    android:padding="12dp"
-    android:textSize="16sp"
+    android:background="@drawable/bg_session_time"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="8dp"
+    android:layout_margin="8dp"
+    android:textColor="@color/main_color"
     android:textStyle="bold"
-    android:background="@color/main_color"/>
+    android:textSize="14sp"
+    android:gravity="center"
+    tools:text="14:00" />

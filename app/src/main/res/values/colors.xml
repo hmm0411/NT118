@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="background_color">#FCF6F5</color>
-    <color name="background_poster">#000000</color>
+    <color name="background_poster">#FFFFFF</color>
 
     <color name="text_color">#000000</color>
+    <color name="text_color_dark">#FFFFFF</color>
+
     <color name="tag_color">#AFAFAF</color>
     <color name="btn_text_color">#FFFFFF</color>
     <color name="rating_text_color">#FFFFFF</color>
@@ -17,10 +19,7 @@
 
     <color name="icon_pause_color">#AFAFAF</color>
 
-    <color name="seat_available_bg">#EEEEEE</color>
-    <color name="seat_occupied_bg">#D32F2F</color>
-    <color name="seat_chosen_bg">#C62828</color>
-    <color name="seat_available_text">#424242</color>
-    <color name="seat_occupied_text">#FFFFFF</color>
-    <color name="seat_chosen_text">#FFFFFF</color>
+    <color name="seat_available">#D9D9D9</color>
+    <color name="seat_occupied">#DC5252</color>
+
 </resources>

@@ -16,8 +16,7 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
         app:cardCornerRadius="28dp"
-        app:cardElevation="2dp"
-        app:cardBackgroundColor="#F5F5F5"
+        app:cardBackgroundColor="#1B000000"
         app:layout_constraintTop_toTopOf="parent"> <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +50,8 @@
             android:id="@+id/btn_filter"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_filter" /> </LinearLayout>
+            android:src="@drawable/ic_filter"
+            app:tint="@color/icon_color"/> </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <HorizontalScrollView

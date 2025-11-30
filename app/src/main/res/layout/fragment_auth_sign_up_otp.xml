@@ -41,7 +41,7 @@
         <EditText
             android:id="@+id/et_otp_1"
             style="@style/OtpEditTextStyle"
-            android:inputType="phone"/>
+            android:inputType="numberDecimal"/>
         <EditText
             android:id="@+id/et_otp_2"
             style="@style/OtpEditTextStyle"

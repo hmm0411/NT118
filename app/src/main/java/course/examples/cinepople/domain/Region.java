@@ -2,13 +2,13 @@ package course.examples.cinepople.domain;
 
 import com.google.firebase.firestore.DocumentId;
 
-public class Region {
+import java.io.Serializable;
+
+public class Region implements Serializable {
 
     @DocumentId
     private String id;
-
     private String name;
-
     public Region() {}
 
     public String getId() { return id; }

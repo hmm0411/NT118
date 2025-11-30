@@ -12,14 +12,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#EEEEEE"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"/>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_provinces"
             android:layout_width="match_parent"

@@ -20,6 +20,9 @@ public class BookingViewModel extends ViewModel {
     // LiveData chứa kết quả đặt vé thành công
     private final MutableLiveData<Booking> bookingResult = new MutableLiveData<>();
 
+    private final MutableLiveData<List<Booking>> myBookings = new MutableLiveData<>();
+
+
     // LiveData trạng thái loading
     private final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
 
@@ -35,6 +38,10 @@ public class BookingViewModel extends ViewModel {
         return bookingResult;
     }
 
+    public LiveData<List<Booking>> getMyBookings() {
+        return myBookings;
+    }
+
     public LiveData<Boolean> getIsLoading() {
         return isLoading;
     }
@@ -45,8 +52,9 @@ public class BookingViewModel extends ViewModel {
 
     /**
      * Gọi API tạo Booking (Giữ ghế)
+     *
      * @param showtimeId ID suất chiếu
-     * @param seats Danh sách mã ghế (A1, A2...)
+     * @param seats      Danh sách mã ghế (A1, A2...)
      */
     public void createBooking(String showtimeId, List<String> seats) {
         isLoading.setValue(true);
@@ -92,5 +100,25 @@ public class BookingViewModel extends ViewModel {
 
         // 🟢 3. Gọi Repository
         repository.createBooking(showtimeId, seats, successProxy, errorProxy);
+    }
+
+    public void loadMyBookings(String token) {
+
+        MutableLiveData<List<Booking>> successProxy = new MutableLiveData<>() {
+            @Override
+            public void postValue(List<Booking> bookings) {
+                super.postValue(bookings);
+                myBookings.postValue(bookings);
+            }
+        };
+
+        MutableLiveData<String> errorProxy = new MutableLiveData<>() {
+            @Override
+            public void postValue(String msg) {
+                super.postValue(msg);
+                errorMessage.postValue(msg);
+            }
+        };
+        repository.getMyBookings(token, successProxy, errorProxy);
     }
 }

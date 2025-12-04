@@ -6,14 +6,17 @@ import android.content.SharedPreferences;
 public class SessionManager {
 
     public static final String APP_PREFERENCES = "AppSession";
+
     private static final String KEY_LOGGED_IN = "LOGGED_IN";
+    private static final String KEY_AUTH_TOKEN = "AUTH_TOKEN";
     private static final String KEY_USER_EMAIL = "USER_EMAIL";
+    private static final String KEY_DARK_MODE = "IS_DARK_MODE";
 
     private static SharedPreferences getPrefs(Context context) {
         return context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
     }
 
-    // Lưu phiên sau khi đăng nhập thành công
+    // --- LƯU EMAIL LOGIN FIREBASE ---
     public static void saveUserSession(Context context, String email) {
         getPrefs(context).edit()
                 .putBoolean(KEY_LOGGED_IN, true)
@@ -21,25 +24,39 @@ public class SessionManager {
                 .apply();
     }
 
-    // Kiểm tra trạng thái đăng nhập
-    public static boolean isLoggedIn(Context context) {
-        return getPrefs(context).getBoolean(KEY_LOGGED_IN, false);
-    }
-
-    // Xóa phiên khi đăng xuất
-    public static void clearSession(Context context) {
-        getPrefs(context).edit().clear().apply();
-    }
-
-    private static final String KEY_DARK_MODE = "IS_DARK_MODE";
-
-    // Lưu trạng thái Dark Mode
+    // --- DARK MODE ---
     public static void setDarkMode(Context context, boolean isDark) {
         getPrefs(context).edit().putBoolean(KEY_DARK_MODE, isDark).apply();
     }
 
-    // Lấy trạng thái Dark Mode (Mặc định là false - Light mode)
     public static boolean isDarkMode(Context context) {
         return getPrefs(context).getBoolean(KEY_DARK_MODE, false);
+    }
+
+    // --- BACKEND TOKEN ---
+    public static void saveAuthToken(Context context, String token) {
+        getPrefs(context).edit()
+                .putString(KEY_AUTH_TOKEN, token)
+                .putBoolean(KEY_LOGGED_IN, true)
+                .apply();
+    }
+
+    public static String getAuthToken(Context context) {
+        return getPrefs(context).getString(KEY_AUTH_TOKEN, null);
+    }
+
+    // --- KIỂM TRA LOGIN ---
+    public static boolean isLoggedIn(Context context) {
+        return getPrefs(context).getBoolean(KEY_LOGGED_IN, false);
+    }
+
+    // Clear session (logout)
+    public static void clearSession(Context context) {
+        getPrefs(context).edit().clear().apply();
+    }
+
+    // --- LOGOUT ---
+    public static void logout(Context context) {
+        getPrefs(context).edit().clear().apply();
     }
 }

@@ -1,38 +1,37 @@
 package course.examples.cinepople.domain;
 
-import com.google.firebase.firestore.DocumentId;
-import com.google.firebase.firestore.ServerTimestamp;
-import java.util.Date;
 import java.util.List;
 
 public class Booking {
-
-    @DocumentId
     private String id;
-
-    private String userId;
-    private String sessionId;
-    private List<String> seatsBooked;
-    private double totalPrice;
-    private String status; // "paid" hoặc "unpaid"
-
+    private String showtimeId;
     private String movieTitle;
     private String cinemaName;
-    private String dateTime;
+    private String roomName;
+    private String status;
+    private List<String> seats;
+    private double totalPrice;
+    private String showtimeDate;
 
-    @ServerTimestamp
-    private Date createdAt;
-
-    public Booking() {}
-
+    // ---- GETTERS ----
     public String getId() { return id; }
-    public String getUserId() { return userId; }
-    public String getSessionId() { return sessionId; }
-    public List<String> getSeatsBooked() { return seatsBooked; }
-    public double getTotalPrice() { return totalPrice; }
-    public String getStatus() { return status; }
+    public String getShowtimeId() { return showtimeId; }
     public String getMovieTitle() { return movieTitle; }
     public String getCinemaName() { return cinemaName; }
-    public String getDateTime() { return dateTime; }
-    public Date getCreatedAt() { return createdAt; }
+    public String getRoomName() { return roomName; }
+    public String getStatus() { return status; }
+    public List<String> getSeats() { return seats; }
+    public double getTotalPrice() { return totalPrice; }
+    public String getShowtimeDate() { return showtimeDate; }
+
+    // ---- SETTERS (NEEDED FOR RETROFIT) ----
+    public void setId(String id) { this.id = id; }
+    public void setShowtimeId(String showtimeId) { this.showtimeId = showtimeId; }
+    public void setMovieTitle(String movieTitle) { this.movieTitle = movieTitle; }
+    public void setCinemaName(String cinemaName) { this.cinemaName = cinemaName; }
+    public void setRoomName(String roomName) { this.roomName = roomName; }
+    public void setStatus(String status) { this.status = status; }
+    public void setSeats(List<String> seats) { this.seats = seats; }
+    public void setTotalPrice(double totalPrice) { this.totalPrice = totalPrice; }
+    public void setShowtimeDate(String showtimeDate) { this.showtimeDate = showtimeDate; }
 }

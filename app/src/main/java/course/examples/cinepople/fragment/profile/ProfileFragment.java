@@ -140,8 +140,9 @@ public class ProfileFragment extends Fragment {
 
         // 2. Xóa phiên cục bộ (Chỉ xóa trạng thái đăng nhập, không xóa setting Dark Mode nếu không muốn)
         if (getActivity() != null) {
-            // Giả sử clearSession chỉ xóa thông tin user, giữ lại setting app
+            // Giả sử clearSession chỉ xóa tShông tin user, giữ lại setting app
             SessionManager.clearSession(getActivity());
+//            SessionManager.clearSession(requireContext());
         }
 
         // 3. Cập nhật giao diện

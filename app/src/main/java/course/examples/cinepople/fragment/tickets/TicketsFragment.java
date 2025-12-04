@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.ArrayList;
@@ -21,10 +22,13 @@ import course.examples.cinepople.adapter.TicketAdapter;
 import course.examples.cinepople.domain.Booking;
 import course.examples.cinepople.databinding.FragmentMainTicketsBinding;
 import course.examples.cinepople.utility.SessionManager;
+import course.examples.cinepople.viewmodel.BookingViewModel;
 
 public class TicketsFragment extends Fragment {
 
     private FragmentMainTicketsBinding binding;
+
+    private BookingViewModel bookingViewModel;
 
     private List<Booking> paidTicketsList = new ArrayList<>();
     private List<Booking> unpaidTicketsList = new ArrayList<>();
@@ -41,6 +45,10 @@ public class TicketsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        bookingViewModel = new ViewModelProvider(this).get(BookingViewModel.class);
+
+        observeViewModel();
         checkLoginStatus();
     }
 
@@ -58,9 +66,13 @@ public class TicketsFragment extends Fragment {
         if (isLoggedIn) {
             binding.loggedInView.setVisibility(View.VISIBLE);
             binding.loggedOutView.setVisibility(View.GONE);
+
+            setupRecyclerViews();
+            loadBookings();
+
         } else {
             binding.loggedInView.setVisibility(View.GONE);
-            binding.loggedInView.setVisibility(View.VISIBLE);
+            binding.loggedOutView.setVisibility(View.VISIBLE);
 
             binding.btnGoToLogin.setOnClickListener(v -> {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
@@ -68,8 +80,38 @@ public class TicketsFragment extends Fragment {
         }
     }
 
+    private void loadBookings() {
+        String token = SessionManager.getAuthToken(requireContext());
+        if (token != null)
+            bookingViewModel.loadMyBookings(token);
+    }
+
+    private void observeViewModel() {
+
+        bookingViewModel.getMyBookings().observe(getViewLifecycleOwner(), bookings -> {
+
+            paidTicketsList.clear();
+            unpaidTicketsList.clear();
+
+            for (Booking b : bookings) {
+
+                if ("paid".equalsIgnoreCase(b.getStatus()))
+                    paidTicketsList.add(b);
+                else
+                    unpaidTicketsList.add(b);
+            }
+
+            paidTicketAdapter.notifyDataSetChanged();
+            unpaidTicketAdapter.notifyDataSetChanged();
+        });
+
+        bookingViewModel.getErrorMessage().observe(getViewLifecycleOwner(), msg -> {
+            // TODO: show toast nếu cần
+        });
+    }
 
     private void setupRecyclerViews() {
+
         if (paidTicketAdapter == null) {
             paidTicketAdapter = new TicketAdapter(getContext(), paidTicketsList, booking -> {});
             binding.recyclerPaidTickets.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -81,11 +123,5 @@ public class TicketsFragment extends Fragment {
             binding.recyclerUnpaidTickets.setLayoutManager(new LinearLayoutManager(getContext()));
             binding.recyclerUnpaidTickets.setAdapter(unpaidTicketAdapter);
         }
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 }

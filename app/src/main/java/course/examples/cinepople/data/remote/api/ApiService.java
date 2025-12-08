@@ -3,7 +3,9 @@ package course.examples.cinepople.data.remote.api;
 import java.util.List;
 
 import course.examples.cinepople.data.remote.request.BookingRequest;
+import course.examples.cinepople.data.remote.request.ChatRequest;
 import course.examples.cinepople.data.remote.response.BookingResponse;
+import course.examples.cinepople.data.remote.response.ChatResponse;
 import course.examples.cinepople.domain.Booking;
 import course.examples.cinepople.domain.Movie;
 import course.examples.cinepople.domain.Showtime;
@@ -51,4 +53,9 @@ public interface ApiService {
     @GET("api/booking")
     Call<BookingResponse> getMyBookings(@Header("Authorization") String token);
 
+    /**
+     * Sends a message to the chatbot and gets a reply.
+     */
+    @POST("api/chatbot") // Matches your backend router path
+    Call<ChatResponse> sendMessageToBot(@Body ChatRequest request);
 }

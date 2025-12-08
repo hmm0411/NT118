@@ -1,7 +1,6 @@
 package course.examples.cinepople.data.remote.api;
 
 import java.util.concurrent.TimeUnit;
-// import course.examples.cinepople.BuildConfig; // <-- TẠM COMMENT DÒNG NÀY
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;

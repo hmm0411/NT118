@@ -52,18 +52,8 @@
     <string name="login_checkbox_remember_me">Remember me</string>
     <string name="link_forgot_password">Forgot your password?</string>
 
-    <!-- Facebook -->
-<!--    <string name="facebook_app_id">2247219395758210</string>-->
-<!--    <string name="facebook_client_token">7e4f6ecaa5652dacd8ebdf52a16e9c13</string>-->
-
-    <!-- FACEBOOK LOGIN PROTOCOL SCHEME -->
-    <string name="fb_login_protocol_scheme">fb1922996301971245</string>
-
-    <!-- Google -->
-<!--    <string name="default_web_client_id">-->
-<!--        797797873300-omolfq7mmff7n2f5kuj46t9oi7k0ciot.apps.googleusercontent.com-->
-<!--    </string>-->
-
+<!--    &lt;!&ndash; FACEBOOK LOGIN PROTOCOL SCHEME &ndash;&gt;-->
+<!--    <string name="fb_login_protocol_scheme">fb1922996301971245</string>-->
 
     <string name="login_seperate_or_login_with">Or login with</string>
 

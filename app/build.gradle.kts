@@ -13,6 +13,9 @@ val FB_APP_ID = localProps.getProperty("FACEBOOK_APP_ID") ?: ""
 val FB_CLIENT_TOKEN = localProps.getProperty("FACEBOOK_CLIENT_TOKEN") ?: ""
 val GOOGLE_WEB_CLIENT_ID = localProps.getProperty("GOOGLE_WEB_CLIENT_ID") ?: ""
 
+val FACEBOOK_LOGIN_PROTOCOL_SCHEME = localProps.getProperty("FACEBOOK_LOGIN_PROTOCOL_SCHEME") ?: ""
+
+
 android {
     namespace = "course.examples.cinepople"
     compileSdk = 36
@@ -29,6 +32,7 @@ android {
         manifestPlaceholders["FACEBOOK_APP_ID"] = FB_APP_ID
         manifestPlaceholders["FACEBOOK_CLIENT_TOKEN"] = FB_CLIENT_TOKEN
         manifestPlaceholders["GOOGLE_WEB_CLIENT_ID"] = GOOGLE_WEB_CLIENT_ID
+        manifestPlaceholders["FACEBOOK_LOGIN_PROTOCOL_SCHEME"] = FACEBOOK_LOGIN_PROTOCOL_SCHEME
 
         buildConfigField("String", "FACEBOOK_APP_ID", "\"$FB_APP_ID\"")
         buildConfigField("String", "FACEBOOK_CLIENT_TOKEN", "\"$FB_CLIENT_TOKEN\"")

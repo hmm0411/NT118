@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import course.examples.cinepople.R;
+import course.examples.cinepople.fragment.chat.ChatFragment;
 import course.examples.cinepople.fragment.home.HomeFragment;
 import course.examples.cinepople.fragment.profile.ProfileFragment;
 import course.examples.cinepople.fragment.search.SearchFragment;
@@ -40,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
         com.google.android.material.floatingactionbutton.FloatingActionButton fabChat = findViewById(R.id.fab_chat_bubble);
         fabChat.setOnClickListener(v -> {
             // TODO: Mở giao diện ChatFragment hoặc ChatActivity tại đây
-            Toast.makeText(this, "Mở Chatbox", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Mở Chatbox", Toast.LENGTH_SHORT).show();
+            openChatFragment();
         });
 
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation_bar);
@@ -90,19 +92,21 @@ public class MainActivity extends AppCompatActivity {
 
     private void openChatFragment() {
         // ⚠️ LƯU Ý: Bạn cần đảm bảo đã tạo class ChatFragment.java
-        Fragment chatFragment = new course.examples.cinepople.fragment.chat.ChatFragment();
-
-        // Sử dụng transaction ADD để đặt ChatFragment lên trên các fragment hiện tại
-        fm.beginTransaction()
-                .setCustomAnimations(
-                        android.R.anim.slide_in_left, // Tùy chọn: Thêm hiệu ứng trượt
-                        android.R.anim.slide_out_right,
-                        android.R.anim.slide_in_left,
-                        android.R.anim.slide_out_right
-                )
-                .add(R.id.fragment_container, chatFragment, "TAG_CHAT") // Thêm Fragment Chat
-                .addToBackStack("CHAT_OVERLAY") // Thêm vào BackStack để bấm nút Back sẽ đóng ChatFragment
-                .commit();
+//        Fragment chatFragment = new course.examples.cinepople.fragment.chat.ChatFragment();
+//
+//        // Sử dụng transaction ADD để đặt ChatFragment lên trên các fragment hiện tại
+//        fm.beginTransaction()
+//                .setCustomAnimations(
+//                        android.R.anim.slide_in_left, // Tùy chọn: Thêm hiệu ứng trượt
+//                        android.R.anim.slide_out_right,
+//                        android.R.anim.slide_in_left,
+//                        android.R.anim.slide_out_right
+//                )
+//                .add(R.id.fragment_container, chatFragment, "TAG_CHAT") // Thêm Fragment Chat
+//                .addToBackStack("CHAT_OVERLAY") // Thêm vào BackStack để bấm nút Back sẽ đóng ChatFragment
+//                .commit();
+        ChatFragment chatDialog = new ChatFragment();
+        chatDialog.show(getSupportFragmentManager(), "ChatFragmentDialog");
     }
 
     private void restoreFragments(Bundle savedInstanceState) {
